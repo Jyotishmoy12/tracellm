@@ -1,6 +1,6 @@
 site_name: TraceLLM
 site_description: TraceLLM documentation for local development, SDK integration, tracing configuration, and SigNoz export.
-site_url: https://docs.tracellm.local
+site_url: https://docs.tracellm.in
 repo_name: tracellm
 theme:
   name: material

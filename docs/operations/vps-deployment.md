@@ -188,13 +188,7 @@ Set Vercel env:
 VITE_API_BASE_URL=https://api.tracellm.in
 VITE_DOCS_BASE_URL=https://docs.tracellm.in
 VITE_OPENAPI_URL=https://api.tracellm.in/api-docs
-VITE_DEFAULT_OTLP_ENDPOINT=
-```
-
-If docs are not deployed yet:
-
-```text
-VITE_DOCS_BASE_URL=https://tracellm.in
+VITE_DEFAULT_OTLP_ENDPOINT=http://localhost:4318
 ```
 
 ## Smoke Test
