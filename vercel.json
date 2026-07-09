@@ -1,5 +1,5 @@
 {
-  "installCommand": "pnpm install --frozen-lockfile && python -m pip install -r docs/requirements.txt",
-  "buildCommand": "pnpm docs:build",
+  "installCommand": "pnpm install --frozen-lockfile && python -m venv .venv && .venv/bin/python -m pip install -r docs/requirements.txt",
+  "buildCommand": ".venv/bin/python -m mkdocs build",
   "outputDirectory": "site"
 }
