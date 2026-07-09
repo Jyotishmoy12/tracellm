@@ -1,0 +1,11 @@
+api.tracellm.in {
+  reverse_proxy tracellm-server:4319
+}
+
+signoz.tracellm.in {
+  basic_auth {
+    {$SIGNOZ_BASIC_AUTH_USER} {$SIGNOZ_BASIC_AUTH_HASH}
+  }
+
+  reverse_proxy signoz-signoz-0:8080
+}

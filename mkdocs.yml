@@ -1,0 +1,51 @@
+site_name: TraceLLM
+site_description: TraceLLM documentation for local development, SDK integration, tracing configuration, and SigNoz export.
+site_url: https://docs.tracellm.local
+repo_name: tracellm
+theme:
+  name: material
+  features:
+    - navigation.sections
+    - navigation.expand
+    - navigation.top
+    - content.code.copy
+    - content.tabs.link
+  palette:
+    - scheme: default
+      primary: teal
+      accent: green
+markdown_extensions:
+  - admonition
+  - attr_list
+  - md_in_html
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.highlight:
+      anchor_linenums: true
+nav:
+  - Home: index.md
+  - Product:
+      - Problem And Positioning: product/problem.md
+      - Core Concepts: product/concepts.md
+      - Customization Options: product/customization.md
+  - Getting Started:
+      - Local Quickstart: getting-started/local-quickstart.md
+      - Full Local Setup: getting-started/full-local-setup.md
+      - Testing With Real LLM Providers: getting-started/provider-testing.md
+      - Chatbot Step 1 Session Tracing: getting-started/chatbot-step-1-session-tracing.md
+  - SDK:
+      - Node SDK Guide: sdk/node.md
+      - Manual Instrumentation Patterns: sdk/instrumentation-patterns.md
+  - Operations:
+      - VPS Deployment: operations/vps-deployment.md
+      - SigNoz Integration: operations/signoz.md
+      - External OTLP Exports: operations/external-otlp-exports.md
+      - Environment Variables: operations/environment.md
+      - Troubleshooting: operations/troubleshooting.md
+  - Engineering:
+      - Architecture: engineering/architecture.md
+      - API Overview: engineering/api.md
+      - Security Model: engineering/security.md
+      - Roadmap: engineering/roadmap.md

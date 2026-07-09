@@ -1,0 +1,47 @@
+{
+  "name": "tracellm",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "pnpm -r build",
+    "dev:server": "pnpm --filter @tracellm/server dev",
+    "dev:web": "pnpm --filter @tracellm/web dev",
+    "dev": "pnpm --parallel --filter @tracellm/server --filter @tracellm/web dev",
+    "chatbot:start": "pnpm --filter @tracellm/chatbot start",
+    "start:server": "pnpm --filter @tracellm/server start",
+    "preview:web": "pnpm --filter @tracellm/web preview",
+    "example:basic": "pnpm --filter @tracellm/example-basic-node start",
+    "example:real-api": "pnpm --filter @tracellm/example-real-api-node start",
+    "example:user-app": "pnpm --filter @tracellm/example-user-app start",
+    "infra:build": "docker compose -f infra/docker-compose.yml build tracellm-server",
+    "infra:up": "docker compose -f infra/docker-compose.yml up -d --remove-orphans",
+    "infra:down": "docker compose -f infra/docker-compose.yml down --remove-orphans",
+    "infra:logs": "docker compose -f infra/docker-compose.yml logs -f",
+    "prod:build": "docker compose -f infra/production/docker-compose.yml build tracellm-server",
+    "prod:up": "docker compose -f infra/production/docker-compose.yml up -d --build",
+    "prod:down": "docker compose -f infra/production/docker-compose.yml down",
+    "prod:logs": "docker compose -f infra/production/docker-compose.yml logs -f",
+    "signoz:forge": "cd infra\\signoz && ..\\..\\tools\\foundryctl\\foundry_windows_amd64\\bin\\foundryctl.exe forge -f casting.yaml",
+    "signoz:up": "docker compose -f infra/signoz/pours/deployment/compose.yaml up -d",
+    "signoz:down": "docker compose -f infra/signoz/pours/deployment/compose.yaml down",
+    "signoz:logs": "docker compose -f infra/signoz/pours/deployment/compose.yaml logs -f",
+    "signoz:prod:up": "docker compose -f infra/signoz/pours/deployment/compose.yaml -f infra/production/signoz-production.override.yml up -d",
+    "signoz:prod:down": "docker compose -f infra/signoz/pours/deployment/compose.yaml -f infra/production/signoz-production.override.yml down",
+    "signoz:prod:logs": "docker compose -f infra/signoz/pours/deployment/compose.yaml -f infra/production/signoz-production.override.yml logs -f",
+    "docs:serve": "python -m mkdocs serve",
+    "docs:build": "python -m mkdocs build",
+    "test": "pnpm -r test",
+    "typecheck": "pnpm --filter @tracellm/shared build && pnpm --filter @tracellm/sdk-node typecheck && pnpm --filter @tracellm/server typecheck && pnpm --filter @tracellm/web typecheck",
+    "db:generate": "pnpm --filter @tracellm/server db:generate",
+    "db:migrate": "pnpm --filter @tracellm/server db:migrate"
+  },
+  "packageManager": "pnpm@9.15.0",
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.2",
+    "typescript": "^5.7.2"
+  }
+}

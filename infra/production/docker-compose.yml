@@ -1,0 +1,57 @@
+name: tracellm-production
+
+services:
+  tracellm-server:
+    build:
+      context: ../..
+      dockerfile: apps/server/Dockerfile
+    container_name: tracellm-server
+    env_file:
+      - ./server.env
+    restart: unless-stopped
+    volumes:
+      - tracellm-data:/app/data
+    expose:
+      - "4319"
+    networks:
+      - default
+      - signoz-network
+    healthcheck:
+      test:
+        - CMD
+        - node
+        - -e
+        - "fetch('http://localhost:4319/health').then((r)=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 30s
+
+  caddy:
+    image: caddy:2-alpine
+    container_name: tracellm-caddy
+    env_file:
+      - ./caddy.env
+    restart: unless-stopped
+    depends_on:
+      tracellm-server:
+        condition: service_started
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy-data:/data
+      - caddy-config:/config
+    networks:
+      - default
+      - signoz-network
+
+networks:
+  signoz-network:
+    external: true
+
+volumes:
+  tracellm-data:
+  caddy-data:
+  caddy-config:

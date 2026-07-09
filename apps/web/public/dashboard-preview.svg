@@ -1,0 +1,61 @@
+<svg width="1440" height="900" viewBox="0 0 1440 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    text {
+      font-family: "Geist Mono", "SFMono-Regular", "Cascadia Mono", "Courier New", monospace;
+      letter-spacing: 0.02em;
+    }
+    text[font-weight="700"],
+    text[font-weight="800"],
+    text[font-weight="900"] {
+      font-weight: 600;
+    }
+  </style>
+  <rect width="1440" height="900" fill="#FAFAFA"/>
+  <rect x="1" y="1" width="1438" height="898" rx="8" fill="white" stroke="#111111" stroke-opacity="0.3" stroke-width="2"/>
+  <rect x="32" y="32" width="330" height="836" rx="4" fill="#F7F7F7" stroke="#111111" stroke-opacity="0.32"/>
+  <text x="64" y="88" fill="#111111" font-family="Inter, Arial, sans-serif" font-size="28" font-weight="800">tracellm</text>
+  <rect x="64" y="124" width="248" height="52" rx="3" fill="white" stroke="#111111" stroke-opacity="0.34"/>
+  <text x="88" y="157" fill="#666666" font-family="Inter, Arial, sans-serif" font-size="14">SEARCH SESSIONS</text>
+  <rect x="64" y="210" width="248" height="118" rx="3" fill="#111111"/>
+  <text x="88" y="254" fill="white" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="800">OPENAI CHATBOT TRACE</text>
+  <text x="88" y="288" fill="#CFCFCF" font-family="Inter, Arial, sans-serif" font-size="15">4.82s · 27 tokens</text>
+  <rect x="88" y="304" width="48" height="22" rx="2" fill="#FFFFFF"/>
+  <text x="102" y="320" fill="#111111" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="800">ok</text>
+  <rect x="64" y="352" width="248" height="118" rx="3" fill="white" stroke="#111111" stroke-opacity="0.34"/>
+  <text x="88" y="396" fill="#111111" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="800">AGENT WORKFLOW</text>
+  <text x="88" y="430" fill="#666666" font-family="Inter, Arial, sans-serif" font-size="15">1.31s · 64 tokens</text>
+  <rect x="64" y="494" width="248" height="118" rx="3" fill="white" stroke="#111111" stroke-opacity="0.34"/>
+  <text x="88" y="538" fill="#111111" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="800">RETRIEVAL ANSWER</text>
+  <text x="88" y="572" fill="#666666" font-family="Inter, Arial, sans-serif" font-size="15">823ms · 18 tokens</text>
+  <rect x="400" y="32" width="1008" height="104" rx="4" fill="white" stroke="#111111" stroke-opacity="0.32"/>
+  <text x="440" y="78" fill="#666666" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="700">LLM OBSERVABILITY</text>
+  <text x="440" y="112" fill="#111111" font-family="Inter, Arial, sans-serif" font-size="32" font-weight="900">TRACE EXPLORER</text>
+  <rect x="1264" y="58" width="48" height="48" rx="4" fill="#111111"/>
+  <rect x="1324" y="58" width="48" height="48" rx="4" fill="white" stroke="#111111" stroke-opacity="0.34"/>
+  <rect x="400" y="168" width="1008" height="198" rx="4" fill="white" stroke="#111111" stroke-opacity="0.32"/>
+  <text x="440" y="220" fill="#666666" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="800">SESSION DETAIL</text>
+  <text x="440" y="258" fill="#111111" font-family="Inter, Arial, sans-serif" font-size="30" font-weight="900">OPENAI CHATBOT TRACE</text>
+  <rect x="440" y="292" width="200" height="48" rx="3" fill="#F3F3F3"/>
+  <text x="464" y="323" fill="#111111" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="800">4.82S LATENCY</text>
+  <rect x="664" y="292" width="158" height="48" rx="3" fill="#F3F3F3"/>
+  <text x="688" y="323" fill="#111111" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="800">1 SPAN</text>
+  <rect x="846" y="292" width="174" height="48" rx="3" fill="#F3F3F3"/>
+  <text x="870" y="323" fill="#111111" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="800">27 TOKENS</text>
+  <rect x="1044" y="292" width="150" height="48" rx="3" fill="#F3F3F3"/>
+  <text x="1068" y="323" fill="#111111" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="800">0 ERRORS</text>
+  <rect x="400" y="398" width="1008" height="470" rx="4" fill="white" stroke="#111111" stroke-opacity="0.32"/>
+  <text x="440" y="456" fill="#111111" font-family="Inter, Arial, sans-serif" font-size="30" font-weight="900">TIMELINE</text>
+  <text x="1280" y="456" fill="#666666" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="800">4 RECORDS</text>
+  <rect x="440" y="494" width="928" height="96" rx="4" fill="#F7F7F7" stroke="#111111" stroke-opacity="0.28"/>
+  <circle cx="476" cy="542" r="14" fill="#111111"/>
+  <text x="516" y="532" fill="#666666" font-family="Inter, Arial, sans-serif" font-size="14">provider.request.started</text>
+  <text x="516" y="560" fill="#111111" font-family="Inter, Arial, sans-serif" font-size="20" font-weight="800">gpt-4.1-mini request started</text>
+  <rect x="440" y="614" width="928" height="96" rx="4" fill="#111111"/>
+  <circle cx="476" cy="662" r="14" fill="white"/>
+  <text x="516" y="652" fill="#CFCFCF" font-family="Inter, Arial, sans-serif" font-size="14">openai.chat.complete</text>
+  <text x="516" y="680" fill="white" font-family="Inter, Arial, sans-serif" font-size="20" font-weight="800">assistant response captured with usage</text>
+  <rect x="440" y="734" width="928" height="96" rx="4" fill="#F7F7F7" stroke="#111111" stroke-opacity="0.28"/>
+  <circle cx="476" cy="782" r="14" fill="#111111"/>
+  <text x="516" y="772" fill="#666666" font-family="Inter, Arial, sans-serif" font-size="14">session.completed</text>
+  <text x="516" y="800" fill="#111111" font-family="Inter, Arial, sans-serif" font-size="20" font-weight="800">trace stored and exported to OpenTelemetry</text>
+</svg>

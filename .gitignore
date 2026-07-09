@@ -1,0 +1,11 @@
+node_modules/
+dist/
+*.tsbuildinfo
+.env
+.env.local
+infra/production/*.env
+data/
+*.log
+coverage/
+.turbo/
+.pnpm-store/
