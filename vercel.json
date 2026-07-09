@@ -1,0 +1,5 @@
+{
+  "installCommand": "pnpm install --frozen-lockfile && python -m pip install -r docs/requirements.txt",
+  "buildCommand": "pnpm docs:build",
+  "outputDirectory": "site"
+}
