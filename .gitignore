@@ -9,3 +9,6 @@ data/
 coverage/
 .turbo/
 .pnpm-store/
+.npm-cache/
+.pack/
+*.tgz
