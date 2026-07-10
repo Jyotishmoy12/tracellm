@@ -6,7 +6,7 @@ import type {
   EndSessionRequest,
   EndSpanRequest,
   TracingConfig
-} from "@tracellm/shared";
+} from "@use-tracellm/shared";
 import type {
   RecordErrorInput,
   StartSessionInput,

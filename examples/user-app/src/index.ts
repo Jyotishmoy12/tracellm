@@ -1,4 +1,4 @@
-import { TraceLLM } from "@tracellm/sdk-node";
+import { TraceLLM } from "@use-tracellm/sdk-node";
 
 interface Customer {
   id: number;

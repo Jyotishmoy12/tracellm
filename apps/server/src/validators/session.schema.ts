@@ -1,1 +1,1 @@
-export { createSessionSchema, endSessionSchema } from "@tracellm/shared";
+export { createSessionSchema, endSessionSchema } from "@use-tracellm/shared";

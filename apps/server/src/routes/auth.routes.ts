@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { loginSchema, registerSchema } from "@tracellm/shared";
+import { loginSchema, registerSchema } from "@use-tracellm/shared";
 import type { AuthController } from "../controllers/auth.controller.js";
 import { userAuthMiddleware } from "../middleware/user-auth.middleware.js";
 import { asyncHandler } from "../utils/async-handler.js";

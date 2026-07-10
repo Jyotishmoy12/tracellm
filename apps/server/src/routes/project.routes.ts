@@ -4,7 +4,7 @@ import {
   createExportDestinationSchema,
   updateExportDestinationSchema,
   updateTracingConfigSchema
-} from "@tracellm/shared";
+} from "@use-tracellm/shared";
 import type { ProjectController } from "../controllers/project.controller.js";
 import { asyncHandler } from "../utils/async-handler.js";
 import { validateBody } from "../validators/validate-request.js";

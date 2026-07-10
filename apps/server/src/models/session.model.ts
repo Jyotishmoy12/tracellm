@@ -1,4 +1,4 @@
-import type { TraceStatus } from "@tracellm/shared";
+import type { TraceStatus } from "@use-tracellm/shared";
 
 export class SessionModel {
   constructor(

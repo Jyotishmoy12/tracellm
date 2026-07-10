@@ -1,6 +1,6 @@
 import { createHash, randomBytes } from "node:crypto";
 import { and, eq, ne } from "drizzle-orm/sql/expressions";
-import type { TracingConfig } from "@tracellm/shared";
+import type { TracingConfig } from "@use-tracellm/shared";
 import type { TraceLlmDb } from "../database/client.js";
 import {
   apiKeys,

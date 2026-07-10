@@ -1,4 +1,4 @@
-import { TraceLLM } from "@tracellm/sdk-node";
+import { TraceLLM } from "@use-tracellm/sdk-node";
 
 const tracellm = new TraceLLM({
   endpoint: process.env.TRACELLM_ENDPOINT ?? "http://localhost:4319",

@@ -1,5 +1,5 @@
 {
-  "name": "@tracellm/shared",
+  "name": "@use-tracellm/shared",
   "version": "0.1.0",
   "description": "Shared schemas and types for TraceLLM packages.",
   "license": "MIT",

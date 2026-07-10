@@ -1,1 +1,1 @@
-export { createErrorSchema, createEventSchema } from "@tracellm/shared";
+export { createErrorSchema, createEventSchema } from "@use-tracellm/shared";

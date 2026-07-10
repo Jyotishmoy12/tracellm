@@ -1,8 +1,8 @@
-# @tracellm/shared
+# @use-tracellm/shared
 
 Shared TraceLLM TypeScript types and Zod schemas.
 
-This package is published for TraceLLM package interoperability. Most users should install `@tracellm/sdk-node` directly instead of depending on this package.
+This package is published for TraceLLM package interoperability. Most users should install `@use-tracellm/sdk-node` directly instead of depending on this package.
 
 ## Links
 

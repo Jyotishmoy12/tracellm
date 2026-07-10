@@ -1,1 +1,1 @@
-export type { CreateEventRequest } from "@tracellm/shared";
+export type { CreateEventRequest } from "@use-tracellm/shared";

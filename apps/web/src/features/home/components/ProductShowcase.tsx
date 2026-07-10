@@ -15,7 +15,7 @@ const cards = [
         </p>
         <p>Start with Node today. Agents, RAG, tools, and gateways fit too.</p>
         <div className="mt-10 rounded-none border border-black bg-white p-4 font-mono text-sm leading-7 shadow-[8px_8px_0_#111]">
-          <div>&gt; pnpm add @tracellm/sdk-node</div>
+          <div>&gt; pnpm add @use-tracellm/sdk-node</div>
           <div className="mt-5 text-black/70">trace.span(&#123;</div>
           <div className="pl-5 text-black/55">provider: "openai",</div>
           <div className="pl-5 text-black/55">model: "gpt-4.1-mini"</div>

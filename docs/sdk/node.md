@@ -11,7 +11,7 @@ In this monorepo, the SDK is consumed as a workspace package:
 ```json
 {
   "dependencies": {
-    "@tracellm/sdk-node": "workspace:*"
+    "@use-tracellm/sdk-node": "workspace:*"
   }
 }
 ```
@@ -19,13 +19,13 @@ In this monorepo, the SDK is consumed as a workspace package:
 For a hosted product, users would install the published package:
 
 ```bash
-npm install @tracellm/sdk-node
+npm install @use-tracellm/sdk-node
 ```
 
 ## Basic Setup
 
 ```ts
-import { TraceLLM } from "@tracellm/sdk-node";
+import { TraceLLM } from "@use-tracellm/sdk-node";
 
 const tracellm = new TraceLLM({
   endpoint: process.env.TRACELLM_ENDPOINT ?? "http://localhost:4319",
@@ -49,7 +49,7 @@ TRACELLM_API_KEY=trllm_your_project_key
 This is the first property we integrated in the chatbot app: one TraceLLM session and one LLM span around a provider call.
 
 ```ts
-import { TraceLLM } from "@tracellm/sdk-node";
+import { TraceLLM } from "@use-tracellm/sdk-node";
 
 const tracellm = new TraceLLM({
   endpoint: process.env.TRACELLM_ENDPOINT ?? "http://localhost:4319",

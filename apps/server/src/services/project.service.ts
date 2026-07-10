@@ -8,7 +8,7 @@ import {
   type CreateExportDestinationRequest,
   type UpdateExportDestinationRequest,
   type UpdateTracingConfigRequest
-} from "@tracellm/shared";
+} from "@use-tracellm/shared";
 import { HttpError } from "../middleware/error.middleware.js";
 import type { ExportDestinationRepository } from "../repositories/export-destination.repository.js";
 import type { ProjectRepository, ProjectAuthContext } from "../repositories/project.repository.js";

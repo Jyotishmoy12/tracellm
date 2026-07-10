@@ -5,8 +5,8 @@ import type {
   EndSessionRequest,
   EndSpanRequest,
   Usage
-} from "@tracellm/shared";
-import type { TracingConfig } from "@tracellm/shared";
+} from "@use-tracellm/shared";
+import type { TracingConfig } from "@use-tracellm/shared";
 
 export interface TraceLLMConfig {
   endpoint?: string;

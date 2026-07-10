@@ -1,1 +1,1 @@
-export type { CreateSpanRequest, EndSpanRequest } from "@tracellm/shared";
+export type { CreateSpanRequest, EndSpanRequest } from "@use-tracellm/shared";

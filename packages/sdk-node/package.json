@@ -1,5 +1,5 @@
 {
-  "name": "@tracellm/sdk-node",
+  "name": "@use-tracellm/sdk-node",
   "version": "0.1.0",
   "description": "Node.js SDK for sending AI workflow traces to TraceLLM.",
   "license": "MIT",
@@ -36,7 +36,7 @@
     "test": "echo \"No sdk tests yet\""
   },
   "dependencies": {
-    "@tracellm/shared": "workspace:*"
+    "@use-tracellm/shared": "workspace:*"
   },
   "devDependencies": {
     "typescript": "^5.7.2"

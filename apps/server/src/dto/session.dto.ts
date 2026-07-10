@@ -1,1 +1,1 @@
-export type { CreateSessionRequest, EndSessionRequest } from "@tracellm/shared";
+export type { CreateSessionRequest, EndSessionRequest } from "@use-tracellm/shared";

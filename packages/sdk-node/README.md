@@ -1,17 +1,17 @@
-# @tracellm/sdk-node
+# @use-tracellm/sdk-node
 
 Node.js SDK for sending AI workflow traces to TraceLLM.
 
 ## Install
 
 ```bash
-pnpm add @tracellm/sdk-node
+pnpm add @use-tracellm/sdk-node
 ```
 
 ## Usage
 
 ```ts
-import { TraceLLM } from "@tracellm/sdk-node";
+import { TraceLLM } from "@use-tracellm/sdk-node";
 
 const tracellm = new TraceLLM({
   endpoint: process.env.TRACELLM_ENDPOINT ?? "https://api.tracellm.in",

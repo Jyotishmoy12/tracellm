@@ -8,6 +8,6 @@
     "check": "node --check src/server.mjs"
   },
   "dependencies": {
-    "@tracellm/sdk-node": "workspace:*"
+    "@use-tracellm/sdk-node": "workspace:*"
   }
 }

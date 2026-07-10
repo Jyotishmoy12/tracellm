@@ -1,1 +1,1 @@
-export type { CreateErrorRequest } from "@tracellm/shared";
+export type { CreateErrorRequest } from "@use-tracellm/shared";

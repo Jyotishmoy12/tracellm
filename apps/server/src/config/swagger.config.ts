@@ -15,7 +15,7 @@ import {
   loginSchema,
   registerSchema,
   updateExportDestinationSchema
-} from "@tracellm/shared";
+} from "@use-tracellm/shared";
 import { env } from "./env.config.js";
 
 extendZodWithOpenApi(z);

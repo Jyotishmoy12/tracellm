@@ -43,7 +43,7 @@ TraceLLM keeps product-level trace history in its own UI and can export telemetr
 The SDK is intended to be used from user applications like this:
 
 ```ts
-import { TraceLLM } from "@tracellm/sdk-node";
+import { TraceLLM } from "@use-tracellm/sdk-node";
 
 const tracellm = new TraceLLM({
   endpoint: process.env.TRACELLM_ENDPOINT ?? "https://api.tracellm.in",
@@ -97,7 +97,7 @@ try {
 Install command after the SDK is published:
 
 ```bash
-pnpm add @tracellm/sdk-node
+pnpm add @use-tracellm/sdk-node
 ```
 
 Until the package is published to npm, use the workspace package locally from this monorepo.

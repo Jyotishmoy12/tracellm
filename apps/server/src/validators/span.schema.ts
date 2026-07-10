@@ -1,1 +1,1 @@
-export { createSpanSchema, endSpanSchema } from "@tracellm/shared";
+export { createSpanSchema, endSpanSchema } from "@use-tracellm/shared";

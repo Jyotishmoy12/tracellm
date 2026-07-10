@@ -1,4 +1,4 @@
-import type { CreateErrorRequest, CreateEventRequest } from "@tracellm/shared";
+import type { CreateErrorRequest, CreateEventRequest } from "@use-tracellm/shared";
 import { HttpError } from "../middleware/error.middleware.js";
 import type { ProjectAuthContext } from "../repositories/project.repository.js";
 import type { EventRepository } from "../repositories/event.repository.js";

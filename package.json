@@ -33,7 +33,7 @@
     "docs:serve": "python -m mkdocs serve",
     "docs:build": "python -m mkdocs build",
     "test": "pnpm -r test",
-    "typecheck": "pnpm --filter @tracellm/shared build && pnpm --filter @tracellm/sdk-node typecheck && pnpm --filter @tracellm/server typecheck && pnpm --filter @tracellm/web typecheck",
+    "typecheck": "pnpm --filter @use-tracellm/shared build && pnpm --filter @use-tracellm/sdk-node typecheck && pnpm --filter @tracellm/server typecheck && pnpm --filter @tracellm/web typecheck",
     "db:generate": "pnpm --filter @tracellm/server db:generate",
     "db:migrate": "pnpm --filter @tracellm/server db:migrate"
   },

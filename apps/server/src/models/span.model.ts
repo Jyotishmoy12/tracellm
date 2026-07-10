@@ -1,4 +1,4 @@
-import type { SpanKind, TraceStatus } from "@tracellm/shared";
+import type { SpanKind, TraceStatus } from "@use-tracellm/shared";
 
 export class SpanModel {
   constructor(

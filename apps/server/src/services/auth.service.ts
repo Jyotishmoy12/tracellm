@@ -1,5 +1,5 @@
 import { Algorithm, hash, verify } from "@node-rs/argon2";
-import type { LoginRequest, RegisterRequest } from "@tracellm/shared";
+import type { LoginRequest, RegisterRequest } from "@use-tracellm/shared";
 import { HttpError } from "../middleware/error.middleware.js";
 import type { AuthRepository } from "../repositories/auth.repository.js";
 import type { ProjectRepository } from "../repositories/project.repository.js";
