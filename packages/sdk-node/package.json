@@ -1,10 +1,29 @@
 {
   "name": "@tracellm/sdk-node",
   "version": "0.1.0",
-  "private": true,
+  "description": "Node.js SDK for sending AI workflow traces to TraceLLM.",
+  "license": "MIT",
   "type": "module",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "sideEffects": false,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Jyotishmoy12/tracellm.git",
+    "directory": "packages/sdk-node"
+  },
+  "homepage": "https://docs.tracellm.in/sdk/node/",
+  "bugs": {
+    "url": "https://github.com/Jyotishmoy12/tracellm/issues"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",

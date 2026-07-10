@@ -192,4 +192,4 @@ examples/   local SDK examples
 
 ## License
 
-License is not finalized yet. Add a `LICENSE` file before publishing the SDK package or accepting external production use.
+MIT. See [LICENSE](LICENSE).
