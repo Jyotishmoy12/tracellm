@@ -1,15 +1,15 @@
 # API Overview
 
-Swagger UI is available locally at:
+Swagger UI is available at:
 
 ```text
-http://localhost:4319/api-docs
+https://api.tracellm.in/api-docs
 ```
 
 Raw OpenAPI JSON:
 
 ```text
-http://localhost:4319/openapi.json
+https://api.tracellm.in/openapi.json
 ```
 
 ## Health

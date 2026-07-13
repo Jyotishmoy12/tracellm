@@ -6,14 +6,14 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="TraceLLM documentation for local development, SDK integration, tracing configuration, and SigNoz export.">
+        <meta name="description" content="TraceLLM documentation for application developers using the hosted TraceLLM product.">
       
       
       
-        <link rel="canonical" href="https://docs.tracellm.local/operations/signoz/">
+        <link rel="canonical" href="https://docs.tracellm.in/operations/signoz/">
       
       
-        <link rel="prev" href="../vps-deployment/">
+        <link rel="prev" href="../../sdk/instrumentation-patterns/">
       
       
         <link rel="next" href="../external-otlp-exports/">
@@ -448,42 +448,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../getting-started/local-quickstart/" class="md-nav__link">
+      <a href="../../getting-started/quickstart/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Local Quickstart
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../getting-started/full-local-setup/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Full Local Setup
+    Hosted Quickstart
   
 
     
@@ -709,7 +681,7 @@
   <span class="md-ellipsis">
     
   
-    Operations
+    Observability
   
 
     
@@ -725,39 +697,11 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    Operations
+    Observability
   
 
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../vps-deployment/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    VPS Deployment
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
             
               
                 
@@ -826,21 +770,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#local-signoz-ui" class="md-nav__link">
+  <a href="#hosted-tracellm-behavior" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Local SigNoz UI
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#tracellm-export-endpoint" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        TraceLLM Export Endpoint
+        Hosted TraceLLM Behavior
       
     </span>
   </a>
@@ -863,6 +796,17 @@
     <span class="md-ellipsis">
       
         What To Look For
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#export-controls" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Export Controls
       
     </span>
   </a>
@@ -904,34 +848,6 @@
     
   
     External OTLP Exports
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../environment/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Environment Variables
   
 
     
@@ -1012,7 +928,7 @@
   <span class="md-ellipsis">
     
   
-    Engineering
+    Reference
   
 
     
@@ -1028,39 +944,11 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    Engineering
+    Reference
   
 
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../engineering/architecture/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Architecture
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
             
               
                 
@@ -1118,34 +1006,6 @@
 
               
             
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../engineering/roadmap/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Roadmap
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
           </ul>
         </nav>
       
@@ -1180,21 +1040,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#local-signoz-ui" class="md-nav__link">
+  <a href="#hosted-tracellm-behavior" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Local SigNoz UI
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#tracellm-export-endpoint" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        TraceLLM Export Endpoint
+        Hosted TraceLLM Behavior
       
     </span>
   </a>
@@ -1217,6 +1066,17 @@
     <span class="md-ellipsis">
       
         What To Look For
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#export-controls" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Export Controls
       
     </span>
   </a>
@@ -1252,45 +1112,41 @@
 
 
 <h1 id="signoz-integration">SigNoz Integration</h1>
-<p>TraceLLM exports OpenTelemetry data over OTLP HTTP.</p>
-<p>The custom TraceLLM UI remains the LLM workflow UI. SigNoz gives broader OpenTelemetry visibility for backend telemetry.</p>
-<h2 id="local-signoz-ui">Local SigNoz UI</h2>
-<p>Generate the official SigNoz stack:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">pnpm</span> <span class="n">signoz</span><span class="p">:</span><span class="n">forge</span>
-</code></pre></div>
-<p>Start it:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">pnpm</span> <span class="n">signoz</span><span class="p">:</span><span class="n">up</span>
-</code></pre></div>
-<p>Open:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>http://localhost:8080
-</code></pre></div>
-<p>On first launch, create the SigNoz admin account.</p>
-<h2 id="tracellm-export-endpoint">TraceLLM Export Endpoint</h2>
-<p>When TraceLLM runs in Docker, it exports to:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>http://host.docker.internal:4318
-</code></pre></div>
-<p>This reaches SigNoz's OTLP HTTP receiver on the host.</p>
-<p>The backend health response shows the active telemetry URLs:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>http://localhost:4319/health
-</code></pre></div>
+<p>TraceLLM can forward project traces to SigNoz over OTLP HTTP.</p>
+<p>The TraceLLM dashboard remains the LLM workflow UI. SigNoz gives broader OpenTelemetry visibility for teams that already use it.</p>
+<h2 id="hosted-tracellm-behavior">Hosted TraceLLM Behavior</h2>
+<p>By default, you do not need SigNoz access to use TraceLLM.</p>
+<p>Your sessions, spans, events, errors, usage, and capture policy results appear in the TraceLLM UI.</p>
 <h2 id="signoz-cloud">SigNoz Cloud</h2>
-<p>For SigNoz Cloud, configure:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="nv">$env:TRACELLM_OTEL_EXPORTER_OTLP_ENDPOINT</span><span class="p">=</span><span class="s2">&quot;https://ingest.&lt;region&gt;.signoz.cloud:443&quot;</span>
-<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="nv">$env:TRACELLM_OTEL_EXPORTER_OTLP_HEADERS</span><span class="p">=</span><span class="s2">&quot;signoz-ingestion-key=&lt;your-ingestion-key&gt;&quot;</span>
+<p>To send a copy to SigNoz Cloud, open <strong>Exports</strong> in TraceLLM and create an OTLP HTTP destination.</p>
+<p>Endpoint:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>https://ingest.&lt;region&gt;.signoz.cloud:443
 </code></pre></div>
-<p>In Docker Compose, set the same environment values under <code>tracellm-server</code>.</p>
+<p>Headers:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>signoz-ingestion-key=&lt;your-ingestion-key&gt;
+</code></pre></div>
+<p>Use <strong>Send test trace</strong> to confirm SigNoz accepts the payload.</p>
 <h2 id="what-to-look-for">What To Look For</h2>
-<p>In SigNoz, look for service:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>tracellm-server
-</code></pre></div>
-<p>The current backend exports:</p>
+<p>In SigNoz, search for the service name your SDK sends, or the service name shown by the exported trace.</p>
+<p>TraceLLM exports include:</p>
 <ul>
-<li>completed TraceLLM spans</li>
-<li>TraceLLM events as OTel spans/events</li>
-<li>structured errors</li>
-<li>request count metrics</li>
-<li>token count metrics</li>
-<li>span duration histograms</li>
+<li>span names such as <code>openai.chat.complete</code></li>
+<li>span kinds such as <code>llm</code>, <code>tool</code>, <code>retrieval</code>, <code>agent</code>, <code>workflow</code>, and <code>custom</code></li>
+<li>duration and status</li>
+<li>selected attributes and metadata, depending on export settings</li>
+<li>token usage fields when enabled</li>
+<li>exception-style events for captured errors</li>
+</ul>
+<h2 id="export-controls">Export Controls</h2>
+<p>Each export destination can choose what to forward:</p>
+<ul>
+<li>spans</li>
+<li>events</li>
+<li>errors</li>
+<li>token usage</li>
+<li>metadata</li>
+<li>content</li>
+<li>selected span kinds</li>
 </ul>
 <h2 id="common-confusion">Common Confusion</h2>
 <p>You will not see the same product timeline in SigNoz that you see in TraceLLM.</p>

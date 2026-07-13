@@ -2,22 +2,22 @@
 
 TraceLLM is provider-agnostic. Users can call OpenAI, Anthropic Claude, Gemini, or any other provider. The SDK records normalized sessions, spans, events, errors, and usage.
 
-The local `examples/user-app` supports three real providers.
+Use your normal application or a small test route in your app. The important part is that TraceLLM wraps the real provider call, not a demo response.
 
 ## Common Variables
 
-```powershell
-$env:TRACELLM_ENDPOINT="http://localhost:4319"
-$env:TRACELLM_API_KEY="trllm_your_key_from_the_ui"
+```bash
+TRACELLM_ENDPOINT=https://api.tracellm.in
+TRACELLM_API_KEY=trllm_your_key_from_the_ui
+TRACELLM_SERVICE_NAME=my-ai-service
 ```
 
 ## OpenAI
 
-```powershell
-$env:LLM_PROVIDER="openai"
-$env:OPENAI_API_KEY="sk_your_openai_key"
-$env:OPENAI_MODEL="gpt-4.1-mini"
-pnpm example:user-app
+```bash
+LLM_PROVIDER=openai
+OPENAI_API_KEY=sk_your_openai_key
+OPENAI_MODEL=gpt-4.1-mini
 ```
 
 The app calls:
@@ -36,11 +36,10 @@ TraceLLM records:
 
 ## Anthropic Claude
 
-```powershell
-$env:LLM_PROVIDER="anthropic"
-$env:ANTHROPIC_API_KEY="sk-ant-your_key"
-$env:ANTHROPIC_MODEL="claude-3-5-sonnet-latest"
-pnpm example:user-app
+```bash
+LLM_PROVIDER=anthropic
+ANTHROPIC_API_KEY=sk-ant-your_key
+ANTHROPIC_MODEL=claude-3-5-sonnet-latest
 ```
 
 The app calls:
@@ -59,11 +58,10 @@ TraceLLM records:
 
 ## Gemini
 
-```powershell
-$env:LLM_PROVIDER="gemini"
-$env:GEMINI_API_KEY="your_gemini_key"
-$env:GEMINI_MODEL="gemini-1.5-flash"
-pnpm example:user-app
+```bash
+LLM_PROVIDER=gemini
+GEMINI_API_KEY=your_gemini_key
+GEMINI_MODEL=gemini-1.5-flash
 ```
 
 The app calls:
@@ -79,15 +77,16 @@ TraceLLM records:
 - output text, if content capture allows it
 - prompt, candidate, and total token counts when returned
 
-## What The Example Does
+## What To Trace
 
-The example models a customer support assistant:
+A good provider test usually traces:
 
-1. Fetch customer profile.
-2. Fetch recent customer activity.
-3. Build a support prompt.
-4. Call the selected LLM provider.
-5. Record usage and output.
-6. End the session.
+1. Start a session for one user request.
+2. Start an `llm` span before calling the provider.
+3. Record a `provider.request.started` event.
+4. Call the real provider.
+5. Record a `provider.response.received` event.
+6. End the span with status, usage, and output.
+7. End the session.
 
-This is not a mock trace. The LLM call is real when the provider API key is configured.
+This lets you compare TraceLLM behavior across providers while keeping the same session/span model.

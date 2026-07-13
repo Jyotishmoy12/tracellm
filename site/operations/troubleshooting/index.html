@@ -6,17 +6,17 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="TraceLLM documentation for local development, SDK integration, tracing configuration, and SigNoz export.">
+        <meta name="description" content="TraceLLM documentation for application developers using the hosted TraceLLM product.">
       
       
       
-        <link rel="canonical" href="https://docs.tracellm.local/operations/troubleshooting/">
+        <link rel="canonical" href="https://docs.tracellm.in/operations/troubleshooting/">
       
       
-        <link rel="prev" href="../environment/">
+        <link rel="prev" href="../external-otlp-exports/">
       
       
-        <link rel="next" href="../../engineering/architecture/">
+        <link rel="next" href="../../engineering/api/">
       
       
         
@@ -448,42 +448,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../getting-started/local-quickstart/" class="md-nav__link">
+      <a href="../../getting-started/quickstart/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Local Quickstart
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../getting-started/full-local-setup/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Full Local Setup
+    Hosted Quickstart
   
 
     
@@ -709,7 +681,7 @@
   <span class="md-ellipsis">
     
   
-    Operations
+    Observability
   
 
     
@@ -725,39 +697,11 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    Operations
+    Observability
   
 
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../vps-deployment/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    VPS Deployment
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
             
               
                 
@@ -802,34 +746,6 @@
     
   
     External OTLP Exports
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../environment/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Environment Variables
   
 
     
@@ -943,32 +859,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#signoz-does-not-show-service" class="md-nav__link">
+  <a href="#external-export-does-not-show-in-signoz" class="md-nav__link">
     <span class="md-ellipsis">
       
-        SigNoz Does Not Show Service
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#port-conflicts" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Port Conflicts
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#docker-data-reset" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Docker Data Reset
+        External Export Does Not Show In SigNoz
       
     </span>
   </a>
@@ -1023,7 +917,7 @@
   <span class="md-ellipsis">
     
   
-    Engineering
+    Reference
   
 
     
@@ -1039,39 +933,11 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    Engineering
+    Reference
   
 
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../engineering/architecture/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Architecture
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
             
               
                 
@@ -1116,34 +982,6 @@
     
   
     Security Model
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../engineering/roadmap/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Roadmap
   
 
     
@@ -1224,32 +1062,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#signoz-does-not-show-service" class="md-nav__link">
+  <a href="#external-export-does-not-show-in-signoz" class="md-nav__link">
     <span class="md-ellipsis">
       
-        SigNoz Does Not Show Service
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#port-conflicts" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Port Conflicts
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#docker-data-reset" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Docker Data Reset
+        External Export Does Not Show In SigNoz
       
     </span>
   </a>
@@ -1277,15 +1093,15 @@
 <h2 id="tracellm-ui-shows-no-traces">TraceLLM UI Shows No Traces</h2>
 <p>Check:</p>
 <ol>
-<li>Backend is running:</li>
+<li>The hosted API is reachable:</li>
 </ol>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>http://localhost:4319/health
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>https://api.tracellm.in/health
 </code></pre></div>
 <ol>
 <li>SDK environment is set:</li>
 </ol>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nv">$env:TRACELLM_ENDPOINT</span><span class="p">=</span><span class="s2">&quot;http://localhost:4319&quot;</span>
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="nv">$env:TRACELLM_API_KEY</span><span class="p">=</span><span class="s2">&quot;trllm_...&quot;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nv">TRACELLM_ENDPOINT</span><span class="o">=</span>https://api.tracellm.in
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="nv">TRACELLM_API_KEY</span><span class="o">=</span>trllm_...
 </code></pre></div>
 <ol>
 <li>
@@ -1301,78 +1117,29 @@
 <h2 id="api-key-fails">API Key Fails</h2>
 <p>Create a new API key in the UI and copy it immediately. Full secrets are only shown once.</p>
 <p>Then rerun:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nv">$env:TRACELLM_API_KEY</span><span class="p">=</span><span class="s2">&quot;trllm_new_key&quot;</span>
-<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="n">pnpm</span> <span class="n">example</span><span class="p">:</span><span class="n">user-app</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nv">TRACELLM_API_KEY</span><span class="o">=</span>trllm_new_key
 </code></pre></div>
 <h2 id="provider-example-fails">Provider Example Fails</h2>
 <p>Check the provider key:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nv">$env:LLM_PROVIDER</span><span class="p">=</span><span class="s2">&quot;openai&quot;</span>
-<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="nv">$env:OPENAI_API_KEY</span><span class="p">=</span><span class="s2">&quot;sk_...&quot;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nv">LLM_PROVIDER</span><span class="o">=</span>openai
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="nv">OPENAI_API_KEY</span><span class="o">=</span>sk_...
 </code></pre></div>
 <p>For Anthropic:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nv">$env:ANTHROPIC_API_KEY</span><span class="p">=</span><span class="s2">&quot;sk-ant-...&quot;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nv">ANTHROPIC_API_KEY</span><span class="o">=</span>sk-ant-...
 </code></pre></div>
 <p>For Gemini:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="nv">$env:GEMINI_API_KEY</span><span class="p">=</span><span class="s2">&quot;...&quot;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="nv">GEMINI_API_KEY</span><span class="o">=</span>...
 </code></pre></div>
-<h2 id="signoz-does-not-show-service">SigNoz Does Not Show Service</h2>
-<p>Check SigNoz is running:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="n">docker</span> <span class="n">compose</span> <span class="o">-f</span> <span class="n">infra</span><span class="p">/</span><span class="n">signoz</span><span class="p">/</span><span class="n">pours</span><span class="p">/</span><span class="n">deployment</span><span class="p">/</span><span class="n">compose</span><span class="p">.</span><span class="n">yaml</span> <span class="nb">ps</span>
-</code></pre></div>
-<p>Check TraceLLM health:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>http://localhost:4319/health
-</code></pre></div>
-<p>The health response should show:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>http://host.docker.internal:4318/v1/traces
-</code></pre></div>
-<p>Run the example again after SigNoz is running:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="n">pnpm</span> <span class="n">example</span><span class="p">:</span><span class="n">user-app</span>
-</code></pre></div>
-<h2 id="port-conflicts">Port Conflicts</h2>
-<p>Common ports:</p>
-<table>
-<thead>
-<tr>
-<th>Port</th>
-<th>Used By</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>4319</code></td>
-<td>TraceLLM backend</td>
-</tr>
-<tr>
-<td><code>5173</code></td>
-<td>Vite web dev server</td>
-</tr>
-<tr>
-<td><code>8080</code></td>
-<td>SigNoz UI</td>
-</tr>
-<tr>
-<td><code>4318</code></td>
-<td>OTLP HTTP</td>
-</tr>
-<tr>
-<td><code>4317</code></td>
-<td>OTLP gRPC</td>
-</tr>
-</tbody>
-</table>
-<p>Stop TraceLLM:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="n">pnpm</span> <span class="n">infra</span><span class="p">:</span><span class="n">down</span>
-</code></pre></div>
-<p>Stop SigNoz:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="n">pnpm</span> <span class="n">signoz</span><span class="p">:</span><span class="n">down</span>
-</code></pre></div>
-<h2 id="docker-data-reset">Docker Data Reset</h2>
-<p>TraceLLM data volume:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="n">pnpm</span> <span class="n">infra</span><span class="p">:</span><span class="n">down</span>
-<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="n">docker</span> <span class="n">volume</span> <span class="nb">rm </span><span class="n">infra_tracellm-data</span>
-</code></pre></div>
-<p>SigNoz data volumes are managed by the generated SigNoz compose stack.</p>
-<p>Use caution before deleting them.</p>
+<h2 id="external-export-does-not-show-in-signoz">External Export Does Not Show In SigNoz</h2>
+<p>Check the destination in <strong>Exports</strong>:</p>
+<ul>
+<li>destination is enabled</li>
+<li>endpoint is the OTLP HTTP base URL</li>
+<li>required headers are present</li>
+<li><strong>Send test trace</strong> returns <code>ok</code></li>
+<li>export config allows the span kinds and fields you expect</li>
+</ul>
+<p>A failed external export does not block TraceLLM ingestion. Your traces should still appear in the TraceLLM dashboard.</p>
 
 
 

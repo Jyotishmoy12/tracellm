@@ -1,74 +1,57 @@
 # SigNoz Integration
 
-TraceLLM exports OpenTelemetry data over OTLP HTTP.
+TraceLLM can forward project traces to SigNoz over OTLP HTTP.
 
-The custom TraceLLM UI remains the LLM workflow UI. SigNoz gives broader OpenTelemetry visibility for backend telemetry.
+The TraceLLM dashboard remains the LLM workflow UI. SigNoz gives broader OpenTelemetry visibility for teams that already use it.
 
-## Local SigNoz UI
+## Hosted TraceLLM Behavior
 
-Generate the official SigNoz stack:
+By default, you do not need SigNoz access to use TraceLLM.
 
-```powershell
-pnpm signoz:forge
-```
-
-Start it:
-
-```powershell
-pnpm signoz:up
-```
-
-Open:
-
-```text
-http://localhost:8080
-```
-
-On first launch, create the SigNoz admin account.
-
-## TraceLLM Export Endpoint
-
-When TraceLLM runs in Docker, it exports to:
-
-```text
-http://host.docker.internal:4318
-```
-
-This reaches SigNoz's OTLP HTTP receiver on the host.
-
-The backend health response shows the active telemetry URLs:
-
-```text
-http://localhost:4319/health
-```
+Your sessions, spans, events, errors, usage, and capture policy results appear in the TraceLLM UI.
 
 ## SigNoz Cloud
 
-For SigNoz Cloud, configure:
+To send a copy to SigNoz Cloud, open **Exports** in TraceLLM and create an OTLP HTTP destination.
 
-```powershell
-$env:TRACELLM_OTEL_EXPORTER_OTLP_ENDPOINT="https://ingest.<region>.signoz.cloud:443"
-$env:TRACELLM_OTEL_EXPORTER_OTLP_HEADERS="signoz-ingestion-key=<your-ingestion-key>"
+Endpoint:
+
+```text
+https://ingest.<region>.signoz.cloud:443
 ```
 
-In Docker Compose, set the same environment values under `tracellm-server`.
+Headers:
+
+```text
+signoz-ingestion-key=<your-ingestion-key>
+```
+
+Use **Send test trace** to confirm SigNoz accepts the payload.
 
 ## What To Look For
 
-In SigNoz, look for service:
+In SigNoz, search for the service name your SDK sends, or the service name shown by the exported trace.
 
-```text
-tracellm-server
-```
+TraceLLM exports include:
 
-The current backend exports:
+- span names such as `openai.chat.complete`
+- span kinds such as `llm`, `tool`, `retrieval`, `agent`, `workflow`, and `custom`
+- duration and status
+- selected attributes and metadata, depending on export settings
+- token usage fields when enabled
+- exception-style events for captured errors
 
-- completed TraceLLM spans
-- TraceLLM events as OTel spans/events
-- structured errors
-- request count metrics
-- token count metrics
-- span duration histograms
+## Export Controls
+
+Each export destination can choose what to forward:
+
+- spans
+- events
+- errors
+- token usage
+- metadata
+- content
+- selected span kinds
 
 ## Common Confusion
 

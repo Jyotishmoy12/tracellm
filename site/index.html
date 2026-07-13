@@ -6,11 +6,11 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="TraceLLM documentation for local development, SDK integration, tracing configuration, and SigNoz export.">
+        <meta name="description" content="TraceLLM documentation for application developers using the hosted TraceLLM product.">
       
       
       
-        <link rel="canonical" href="https://docs.tracellm.local/">
+        <link rel="canonical" href="https://docs.tracellm.in/">
       
       
       
@@ -302,10 +302,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#main-local-urls" class="md-nav__link">
+  <a href="#hosted-urls" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Main Local URLs
+        Hosted URLs
       
     </span>
   </a>
@@ -537,42 +537,14 @@
   
   
     <li class="md-nav__item">
-      <a href="getting-started/local-quickstart/" class="md-nav__link">
+      <a href="getting-started/quickstart/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Local Quickstart
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="getting-started/full-local-setup/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Full Local Setup
+    Hosted Quickstart
   
 
     
@@ -798,7 +770,7 @@
   <span class="md-ellipsis">
     
   
-    Operations
+    Observability
   
 
     
@@ -814,39 +786,11 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    Operations
+    Observability
   
 
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="operations/vps-deployment/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    VPS Deployment
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
             
               
                 
@@ -891,34 +835,6 @@
     
   
     External OTLP Exports
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="operations/environment/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Environment Variables
   
 
     
@@ -999,7 +915,7 @@
   <span class="md-ellipsis">
     
   
-    Engineering
+    Reference
   
 
     
@@ -1015,39 +931,11 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    Engineering
+    Reference
   
 
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="engineering/architecture/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Architecture
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
             
               
                 
@@ -1092,34 +980,6 @@
     
   
     Security Model
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="engineering/roadmap/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Roadmap
   
 
     
@@ -1189,10 +1049,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#main-local-urls" class="md-nav__link">
+  <a href="#hosted-urls" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Main Local URLs
+        Hosted URLs
       
     </span>
   </a>
@@ -1232,23 +1092,23 @@
 <p>It captures sessions, spans, events, errors, token usage, latency, metadata, and optional prompt or output content. Developers send traces with the TraceLLM SDK, inspect them in the TraceLLM UI, and optionally export OpenTelemetry data to SigNoz.</p>
 <h2 id="what-you-can-do-today">What You Can Do Today</h2>
 <ul>
-<li>Create a TraceLLM account locally.</li>
+<li>Create a TraceLLM account.</li>
 <li>Create project API keys.</li>
 <li>Configure tracing behavior per project from the UI.</li>
 <li>Send traces from a real Node.js application.</li>
 <li>Test with OpenAI, Anthropic Claude, or Gemini.</li>
 <li>Inspect traces in the custom TraceLLM UI.</li>
-<li>Export backend telemetry over OTLP to SigNoz.</li>
+<li>Export project traces over OTLP HTTP to your own observability backend.</li>
 </ul>
 <h2 id="typical-flow">Typical Flow</h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>Create account
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>  -&gt; create API key
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>  -&gt; install/use SDK
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>  -&gt; install SDK
 <a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>  -&gt; run app with real LLM provider
 <a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>  -&gt; inspect trace timeline in TraceLLM UI
-<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>  -&gt; inspect exported backend telemetry in SigNoz
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>  -&gt; optionally export traces to SigNoz or another OTLP backend
 </code></pre></div>
-<h2 id="main-local-urls">Main Local URLs</h2>
+<h2 id="hosted-urls">Hosted URLs</h2>
 <table>
 <thead>
 <tr>
@@ -1258,26 +1118,22 @@
 </thead>
 <tbody>
 <tr>
+<td>TraceLLM App</td>
+<td><code>https://tracellm.in</code></td>
+</tr>
+<tr>
 <td>TraceLLM API</td>
-<td><code>http://localhost:4319</code></td>
+<td><code>https://api.tracellm.in</code></td>
 </tr>
 <tr>
-<td>Swagger/OpenAPI</td>
-<td><code>http://localhost:4319/api-docs</code></td>
-</tr>
-<tr>
-<td>SigNoz UI</td>
-<td><code>http://localhost:8080</code></td>
-</tr>
-<tr>
-<td>SigNoz OTLP HTTP</td>
-<td><code>http://localhost:4318</code></td>
+<td>API Docs</td>
+<td><code>https://api.tracellm.in/api-docs</code></td>
 </tr>
 </tbody>
 </table>
 <h2 id="start-here">Start Here</h2>
-<p>If you want the fastest end-to-end test, follow <a href="getting-started/local-quickstart/">Local Quickstart</a>.</p>
-<p>If you want the full local stack with SigNoz UI, follow <a href="getting-started/full-local-setup/">Full Local Setup</a>.</p>
+<p>Start with the <a href="getting-started/quickstart/">Hosted Quickstart</a>.</p>
+<p>Then read the <a href="sdk/node/">Node SDK Guide</a> and <a href="getting-started/provider-testing/">Testing With Real LLM Providers</a>.</p>
 
 
 

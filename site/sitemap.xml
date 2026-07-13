@@ -1,79 +1,59 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
-         <loc>https://docs.tracellm.local/</loc>
-         <lastmod>2026-07-09</lastmod>
+         <loc>https://docs.tracellm.in/</loc>
+         <lastmod>2026-07-13</lastmod>
     </url>
     <url>
-         <loc>https://docs.tracellm.local/engineering/api/</loc>
-         <lastmod>2026-07-09</lastmod>
+         <loc>https://docs.tracellm.in/engineering/api/</loc>
+         <lastmod>2026-07-13</lastmod>
     </url>
     <url>
-         <loc>https://docs.tracellm.local/engineering/architecture/</loc>
-         <lastmod>2026-07-09</lastmod>
+         <loc>https://docs.tracellm.in/engineering/security/</loc>
+         <lastmod>2026-07-13</lastmod>
     </url>
     <url>
-         <loc>https://docs.tracellm.local/engineering/roadmap/</loc>
-         <lastmod>2026-07-09</lastmod>
+         <loc>https://docs.tracellm.in/getting-started/chatbot-step-1-session-tracing/</loc>
+         <lastmod>2026-07-13</lastmod>
     </url>
     <url>
-         <loc>https://docs.tracellm.local/engineering/security/</loc>
-         <lastmod>2026-07-09</lastmod>
+         <loc>https://docs.tracellm.in/getting-started/provider-testing/</loc>
+         <lastmod>2026-07-13</lastmod>
     </url>
     <url>
-         <loc>https://docs.tracellm.local/getting-started/chatbot-step-1-session-tracing/</loc>
-         <lastmod>2026-07-09</lastmod>
+         <loc>https://docs.tracellm.in/getting-started/quickstart/</loc>
+         <lastmod>2026-07-13</lastmod>
     </url>
     <url>
-         <loc>https://docs.tracellm.local/getting-started/full-local-setup/</loc>
-         <lastmod>2026-07-09</lastmod>
+         <loc>https://docs.tracellm.in/operations/external-otlp-exports/</loc>
+         <lastmod>2026-07-13</lastmod>
     </url>
     <url>
-         <loc>https://docs.tracellm.local/getting-started/local-quickstart/</loc>
-         <lastmod>2026-07-09</lastmod>
+         <loc>https://docs.tracellm.in/operations/signoz/</loc>
+         <lastmod>2026-07-13</lastmod>
     </url>
     <url>
-         <loc>https://docs.tracellm.local/getting-started/provider-testing/</loc>
-         <lastmod>2026-07-09</lastmod>
+         <loc>https://docs.tracellm.in/operations/troubleshooting/</loc>
+         <lastmod>2026-07-13</lastmod>
     </url>
     <url>
-         <loc>https://docs.tracellm.local/operations/environment/</loc>
-         <lastmod>2026-07-09</lastmod>
+         <loc>https://docs.tracellm.in/product/concepts/</loc>
+         <lastmod>2026-07-13</lastmod>
     </url>
     <url>
-         <loc>https://docs.tracellm.local/operations/external-otlp-exports/</loc>
-         <lastmod>2026-07-09</lastmod>
+         <loc>https://docs.tracellm.in/product/customization/</loc>
+         <lastmod>2026-07-13</lastmod>
     </url>
     <url>
-         <loc>https://docs.tracellm.local/operations/signoz/</loc>
-         <lastmod>2026-07-09</lastmod>
+         <loc>https://docs.tracellm.in/product/problem/</loc>
+         <lastmod>2026-07-13</lastmod>
     </url>
     <url>
-         <loc>https://docs.tracellm.local/operations/troubleshooting/</loc>
-         <lastmod>2026-07-09</lastmod>
+         <loc>https://docs.tracellm.in/sdk/instrumentation-patterns/</loc>
+         <lastmod>2026-07-13</lastmod>
     </url>
     <url>
-         <loc>https://docs.tracellm.local/operations/vps-deployment/</loc>
-         <lastmod>2026-07-09</lastmod>
-    </url>
-    <url>
-         <loc>https://docs.tracellm.local/product/concepts/</loc>
-         <lastmod>2026-07-09</lastmod>
-    </url>
-    <url>
-         <loc>https://docs.tracellm.local/product/customization/</loc>
-         <lastmod>2026-07-09</lastmod>
-    </url>
-    <url>
-         <loc>https://docs.tracellm.local/product/problem/</loc>
-         <lastmod>2026-07-09</lastmod>
-    </url>
-    <url>
-         <loc>https://docs.tracellm.local/sdk/instrumentation-patterns/</loc>
-         <lastmod>2026-07-09</lastmod>
-    </url>
-    <url>
-         <loc>https://docs.tracellm.local/sdk/node/</loc>
-         <lastmod>2026-07-09</lastmod>
+         <loc>https://docs.tracellm.in/sdk/node/</loc>
+         <lastmod>2026-07-13</lastmod>
     </url>
 </urlset>

@@ -6,17 +6,17 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="TraceLLM documentation for local development, SDK integration, tracing configuration, and SigNoz export.">
+        <meta name="description" content="TraceLLM documentation for application developers using the hosted TraceLLM product.">
       
       
       
-        <link rel="canonical" href="https://docs.tracellm.local/operations/external-otlp-exports/">
+        <link rel="canonical" href="https://docs.tracellm.in/operations/external-otlp-exports/">
       
       
         <link rel="prev" href="../signoz/">
       
       
-        <link rel="next" href="../environment/">
+        <link rel="next" href="../troubleshooting/">
       
       
         
@@ -448,42 +448,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../getting-started/local-quickstart/" class="md-nav__link">
+      <a href="../../getting-started/quickstart/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Local Quickstart
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../getting-started/full-local-setup/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Full Local Setup
+    Hosted Quickstart
   
 
     
@@ -709,7 +681,7 @@
   <span class="md-ellipsis">
     
   
-    Operations
+    Observability
   
 
     
@@ -725,39 +697,11 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    Operations
+    Observability
   
 
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../vps-deployment/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    VPS Deployment
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
             
               
                 
@@ -985,34 +929,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../environment/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Environment Variables
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../troubleshooting/" class="md-nav__link">
         
   
@@ -1073,7 +989,7 @@
   <span class="md-ellipsis">
     
   
-    Engineering
+    Reference
   
 
     
@@ -1089,39 +1005,11 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    Engineering
+    Reference
   
 
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../engineering/architecture/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Architecture
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
             
               
                 
@@ -1166,34 +1054,6 @@
     
   
     Security Model
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../engineering/roadmap/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Roadmap
   
 
     
@@ -1434,10 +1294,7 @@
 </code></pre></div>
 <p>Route the collector to Tempo or any downstream backend.</p>
 <h2 id="security-model">Security Model</h2>
-<p>TraceLLM encrypts destination headers at rest using:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>TRACELLM_EXPORT_SECRET_KEY
-</code></pre></div>
-<p>Set this to a strong production secret before deployment. If this key changes, previously saved export headers cannot be decrypted and should be re-entered.</p>
+<p>TraceLLM encrypts destination headers at rest and never returns raw saved header values from the API after creation or update.</p>
 <p>External exports are project-scoped. A destination created in one project is not visible to another project.</p>
 <h2 id="operational-notes">Operational Notes</h2>
 <ul>

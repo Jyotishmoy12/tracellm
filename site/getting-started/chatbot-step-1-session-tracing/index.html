@@ -6,11 +6,11 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="TraceLLM documentation for local development, SDK integration, tracing configuration, and SigNoz export.">
+        <meta name="description" content="TraceLLM documentation for application developers using the hosted TraceLLM product.">
       
       
       
-        <link rel="canonical" href="https://docs.tracellm.local/getting-started/chatbot-step-1-session-tracing/">
+        <link rel="canonical" href="https://docs.tracellm.in/getting-started/chatbot-step-1-session-tracing/">
       
       
         <link rel="prev" href="../provider-testing/">
@@ -78,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#chatbot-step-1-session-tracing" class="md-skip">
+        <a href="#chatbot-integration-walkthrough" class="md-skip">
           Skip to content
         </a>
       
@@ -448,42 +448,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../local-quickstart/" class="md-nav__link">
+      <a href="../quickstart/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Local Quickstart
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../full-local-setup/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Full Local Setup
+    Hosted Quickstart
   
 
     
@@ -592,10 +564,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#what-this-step-adds" class="md-nav__link">
+  <a href="#baseline" class="md-nav__link">
     <span class="md-ellipsis">
       
-        What This Step Adds
+        Baseline
       
     </span>
   </a>
@@ -603,10 +575,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#run-the-chatbot" class="md-nav__link">
+  <a href="#step-1-session-and-llm-span" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Run The Chatbot
+        Step 1: Session And LLM Span
       
     </span>
   </a>
@@ -614,10 +586,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#what-to-expect-in-the-chatbot" class="md-nav__link">
+  <a href="#step-2-lifecycle-events" class="md-nav__link">
     <span class="md-ellipsis">
       
-        What To Expect In The Chatbot
+        Step 2: Lifecycle Events
       
     </span>
   </a>
@@ -625,10 +597,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#what-to-expect-in-tracellm-ui" class="md-nav__link">
+  <a href="#step-3-content-capture" class="md-nav__link">
     <span class="md-ellipsis">
       
-        What To Expect In TraceLLM UI
+        Step 3: Content Capture
       
     </span>
   </a>
@@ -636,10 +608,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#what-to-expect-in-signoz" class="md-nav__link">
+  <a href="#step-4-redaction" class="md-nav__link">
     <span class="md-ellipsis">
       
-        What To Expect In SigNoz
+        Step 4: Redaction
       
     </span>
   </a>
@@ -647,10 +619,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#configuration" class="md-nav__link">
+  <a href="#step-5-error-capture" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Configuration
+        Step 5: Error Capture
       
     </span>
   </a>
@@ -658,10 +630,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#disable-this-step" class="md-nav__link">
+  <a href="#step-6-sampling" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Disable This Step
+        Step 6: Sampling
       
     </span>
   </a>
@@ -669,10 +641,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#next-step-lifecycle-events" class="md-nav__link">
+  <a href="#step-7-token-usage" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Next Step: Lifecycle Events
+        Step 7: Token Usage
       
     </span>
   </a>
@@ -680,10 +652,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#next-step-content-capture" class="md-nav__link">
+  <a href="#step-8-metadata" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Next Step: Content Capture
+        Step 8: Metadata
       
     </span>
   </a>
@@ -691,10 +663,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#next-step-redaction" class="md-nav__link">
+  <a href="#step-9-ignored-span-kinds" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Next Step: Redaction
+        Step 9: Ignored Span Kinds
       
     </span>
   </a>
@@ -702,54 +674,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#next-step-error-capture" class="md-nav__link">
+  <a href="#step-10-external-export" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Next Step: Error Capture
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#next-step-sampling" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Next Step: Sampling
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#next-step-token-usage" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Next Step: Token Usage
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#next-step-metadata" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Next Step: Metadata
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#next-step-ignored-span-kinds" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Next Step: Ignored Span Kinds
+        Step 10: External Export
       
     </span>
   </a>
@@ -921,7 +849,7 @@
   <span class="md-ellipsis">
     
   
-    Operations
+    Observability
   
 
     
@@ -937,39 +865,11 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    Operations
+    Observability
   
 
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../operations/vps-deployment/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    VPS Deployment
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
             
               
                 
@@ -1014,34 +914,6 @@
     
   
     External OTLP Exports
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../operations/environment/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Environment Variables
   
 
     
@@ -1122,7 +994,7 @@
   <span class="md-ellipsis">
     
   
-    Engineering
+    Reference
   
 
     
@@ -1138,39 +1010,11 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    Engineering
+    Reference
   
 
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../engineering/architecture/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Architecture
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
             
               
                 
@@ -1228,34 +1072,6 @@
 
               
             
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../engineering/roadmap/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Roadmap
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
           </ul>
         </nav>
       
@@ -1290,10 +1106,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#what-this-step-adds" class="md-nav__link">
+  <a href="#baseline" class="md-nav__link">
     <span class="md-ellipsis">
       
-        What This Step Adds
+        Baseline
       
     </span>
   </a>
@@ -1301,10 +1117,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#run-the-chatbot" class="md-nav__link">
+  <a href="#step-1-session-and-llm-span" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Run The Chatbot
+        Step 1: Session And LLM Span
       
     </span>
   </a>
@@ -1312,10 +1128,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#what-to-expect-in-the-chatbot" class="md-nav__link">
+  <a href="#step-2-lifecycle-events" class="md-nav__link">
     <span class="md-ellipsis">
       
-        What To Expect In The Chatbot
+        Step 2: Lifecycle Events
       
     </span>
   </a>
@@ -1323,10 +1139,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#what-to-expect-in-tracellm-ui" class="md-nav__link">
+  <a href="#step-3-content-capture" class="md-nav__link">
     <span class="md-ellipsis">
       
-        What To Expect In TraceLLM UI
+        Step 3: Content Capture
       
     </span>
   </a>
@@ -1334,10 +1150,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#what-to-expect-in-signoz" class="md-nav__link">
+  <a href="#step-4-redaction" class="md-nav__link">
     <span class="md-ellipsis">
       
-        What To Expect In SigNoz
+        Step 4: Redaction
       
     </span>
   </a>
@@ -1345,10 +1161,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#configuration" class="md-nav__link">
+  <a href="#step-5-error-capture" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Configuration
+        Step 5: Error Capture
       
     </span>
   </a>
@@ -1356,10 +1172,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#disable-this-step" class="md-nav__link">
+  <a href="#step-6-sampling" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Disable This Step
+        Step 6: Sampling
       
     </span>
   </a>
@@ -1367,10 +1183,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#next-step-lifecycle-events" class="md-nav__link">
+  <a href="#step-7-token-usage" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Next Step: Lifecycle Events
+        Step 7: Token Usage
       
     </span>
   </a>
@@ -1378,10 +1194,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#next-step-content-capture" class="md-nav__link">
+  <a href="#step-8-metadata" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Next Step: Content Capture
+        Step 8: Metadata
       
     </span>
   </a>
@@ -1389,10 +1205,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#next-step-redaction" class="md-nav__link">
+  <a href="#step-9-ignored-span-kinds" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Next Step: Redaction
+        Step 9: Ignored Span Kinds
       
     </span>
   </a>
@@ -1400,54 +1216,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#next-step-error-capture" class="md-nav__link">
+  <a href="#step-10-external-export" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Next Step: Error Capture
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#next-step-sampling" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Next Step: Sampling
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#next-step-token-usage" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Next Step: Token Usage
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#next-step-metadata" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Next Step: Metadata
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#next-step-ignored-span-kinds" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Next Step: Ignored Span Kinds
+        Step 10: External Export
       
     </span>
   </a>
@@ -1471,234 +1243,198 @@
 
 
 
-<h1 id="chatbot-step-1-session-tracing">Chatbot Step 1: Session Tracing</h1>
-<p>This guide tests the first TraceLLM property inside a real chatbot application.</p>
-<p>The chatbot still calls the selected LLM provider directly. TraceLLM only observes the request and stores a session plus one LLM span.</p>
-<p>For the reusable SDK pattern that users should copy into their own apps, read the <a href="../../sdk/node/">Node SDK Guide</a>.</p>
-<h2 id="what-this-step-adds">What This Step Adds</h2>
-<p>When <code>TRACELLM_ENABLED=true</code>, every chatbot request creates:</p>
+<h1 id="chatbot-integration-walkthrough">Chatbot Integration Walkthrough</h1>
+<p>This guide shows how to add TraceLLM to a real chatbot one capability at a time.</p>
+<p>The chatbot still calls the selected LLM provider directly. TraceLLM observes the workflow and records sessions, spans, events, errors, token usage, metadata, and optional content according to your project configuration.</p>
+<p>For the reusable SDK API, read the <a href="../../sdk/node/">Node SDK Guide</a>.</p>
+<h2 id="baseline">Baseline</h2>
+<p>Start with a chatbot that already works without TraceLLM:</p>
 <ul>
-<li>a session named <code>Chatbot request</code></li>
-<li>an LLM span named <code>&lt;provider&gt;.chat.complete</code></li>
-<li>attributes for provider, model, app, message count, and latency</li>
-<li>token usage when the provider response includes usage</li>
-<li>structured errors if the provider call fails</li>
+<li>it accepts a user message</li>
+<li>it calls OpenAI, Anthropic, Gemini, or another provider</li>
+<li>it returns the provider response</li>
+<li>it handles provider failures</li>
 </ul>
-<p>Prompt and output content are passed to the SDK, but the backend stores them only when project config allows content capture.</p>
-<h2 id="run-the-chatbot">Run The Chatbot</h2>
-<p>Start the TraceLLM backend first.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nb">cd </span><span class="n">C</span><span class="p">:\</span><span class="n">dev</span><span class="p">\</span><span class="n">tracellm</span>
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="n">pnpm</span><span class="p">.</span><span class="n">cmd</span> <span class="n">dev</span><span class="p">:</span><span class="n">server</span>
+<p>Then add TraceLLM around that existing flow.</p>
+<h2 id="step-1-session-and-llm-span">Step 1: Session And LLM Span</h2>
+<p>Create one session for each user-visible chat turn and one <code>llm</code> span around the provider call.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kd">const</span><span class="w"> </span><span class="nx">session</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">tracellm</span><span class="p">.</span><span class="nx">startSession</span><span class="p">({</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">  </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Chatbot request&quot;</span><span class="p">,</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">  </span><span class="nx">userId</span><span class="o">:</span><span class="w"> </span><span class="kt">user.id</span><span class="p">,</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">  </span><span class="nx">attributes</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">    </span><span class="nx">app</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;support-chatbot&quot;</span><span class="p">,</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">    </span><span class="nx">provider</span><span class="p">,</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">    </span><span class="nx">model</span><span class="p">,</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">    </span><span class="nx">messageCount</span><span class="o">:</span><span class="w"> </span><span class="kt">messages.length</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">  </span><span class="p">},</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="w">  </span><span class="nx">input</span><span class="o">:</span><span class="w"> </span><span class="kt">latestUserMessage</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="p">});</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="kd">const</span><span class="w"> </span><span class="nx">span</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">session</span><span class="p">.</span><span class="nx">startSpan</span><span class="p">({</span>
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="w">  </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="sb">`</span><span class="si">${</span><span class="nx">provider</span><span class="si">}</span><span class="sb">.chat.complete`</span><span class="p">,</span>
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="w">  </span><span class="nx">kind</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;llm&quot;</span><span class="p">,</span>
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="w">  </span><span class="nx">attributes</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="w">    </span><span class="nx">provider</span><span class="p">,</span>
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="w">    </span><span class="nx">model</span>
+<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="w">  </span><span class="p">},</span>
+<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a><span class="w">  </span><span class="nx">input</span><span class="o">:</span><span class="w"> </span><span class="kt">latestUserMessage</span>
+<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a><span class="p">});</span>
 </code></pre></div>
-<p>Start the web UI in another terminal.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nb">cd </span><span class="n">C</span><span class="p">:\</span><span class="n">dev</span><span class="p">\</span><span class="n">tracellm</span>
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="n">pnpm</span><span class="p">.</span><span class="n">cmd</span> <span class="n">dev</span><span class="p">:</span><span class="n">web</span>
-</code></pre></div>
-<p>Create or log in to an account, then copy the project API key from the TraceLLM UI.</p>
-<p>Start the chatbot with one provider key and the TraceLLM key.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nb">cd </span><span class="n">C</span><span class="p">:\</span><span class="n">dev</span><span class="p">\</span><span class="n">tracellm</span>
-<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="nv">$env:CHATBOT_PROVIDER</span><span class="p">=</span><span class="s2">&quot;openai&quot;</span>
-<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="nv">$env:OPENAI_API_KEY</span><span class="p">=</span><span class="s2">&quot;sk_your_key&quot;</span>
-<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="nv">$env:TRACELLM_ENABLED</span><span class="p">=</span><span class="s2">&quot;true&quot;</span>
-<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="nv">$env:TRACELLM_ENDPOINT</span><span class="p">=</span><span class="s2">&quot;http://localhost:4319&quot;</span>
-<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="nv">$env:TRACELLM_API_KEY</span><span class="p">=</span><span class="s2">&quot;trllm_your_project_key&quot;</span>
-<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="nv">$env:TRACELLM_SERVICE_NAME</span><span class="p">=</span><span class="s2">&quot;tracellm-chatbot&quot;</span>
-<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="n">pnpm</span><span class="p">.</span><span class="n">cmd</span> <span class="n">chatbot</span><span class="p">:</span><span class="nb">start</span>
-</code></pre></div>
-<p>Open:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>http://localhost:4320
-</code></pre></div>
-<h2 id="what-to-expect-in-the-chatbot">What To Expect In The Chatbot</h2>
-<p>The left sidebar should show:</p>
+<p>Expected result in TraceLLM:</p>
 <ul>
-<li>provider configured</li>
-<li>TraceLLM enabled</li>
-<li>TraceLLM key configured</li>
-<li>endpoint <code>http://localhost:4319</code></li>
+<li>one session named <code>Chatbot request</code></li>
+<li>one LLM span named like <code>openai.chat.complete</code></li>
+<li>provider and model metadata when metadata capture is enabled</li>
+<li>prompt/output content only when content capture allows it</li>
 </ul>
-<p>Send one chat message. The assistant should answer normally.</p>
-<h2 id="what-to-expect-in-tracellm-ui">What To Expect In TraceLLM UI</h2>
-<p>Open the TraceLLM web UI and refresh the session list.</p>
-<p>You should see a new session:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>Chatbot request
+<h2 id="step-2-lifecycle-events">Step 2: Lifecycle Events</h2>
+<p>Record events for important moments around the provider call.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">await</span><span class="w"> </span><span class="nx">span</span><span class="p">.</span><span class="nx">recordEvent</span><span class="p">({</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">  </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;provider.request.started&quot;</span><span class="p">,</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">  </span><span class="nx">attributes</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">provider</span><span class="p">,</span><span class="w"> </span><span class="nx">model</span><span class="w"> </span><span class="p">}</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="p">});</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="kd">const</span><span class="w"> </span><span class="nx">response</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">callProvider</span><span class="p">(</span><span class="nx">messages</span><span class="p">);</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="k">await</span><span class="w"> </span><span class="nx">span</span><span class="p">.</span><span class="nx">recordEvent</span><span class="p">({</span>
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="w">  </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;provider.response.received&quot;</span><span class="p">,</span>
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="w">  </span><span class="nx">attributes</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="w">    </span><span class="nx">provider</span><span class="p">,</span>
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="w">    </span><span class="nx">model</span><span class="p">,</span>
+<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="w">    </span><span class="nx">responseId</span><span class="o">:</span><span class="w"> </span><span class="kt">response.id</span><span class="p">,</span>
+<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="w">    </span><span class="nx">totalTokens</span><span class="o">:</span><span class="w"> </span><span class="kt">response.usage?.totalTokens</span>
+<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a><span class="w">  </span><span class="p">}</span>
+<a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a><span class="p">});</span>
 </code></pre></div>
-<p>The session timeline should include one LLM span:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>openai.chat.complete
-</code></pre></div>
-<p>For Anthropic or Gemini, the span name changes to:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>anthropic.chat.complete
-<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>gemini.chat.complete
-</code></pre></div>
-<p>The detail view should show provider, model, latency, and token usage when available.</p>
-<h2 id="what-to-expect-in-signoz">What To Expect In SigNoz</h2>
-<p>If SigNoz is running and the TraceLLM backend is exporting OTLP traces, this same request should appear as an exported trace.</p>
-<p>TraceLLM is the source of truth for product-level LLM observability. SigNoz is the infrastructure observability view for traces exported from the backend.</p>
-<h2 id="configuration">Configuration</h2>
-<p>Use project config in the TraceLLM UI for the normal behavior:</p>
+<p>Expected result:</p>
 <ul>
-<li><code>Tracing enabled</code>: controls whether SDK calls create records.</li>
-<li><code>Capture prompt/output content</code>: controls whether prompt and answer text are stored.</li>
-<li><code>Capture inputs</code>: stores request input fields.</li>
-<li><code>Capture outputs</code>: stores response output fields.</li>
-<li><code>Token usage</code>: stores token counts from the provider response.</li>
-<li><code>Errors</code>: stores provider failures as structured error records.</li>
-<li><code>Sampling rate</code>: decides what percentage of requests become traces.</li>
+<li>timeline shows provider start and provider response events</li>
+<li>exported traces can show these as OpenTelemetry span events when export settings allow events</li>
 </ul>
-<p>Optional local overrides are available for testing:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="nv">$env:TRACELLM_CAPTURE_CONTENT</span><span class="p">=</span><span class="s2">&quot;false&quot;</span>
-<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="nv">$env:TRACELLM_CAPTURE_INPUTS</span><span class="p">=</span><span class="s2">&quot;false&quot;</span>
-<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="nv">$env:TRACELLM_CAPTURE_OUTPUTS</span><span class="p">=</span><span class="s2">&quot;false&quot;</span>
-<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="nv">$env:TRACELLM_SAMPLING_RATE</span><span class="p">=</span><span class="s2">&quot;1&quot;</span>
+<h2 id="step-3-content-capture">Step 3: Content Capture</h2>
+<p>Pass input and output to TraceLLM, then let project config decide whether to store it.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">await</span><span class="w"> </span><span class="nx">span</span><span class="p">.</span><span class="nx">end</span><span class="p">({</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">  </span><span class="nx">status</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;ok&quot;</span><span class="p">,</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">  </span><span class="nx">output</span><span class="o">:</span><span class="w"> </span><span class="kt">assistantAnswer</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="p">});</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="k">await</span><span class="w"> </span><span class="nx">session</span><span class="p">.</span><span class="nx">end</span><span class="p">({</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="w">  </span><span class="nx">status</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;ok&quot;</span><span class="p">,</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="w">  </span><span class="nx">output</span><span class="o">:</span><span class="w"> </span><span class="kt">assistantAnswer</span>
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="p">});</span>
 </code></pre></div>
-<p>Prefer UI project config for real users. Local overrides are mainly for developer experiments.</p>
-<h2 id="disable-this-step">Disable This Step</h2>
-<p>To return to the clean chatbot baseline:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="nv">$env:TRACELLM_ENABLED</span><span class="p">=</span><span class="s2">&quot;false&quot;</span>
-<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="n">pnpm</span><span class="p">.</span><span class="n">cmd</span> <span class="n">chatbot</span><span class="p">:</span><span class="nb">start</span>
-</code></pre></div>
-<p>No TraceLLM sessions or spans should be created while tracing is disabled.</p>
-<h2 id="next-step-lifecycle-events">Next Step: Lifecycle Events</h2>
-<p>After session tracing works, enable lifecycle events:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="nv">$env:TRACELLM_RECORD_EVENTS</span><span class="p">=</span><span class="s2">&quot;true&quot;</span>
-<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="n">pnpm</span><span class="p">.</span><span class="n">cmd</span> <span class="n">chatbot</span><span class="p">:</span><span class="nb">start</span>
-</code></pre></div>
-<p>Send another chat message.</p>
-<p>The TraceLLM timeline should still show the session and LLM span, plus two event records:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>provider.request.started
-<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>provider.response.received
-</code></pre></div>
-<p>In SigNoz, these appear under the selected span's Events tab when the backend exports them.</p>
-<h2 id="next-step-content-capture">Next Step: Content Capture</h2>
-<p>The chatbot already sends input and output fields to the SDK:</p>
-<ul>
-<li>session input: latest user message</li>
-<li>session output: assistant answer</li>
-<li>span input: latest user message</li>
-<li>span output: assistant answer</li>
-</ul>
-<p>TraceLLM stores those fields only when project config allows content capture.</p>
-<p>In the TraceLLM UI, enable one of:</p>
+<p>Project config controls:</p>
 <ul>
 <li><code>Capture prompt/output content</code></li>
 <li><code>Capture inputs</code></li>
 <li><code>Capture outputs</code></li>
 </ul>
-<p>Then refresh the chatbot. The sidebar should show:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>Content capture: enabled
-</code></pre></div>
-<p>Send a new message and open the resulting session/span detail in TraceLLM. You should see prompt/output fields according to the enabled setting.</p>
-<p>SigNoz may receive selected content fields as span attributes only if the backend mapper exports them. Treat TraceLLM UI as the source of truth for content capture.</p>
-<h2 id="next-step-redaction">Next Step: Redaction</h2>
-<p>After content capture is visible, test redaction.</p>
-<p>In the TraceLLM UI, keep these enabled:</p>
+<p>Default behavior is privacy-first: content is not stored unless your project enables it.</p>
+<h2 id="step-4-redaction">Step 4: Redaction</h2>
+<p>When content capture is enabled, turn on:</p>
 <ul>
 <li><code>Redact emails</code></li>
 <li><code>Redact API keys</code></li>
 </ul>
-<p>Refresh the chatbot. The sidebar should show:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>Redact emails: enabled
-<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>Redact API keys: enabled
+<p>Then test with a message such as:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>Please summarize this contact: jane@example.com. My temporary key is sk_test_123456789.
 </code></pre></div>
-<p>Send a message like:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>Please summarize this contact: jane@example.com. My temporary key is sk_test_123456789.
+<p>Expected result:</p>
+<ul>
+<li>stored content contains <code>[redacted-email]</code></li>
+<li>stored content contains <code>[redacted-key]</code></li>
+<li>the prompt sent to your LLM provider is not changed by TraceLLM redaction</li>
+</ul>
+<h2 id="step-5-error-capture">Step 5: Error Capture</h2>
+<p>Wrap provider failures and record structured errors.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">response</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">callProvider</span><span class="p">(</span><span class="nx">messages</span><span class="p">);</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">  </span><span class="k">await</span><span class="w"> </span><span class="nx">span</span><span class="p">.</span><span class="nx">end</span><span class="p">({</span><span class="w"> </span><span class="nx">status</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;ok&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">output</span><span class="o">:</span><span class="w"> </span><span class="kt">response.text</span><span class="w"> </span><span class="p">});</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w">  </span><span class="k">await</span><span class="w"> </span><span class="nx">session</span><span class="p">.</span><span class="nx">end</span><span class="p">({</span><span class="w"> </span><span class="nx">status</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;ok&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">output</span><span class="o">:</span><span class="w"> </span><span class="kt">response.text</span><span class="w"> </span><span class="p">});</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="w">  </span><span class="k">await</span><span class="w"> </span><span class="nx">span</span><span class="p">.</span><span class="nx">recordError</span><span class="p">({</span>
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="w">    </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;provider.request.failed&quot;</span><span class="p">,</span>
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="w">    </span><span class="nx">message</span><span class="o">:</span><span class="w"> </span><span class="kt">error</span><span class="w"> </span><span class="ow">instanceof</span><span class="w"> </span><span class="ne">Error</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="nx">error</span><span class="p">.</span><span class="nx">message</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Unknown provider error&quot;</span><span class="p">,</span>
+<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="w">    </span><span class="kr">type</span><span class="o">:</span><span class="w"> </span><span class="nx">error</span><span class="w"> </span><span class="ow">instanceof</span><span class="w"> </span><span class="ne">Error</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="nx">error</span><span class="p">.</span><span class="nx">name</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Error&quot;</span><span class="p">,</span>
+<a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a><span class="w">    </span><span class="nx">stack</span><span class="o">:</span><span class="w"> </span><span class="kt">error</span><span class="w"> </span><span class="ow">instanceof</span><span class="w"> </span><span class="ne">Error</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="nx">error.stack</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="kt">undefined</span>
+<a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a><span class="w">  </span><span class="p">});</span>
+<a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a>
+<a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a><span class="w">  </span><span class="k">await</span><span class="w"> </span><span class="nx">span</span><span class="p">.</span><span class="nx">end</span><span class="p">({</span><span class="w"> </span><span class="nx">status</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;error&quot;</span><span class="w"> </span><span class="p">});</span>
+<a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a><span class="w">  </span><span class="k">await</span><span class="w"> </span><span class="nx">session</span><span class="p">.</span><span class="nx">end</span><span class="p">({</span><span class="w"> </span><span class="nx">status</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;error&quot;</span><span class="w"> </span><span class="p">});</span>
+<a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a><span class="w">  </span><span class="k">throw</span><span class="w"> </span><span class="nx">error</span><span class="p">;</span>
+<a id="__codelineno-4-16" name="__codelineno-4-16" href="#__codelineno-4-16"></a><span class="p">}</span>
 </code></pre></div>
-<p>Open the new TraceLLM session. Captured input/output should contain placeholders:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>[redacted-email]
-<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>[redacted-key]
-</code></pre></div>
-<p>Redaction is applied before TraceLLM stores captured content. It does not alter the prompt sent to the LLM provider by the chatbot.</p>
-<h2 id="next-step-error-capture">Next Step: Error Capture</h2>
-<p>After redaction works, test provider failure capture.</p>
-<p>In the TraceLLM UI, keep <code>Errors</code> enabled.</p>
-<p>Restart the chatbot with simulated provider errors:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="nv">$env:CHATBOT_SIMULATE_PROVIDER_ERROR</span><span class="p">=</span><span class="s2">&quot;true&quot;</span>
-<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="n">pnpm</span><span class="p">.</span><span class="n">cmd</span> <span class="n">chatbot</span><span class="p">:</span><span class="nb">start</span>
-</code></pre></div>
-<p>The chatbot sidebar should show:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>Error simulation: enabled
-<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>Error capture: enabled
-</code></pre></div>
-<p>Send any message.</p>
-<p>Expected result in TraceLLM:</p>
+<p>Expected result:</p>
 <ul>
 <li>session status becomes <code>error</code></li>
 <li>LLM span status becomes <code>error</code></li>
-<li>timeline includes structured error records</li>
-<li>error attributes include provider and model</li>
+<li>timeline includes a structured error record when error capture is enabled</li>
+<li>external OTLP exports can include exception-style telemetry when export settings allow errors</li>
 </ul>
-<p>Expected result in SigNoz:</p>
+<h2 id="step-6-sampling">Step 6: Sampling</h2>
+<p>Sampling controls how often new sessions are recorded.</p>
 <ul>
-<li>the exported span should show an error status or exception event, depending on the backend OTel mapper.</li>
+<li><code>100%</code>: every request creates a session</li>
+<li><code>0%</code>: no new request creates a session</li>
+<li><code>50%</code>: roughly half of new requests create sessions over time</li>
 </ul>
-<p>Turn simulation off after testing:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="nv">$env:CHATBOT_SIMULATE_PROVIDER_ERROR</span><span class="p">=</span><span class="s2">&quot;false&quot;</span>
+<p>Sampling affects new requests only. It does not delete older traces.</p>
+<h2 id="step-7-token-usage">Step 7: Token Usage</h2>
+<p>End the LLM span with provider usage when available.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="k">await</span><span class="w"> </span><span class="nx">span</span><span class="p">.</span><span class="nx">end</span><span class="p">({</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">  </span><span class="nx">status</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;ok&quot;</span><span class="p">,</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">  </span><span class="nx">usage</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="w">    </span><span class="nx">inputTokens</span><span class="o">:</span><span class="w"> </span><span class="kt">response.usage?.inputTokens</span><span class="p">,</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="w">    </span><span class="nx">outputTokens</span><span class="o">:</span><span class="w"> </span><span class="kt">response.usage?.outputTokens</span><span class="p">,</span>
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="w">    </span><span class="nx">totalTokens</span><span class="o">:</span><span class="w"> </span><span class="kt">response.usage?.totalTokens</span>
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="w">  </span><span class="p">},</span>
+<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="w">  </span><span class="nx">output</span><span class="o">:</span><span class="w"> </span><span class="kt">assistantAnswer</span>
+<a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a><span class="p">});</span>
 </code></pre></div>
-<h2 id="next-step-sampling">Next Step: Sampling</h2>
-<p>Sampling controls how often SDK calls create TraceLLM records.</p>
-<p>In the TraceLLM UI, use the <code>Sampling rate</code> control:</p>
-<ul>
-<li><code>100%</code>: every request should create a session.</li>
-<li><code>0%</code>: no request should create a session.</li>
-<li><code>50%</code>: approximately half of requests should create sessions over many requests.</li>
-</ul>
-<p>Refresh the chatbot. The sidebar should show the effective sampling rate:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>Sampling rate: 100%
-</code></pre></div>
-<p>For faster local testing, start the chatbot with a shorter SDK config refresh interval:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="nv">$env:TRACELLM_CONFIG_REFRESH_MS</span><span class="p">=</span><span class="s2">&quot;1000&quot;</span>
-<a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a><span class="n">pnpm</span><span class="p">.</span><span class="n">cmd</span> <span class="n">chatbot</span><span class="p">:</span><span class="nb">start</span>
-</code></pre></div>
-<p>Then change sampling in the TraceLLM UI and wait about one second before sending another request.</p>
-<p>Sampling affects new requests only. It does not remove old traces.</p>
-<h2 id="next-step-token-usage">Next Step: Token Usage</h2>
-<p>Token usage controls whether provider token counts are stored.</p>
-<p>In the TraceLLM UI, keep <code>Token usage</code> enabled, then send a real provider-backed chat request.</p>
-<p>Expected result in TraceLLM:</p>
-<ul>
-<li>session summary shows total tokens</li>
-<li>the LLM span shows input, output, and total token counts</li>
-<li>timeline span still shows duration/status/attributes</li>
-</ul>
-<p>Then turn <code>Token usage</code> off, save config, wait for SDK config refresh, and send another request.</p>
 <p>Expected result:</p>
 <ul>
-<li>session and span still appear</li>
-<li>usage breakdown is absent</li>
-<li>total tokens no longer increase for that request</li>
+<li>total tokens appear in the session summary when token usage capture is enabled</li>
+<li>usage is ignored when token usage capture is disabled</li>
+<li>sessions and spans still record normally when token usage is off</li>
 </ul>
-<p>Provider APIs may differ in token reporting. If a provider does not return usage, TraceLLM stores zero or no token counts for that call.</p>
-<h2 id="next-step-metadata">Next Step: Metadata</h2>
-<p>Metadata controls whether attribute objects are stored.</p>
-<p>The chatbot sends attributes such as:</p>
+<h2 id="step-8-metadata">Step 8: Metadata</h2>
+<p>Metadata is stored from <code>attributes</code> on sessions, spans, and events.</p>
+<p>Useful chatbot metadata:</p>
 <ul>
 <li>provider</li>
 <li>model</li>
+<li>route or workflow name</li>
 <li>message count</li>
-<li>latency</li>
-<li>total tokens</li>
+<li>customer tier</li>
+<li>retrieval document count</li>
+<li>tool names</li>
 </ul>
-<p>In the TraceLLM UI, turn <code>Metadata</code> off and save config.</p>
-<p>Send a new chat message.</p>
-<p>Expected result:</p>
+<p>When metadata capture is disabled, TraceLLM keeps the trace structure but stores empty attribute objects.</p>
+<h2 id="step-9-ignored-span-kinds">Step 9: Ignored Span Kinds</h2>
+<p>Ignored span kinds let you skip categories of work.</p>
+<p>Available span kinds:</p>
 <ul>
-<li>session and span still exist</li>
-<li>JSON attribute blocks show empty objects</li>
-<li>input/output capture still follows content settings</li>
-<li>token usage still follows token usage settings</li>
+<li><code>llm</code></li>
+<li><code>tool</code></li>
+<li><code>retrieval</code></li>
+<li><code>agent</code></li>
+<li><code>workflow</code></li>
+<li><code>custom</code></li>
 </ul>
-<p>Turn <code>Metadata</code> back on to restore attributes.</p>
-<h2 id="next-step-ignored-span-kinds">Next Step: Ignored Span Kinds</h2>
-<p>Ignored span kinds let a project skip whole categories of spans.</p>
-<p>In the TraceLLM UI, add <code>llm</code> under ignored span kinds and save config.</p>
-<p>Send a new chat message.</p>
-<p>Expected result:</p>
+<p>If <code>llm</code> is ignored, LLM spans and their attached events/errors are skipped. The parent session can still be recorded.</p>
+<h2 id="step-10-external-export">Step 10: External Export</h2>
+<p>Open <strong>Exports</strong> to forward a copy of selected trace data to your own OTLP HTTP backend.</p>
+<p>Per-destination export settings can include or exclude:</p>
 <ul>
-<li>session still appears</li>
-<li>LLM span such as <code>openai.chat.complete</code> is skipped</li>
-<li>span lifecycle events are skipped because they are attached to the ignored span</li>
-<li>session-level output/status still follows normal session behavior</li>
+<li>spans</li>
+<li>events</li>
+<li>errors</li>
+<li>token usage</li>
+<li>metadata</li>
+<li>content</li>
+<li>span kinds</li>
 </ul>
-<p>Remove <code>llm</code> from ignored span kinds to restore LLM spans.</p>
+<p>TraceLLM remains the source of truth for LLM workflow debugging. External exports help teams correlate TraceLLM data with the rest of their observability stack.</p>
 
 
 

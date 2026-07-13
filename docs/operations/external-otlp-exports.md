@@ -98,13 +98,7 @@ Route the collector to Tempo or any downstream backend.
 
 ## Security Model
 
-TraceLLM encrypts destination headers at rest using:
-
-```text
-TRACELLM_EXPORT_SECRET_KEY
-```
-
-Set this to a strong production secret before deployment. If this key changes, previously saved export headers cannot be decrypted and should be re-entered.
+TraceLLM encrypts destination headers at rest and never returns raw saved header values from the API after creation or update.
 
 External exports are project-scoped. A destination created in one project is not visible to another project.
 

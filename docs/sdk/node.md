@@ -2,21 +2,9 @@
 
 The Node SDK lets application developers send LLM workflow traces to TraceLLM.
 
-Use it in any Node.js service that calls OpenAI, Anthropic, Gemini, a local model, tools, retrievers, or agent workflows.
+Use it in any Node.js service that calls OpenAI, Anthropic, Gemini, local models, tools, retrievers, or agent workflows.
 
 ## Install
-
-In this monorepo, the SDK is consumed as a workspace package:
-
-```json
-{
-  "dependencies": {
-    "@use-tracellm/sdk-node": "workspace:*"
-  }
-}
-```
-
-For a hosted product, users would install the published package:
 
 ```bash
 npm install @use-tracellm/sdk-node
@@ -28,7 +16,7 @@ npm install @use-tracellm/sdk-node
 import { TraceLLM } from "@use-tracellm/sdk-node";
 
 const tracellm = new TraceLLM({
-  endpoint: process.env.TRACELLM_ENDPOINT ?? "http://localhost:4319",
+  endpoint: process.env.TRACELLM_ENDPOINT ?? "https://api.tracellm.in",
   apiKey: process.env.TRACELLM_API_KEY,
   serviceName: "my-ai-app",
   configRefreshMs: 30_000
@@ -38,7 +26,7 @@ const tracellm = new TraceLLM({
 Required environment variables:
 
 ```bash
-TRACELLM_ENDPOINT=http://localhost:4319
+TRACELLM_ENDPOINT=https://api.tracellm.in
 TRACELLM_API_KEY=trllm_your_project_key
 ```
 
@@ -52,7 +40,7 @@ This is the first property we integrated in the chatbot app: one TraceLLM sessio
 import { TraceLLM } from "@use-tracellm/sdk-node";
 
 const tracellm = new TraceLLM({
-  endpoint: process.env.TRACELLM_ENDPOINT ?? "http://localhost:4319",
+  endpoint: process.env.TRACELLM_ENDPOINT ?? "https://api.tracellm.in",
   apiKey: process.env.TRACELLM_API_KEY,
   serviceName: "my-chatbot"
 });
@@ -477,9 +465,9 @@ const span = await session.startSpan({
 
 The parent session can still be recorded and ended. Span-level events, errors, usage, input, and output attached to that ignored span are skipped.
 
-## Local Overrides
+## SDK Overrides
 
-You can pass SDK-local overrides:
+You can pass SDK-side overrides:
 
 ```ts
 const tracellm = new TraceLLM({
@@ -491,9 +479,9 @@ const tracellm = new TraceLLM({
 });
 ```
 
-Local overrides are merged with project configuration.
+SDK overrides are merged with project configuration.
 
-Prefer project config in the TraceLLM UI for normal users. Use SDK-local overrides for developer testing, emergency safety controls, or per-service differences.
+Prefer project config in the TraceLLM UI for normal teams. Use SDK overrides for emergency safety controls or per-service differences.
 
 ## Environment Flags Used By The Chatbot Example
 
@@ -505,7 +493,7 @@ TRACELLM_ENABLED=true
 
 That flag is app-specific. The SDK itself decides whether to trace based on project config after it is constructed and called.
 
-The chatbot also supports optional local overrides:
+The chatbot also supports optional SDK overrides:
 
 ```bash
 TRACELLM_CAPTURE_CONTENT=false
@@ -516,10 +504,4 @@ TRACELLM_CONFIG_REFRESH_MS=30000
 TRACELLM_RECORD_EVENTS=true
 ```
 
-The capture and sampling flags map to SDK `tracing` overrides. `TRACELLM_CONFIG_REFRESH_MS` controls SDK config refresh. `TRACELLM_RECORD_EVENTS` is chatbot-specific and decides whether the example app calls `span.recordEvent`.
-
-## Related Walkthrough
-
-The runnable local walkthrough is here:
-
-[Chatbot Step 1: Session Tracing](../getting-started/chatbot-step-1-session-tracing.md)
+The capture and sampling flags map to SDK `tracing` overrides. `TRACELLM_CONFIG_REFRESH_MS` controls SDK config refresh. `TRACELLM_RECORD_EVENTS` is app-specific and decides whether your app calls `span.recordEvent`.

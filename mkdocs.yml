@@ -1,5 +1,5 @@
 site_name: TraceLLM
-site_description: TraceLLM documentation for local development, SDK integration, tracing configuration, and SigNoz export.
+site_description: TraceLLM documentation for application developers using the hosted TraceLLM product.
 site_url: https://docs.tracellm.in
 repo_name: tracellm
 theme:
@@ -31,21 +31,16 @@ nav:
       - Core Concepts: product/concepts.md
       - Customization Options: product/customization.md
   - Getting Started:
-      - Local Quickstart: getting-started/local-quickstart.md
-      - Full Local Setup: getting-started/full-local-setup.md
+      - Hosted Quickstart: getting-started/quickstart.md
       - Testing With Real LLM Providers: getting-started/provider-testing.md
       - Chatbot Step 1 Session Tracing: getting-started/chatbot-step-1-session-tracing.md
   - SDK:
       - Node SDK Guide: sdk/node.md
       - Manual Instrumentation Patterns: sdk/instrumentation-patterns.md
-  - Operations:
-      - VPS Deployment: operations/vps-deployment.md
+  - Observability:
       - SigNoz Integration: operations/signoz.md
       - External OTLP Exports: operations/external-otlp-exports.md
-      - Environment Variables: operations/environment.md
       - Troubleshooting: operations/troubleshooting.md
-  - Engineering:
-      - Architecture: engineering/architecture.md
+  - Reference:
       - API Overview: engineering/api.md
       - Security Model: engineering/security.md
-      - Roadmap: engineering/roadmap.md

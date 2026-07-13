@@ -4,17 +4,17 @@
 
 Check:
 
-1. Backend is running:
+1. The hosted API is reachable:
 
    ```text
-   http://localhost:4319/health
+   https://api.tracellm.in/health
    ```
 
 2. SDK environment is set:
 
-   ```powershell
-   $env:TRACELLM_ENDPOINT="http://localhost:4319"
-   $env:TRACELLM_API_KEY="trllm_..."
+   ```bash
+   TRACELLM_ENDPOINT=https://api.tracellm.in
+   TRACELLM_API_KEY=trllm_...
    ```
 
 3. API key belongs to the account/project shown in the UI.
@@ -29,91 +29,39 @@ Create a new API key in the UI and copy it immediately. Full secrets are only sh
 
 Then rerun:
 
-```powershell
-$env:TRACELLM_API_KEY="trllm_new_key"
-pnpm example:user-app
+```bash
+TRACELLM_API_KEY=trllm_new_key
 ```
 
 ## Provider Example Fails
 
 Check the provider key:
 
-```powershell
-$env:LLM_PROVIDER="openai"
-$env:OPENAI_API_KEY="sk_..."
+```bash
+LLM_PROVIDER=openai
+OPENAI_API_KEY=sk_...
 ```
 
 For Anthropic:
 
-```powershell
-$env:ANTHROPIC_API_KEY="sk-ant-..."
+```bash
+ANTHROPIC_API_KEY=sk-ant-...
 ```
 
 For Gemini:
 
-```powershell
-$env:GEMINI_API_KEY="..."
+```bash
+GEMINI_API_KEY=...
 ```
 
-## SigNoz Does Not Show Service
+## External Export Does Not Show In SigNoz
 
-Check SigNoz is running:
+Check the destination in **Exports**:
 
-```powershell
-docker compose -f infra/signoz/pours/deployment/compose.yaml ps
-```
+- destination is enabled
+- endpoint is the OTLP HTTP base URL
+- required headers are present
+- **Send test trace** returns `ok`
+- export config allows the span kinds and fields you expect
 
-Check TraceLLM health:
-
-```text
-http://localhost:4319/health
-```
-
-The health response should show:
-
-```text
-http://host.docker.internal:4318/v1/traces
-```
-
-Run the example again after SigNoz is running:
-
-```powershell
-pnpm example:user-app
-```
-
-## Port Conflicts
-
-Common ports:
-
-| Port | Used By |
-| --- | --- |
-| `4319` | TraceLLM backend |
-| `5173` | Vite web dev server |
-| `8080` | SigNoz UI |
-| `4318` | OTLP HTTP |
-| `4317` | OTLP gRPC |
-
-Stop TraceLLM:
-
-```powershell
-pnpm infra:down
-```
-
-Stop SigNoz:
-
-```powershell
-pnpm signoz:down
-```
-
-## Docker Data Reset
-
-TraceLLM data volume:
-
-```powershell
-pnpm infra:down
-docker volume rm infra_tracellm-data
-```
-
-SigNoz data volumes are managed by the generated SigNoz compose stack.
-
-Use caution before deleting them.
+A failed external export does not block TraceLLM ingestion. Your traces should still appear in the TraceLLM dashboard.

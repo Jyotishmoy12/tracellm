@@ -10,12 +10,12 @@ Passwords are hashed with Argon2id.
 
 The server returns a JWT in an HttpOnly cookie.
 
-Current local MVP behavior:
+Current behavior:
 
 - JWT algorithm: RS256
 - cookie: HttpOnly
 - default TTL: 7 days
-- development secure cookie flag: off
+- secure cookies are used for hosted HTTPS deployments
 
 Important production hardening:
 

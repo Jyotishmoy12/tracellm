@@ -6,36 +6,35 @@ It captures sessions, spans, events, errors, token usage, latency, metadata, and
 
 ## What You Can Do Today
 
-- Create a TraceLLM account locally.
+- Create a TraceLLM account.
 - Create project API keys.
 - Configure tracing behavior per project from the UI.
 - Send traces from a real Node.js application.
 - Test with OpenAI, Anthropic Claude, or Gemini.
 - Inspect traces in the custom TraceLLM UI.
-- Export backend telemetry over OTLP to SigNoz.
+- Export project traces over OTLP HTTP to your own observability backend.
 
 ## Typical Flow
 
 ```text
 Create account
   -> create API key
-  -> install/use SDK
+  -> install SDK
   -> run app with real LLM provider
   -> inspect trace timeline in TraceLLM UI
-  -> inspect exported backend telemetry in SigNoz
+  -> optionally export traces to SigNoz or another OTLP backend
 ```
 
-## Main Local URLs
+## Hosted URLs
 
 | Tool | URL |
 | --- | --- |
-| TraceLLM API | `http://localhost:4319` |
-| Swagger/OpenAPI | `http://localhost:4319/api-docs` |
-| SigNoz UI | `http://localhost:8080` |
-| SigNoz OTLP HTTP | `http://localhost:4318` |
+| TraceLLM App | `https://tracellm.in` |
+| TraceLLM API | `https://api.tracellm.in` |
+| API Docs | `https://api.tracellm.in/api-docs` |
 
 ## Start Here
 
-If you want the fastest end-to-end test, follow [Local Quickstart](getting-started/local-quickstart.md).
+Start with the [Hosted Quickstart](getting-started/quickstart.md).
 
-If you want the full local stack with SigNoz UI, follow [Full Local Setup](getting-started/full-local-setup.md).
+Then read the [Node SDK Guide](sdk/node.md) and [Testing With Real LLM Providers](getting-started/provider-testing.md).

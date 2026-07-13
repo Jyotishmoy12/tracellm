@@ -6,17 +6,17 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="TraceLLM documentation for local development, SDK integration, tracing configuration, and SigNoz export.">
+        <meta name="description" content="TraceLLM documentation for application developers using the hosted TraceLLM product.">
       
       
       
-        <link rel="canonical" href="https://docs.tracellm.local/engineering/architecture/">
+        <link rel="canonical" href="https://docs.tracellm.in/getting-started/quickstart/">
       
       
-        <link rel="prev" href="../../operations/troubleshooting/">
+        <link rel="prev" href="../../product/customization/">
       
       
-        <link rel="next" href="../api/">
+        <link rel="next" href="../provider-testing/">
       
       
         
@@ -27,7 +27,7 @@
     
     
       
-        <title>Architecture - TraceLLM</title>
+        <title>Hosted Quickstart - TraceLLM</title>
       
     
     
@@ -78,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#architecture" class="md-skip">
+        <a href="#hosted-quickstart" class="md-skip">
           Skip to content
         </a>
       
@@ -114,7 +114,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Architecture
+              Hosted Quickstart
             
           </span>
         </div>
@@ -391,8 +391,10 @@
       
   
   
+    
   
   
+  
     
     
     
@@ -403,13 +405,11 @@
       
     
     
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
-          
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
         
           
           <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
@@ -430,7 +430,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
             
@@ -445,17 +445,44 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../getting-started/local-quickstart/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Hosted Quickstart
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
   <span class="md-ellipsis">
     
   
-    Local Quickstart
+    Hosted Quickstart
   
 
     
@@ -464,6 +491,103 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-create-a-project" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Create A Project
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-install-the-node-sdk" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Install The Node SDK
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-configure-your-app" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Configure Your App
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-send-a-trace" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Send A Trace
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-inspect-the-trace" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Inspect The Trace
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-configure-capture-policy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Configure Capture Policy
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-optional-export-to-your-observability-stack" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Optional: Export To Your Observability Stack
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -476,35 +600,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../getting-started/full-local-setup/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Full Local Setup
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../getting-started/provider-testing/" class="md-nav__link">
+      <a href="../provider-testing/" class="md-nav__link">
         
   
   
@@ -532,7 +628,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../getting-started/chatbot-step-1-session-tracing/" class="md-nav__link">
+      <a href="../chatbot-step-1-session-tracing/" class="md-nav__link">
         
   
   
@@ -709,7 +805,7 @@
   <span class="md-ellipsis">
     
   
-    Operations
+    Observability
   
 
     
@@ -725,39 +821,11 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    Operations
+    Observability
   
 
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../operations/vps-deployment/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    VPS Deployment
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
             
               
                 
@@ -822,34 +890,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../../operations/environment/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Environment Variables
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../../operations/troubleshooting/" class="md-nav__link">
         
   
@@ -882,8 +922,6 @@
       
   
   
-    
-  
   
   
     
@@ -896,11 +934,13 @@
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
         
           
           <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="">
@@ -910,7 +950,7 @@
   <span class="md-ellipsis">
     
   
-    Engineering
+    Reference
   
 
     
@@ -921,12 +961,12 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_6">
             <span class="md-nav__icon md-icon"></span>
             
   
-    Engineering
+    Reference
   
 
           </label>
@@ -936,140 +976,10 @@
                 
   
   
-    
-  
-  
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Architecture
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Architecture
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#backend-layers" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Backend Layers
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#data-model" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Data Model
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#authentication" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Authentication
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#telemetry-flow" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Telemetry Flow
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#opentelemetry" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        OpenTelemetry
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
   
   
     <li class="md-nav__item">
-      <a href="../api/" class="md-nav__link">
+      <a href="../../engineering/api/" class="md-nav__link">
         
   
   
@@ -1097,7 +1007,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../security/" class="md-nav__link">
+      <a href="../../engineering/security/" class="md-nav__link">
         
   
   
@@ -1105,34 +1015,6 @@
     
   
     Security Model
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../roadmap/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Roadmap
   
 
     
@@ -1180,10 +1062,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#backend-layers" class="md-nav__link">
+  <a href="#1-create-a-project" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Backend Layers
+        1. Create A Project
       
     </span>
   </a>
@@ -1191,10 +1073,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#data-model" class="md-nav__link">
+  <a href="#2-install-the-node-sdk" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Data Model
+        2. Install The Node SDK
       
     </span>
   </a>
@@ -1202,10 +1084,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#authentication" class="md-nav__link">
+  <a href="#3-configure-your-app" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Authentication
+        3. Configure Your App
       
     </span>
   </a>
@@ -1213,10 +1095,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#telemetry-flow" class="md-nav__link">
+  <a href="#4-send-a-trace" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Telemetry Flow
+        4. Send A Trace
       
     </span>
   </a>
@@ -1224,10 +1106,32 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#opentelemetry" class="md-nav__link">
+  <a href="#5-inspect-the-trace" class="md-nav__link">
     <span class="md-ellipsis">
       
-        OpenTelemetry
+        5. Inspect The Trace
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-configure-capture-policy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Configure Capture Policy
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-optional-export-to-your-observability-stack" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Optional: Export To Your Observability Stack
       
     </span>
   </a>
@@ -1251,79 +1155,103 @@
 
 
 
-<h1 id="architecture">Architecture</h1>
-<p>TraceLLM is a pnpm monorepo.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>apps/
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>  server/   Express API, SQLite, OpenTelemetry
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>  web/      React UI
-<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>packages/
-<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>  sdk-node/ Node SDK
-<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>  shared/   shared Zod schemas and types
-<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>examples/
-<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>  user-app/ real provider example
-<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>infra/
-<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>  docker-compose.yml TraceLLM backend
-<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>  signoz/ official SigNoz Foundry setup
+<h1 id="hosted-quickstart">Hosted Quickstart</h1>
+<p>Use this guide to send your first real AI trace to the hosted TraceLLM product.</p>
+<h2 id="1-create-a-project">1. Create A Project</h2>
+<p>Open the TraceLLM dashboard:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>https://tracellm.in
 </code></pre></div>
-<h2 id="backend-layers">Backend Layers</h2>
-<p>The backend uses a layered Express architecture:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>controllers -&gt; services -&gt; repositories -&gt; database
+<p>Create an account, open the dashboard, and copy a project API key from <strong>API Keys</strong>.</p>
+<p>Full API keys are shown only once. If you lose one, create a new key and revoke the old key.</p>
+<h2 id="2-install-the-node-sdk">2. Install The Node SDK</h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>npm<span class="w"> </span>install<span class="w"> </span>@use-tracellm/sdk-node
 </code></pre></div>
-<p>Layer rules:</p>
-<ul>
-<li>Controllers handle HTTP only.</li>
-<li>Validators validate request DTOs.</li>
-<li>Services contain business logic.</li>
-<li>Repositories are the only layer that talks to Drizzle/SQLite.</li>
-<li>Telemetry maps TraceLLM records to OpenTelemetry.</li>
-</ul>
-<h2 id="data-model">Data Model</h2>
-<p>Core tables:</p>
-<ul>
-<li><code>users</code></li>
-<li><code>workspaces</code></li>
-<li><code>workspace_members</code></li>
-<li><code>projects</code></li>
-<li><code>api_keys</code></li>
-<li><code>sessions</code></li>
-<li><code>spans</code></li>
-<li><code>events</code></li>
-<li><code>errors</code></li>
-<li><code>usage</code></li>
-</ul>
-<h2 id="authentication">Authentication</h2>
-<p>Browser auth:</p>
-<ul>
-<li>email/password</li>
-<li>Argon2id password hashing</li>
-<li>HttpOnly cookie</li>
-<li>RS256 JWT</li>
-</ul>
-<p>SDK auth:</p>
-<ul>
-<li>project API key</li>
-<li>sent with <code>Authorization: Bearer &lt;key&gt;</code></li>
-<li>hashed server-side before persistence</li>
-</ul>
-<h2 id="telemetry-flow">Telemetry Flow</h2>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>User app
-<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>  -&gt; TraceLLM SDK
-<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>  -&gt; TraceLLM backend
-<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>  -&gt; SQLite persistence
-<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>  -&gt; TraceLLM UI
-<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>  -&gt; OpenTelemetry export
-<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>  -&gt; SigNoz
+<p>You can also use pnpm or yarn:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>pnpm<span class="w"> </span>add<span class="w"> </span>@use-tracellm/sdk-node
 </code></pre></div>
-<h2 id="opentelemetry">OpenTelemetry</h2>
-<p>The backend initializes OpenTelemetry on startup.</p>
-<p>It exports:</p>
-<ul>
-<li>traces to <code>/v1/traces</code></li>
-<li>metrics to <code>/v1/metrics</code></li>
-</ul>
-<p>The endpoint is controlled by:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>TRACELLM_OTEL_EXPORTER_OTLP_ENDPOINT
+<h2 id="3-configure-your-app">3. Configure Your App</h2>
+<p>Add these values to your application environment:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nv">TRACELLM_ENDPOINT</span><span class="o">=</span>https://api.tracellm.in
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="nv">TRACELLM_API_KEY</span><span class="o">=</span>trllm_your_project_key
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="nv">TRACELLM_SERVICE_NAME</span><span class="o">=</span>my-ai-service
 </code></pre></div>
+<p>The API key connects traces to your project and loads your project capture policy.</p>
+<h2 id="4-send-a-trace">4. Send A Trace</h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">TraceLLM</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;@use-tracellm/sdk-node&quot;</span><span class="p">;</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="kd">const</span><span class="w"> </span><span class="nx">tracellm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">TraceLLM</span><span class="p">({</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w">  </span><span class="nx">endpoint</span><span class="o">:</span><span class="w"> </span><span class="kt">process.env.TRACELLM_ENDPOINT</span><span class="p">,</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="w">  </span><span class="nx">apiKey</span><span class="o">:</span><span class="w"> </span><span class="kt">process.env.TRACELLM_API_KEY</span><span class="p">,</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="w">  </span><span class="nx">serviceName</span><span class="o">:</span><span class="w"> </span><span class="kt">process.env.TRACELLM_SERVICE_NAME</span><span class="w"> </span><span class="o">??</span><span class="w"> </span><span class="s2">&quot;my-ai-service&quot;</span>
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="p">});</span>
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>
+<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="kd">const</span><span class="w"> </span><span class="nx">session</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">tracellm</span><span class="p">.</span><span class="nx">startSession</span><span class="p">({</span>
+<a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a><span class="w">  </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Chat request&quot;</span><span class="p">,</span>
+<a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a><span class="w">  </span><span class="nx">userId</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;user_123&quot;</span><span class="p">,</span>
+<a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a><span class="w">  </span><span class="nx">attributes</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a><span class="w">    </span><span class="nx">workflow</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;chat&quot;</span><span class="p">,</span>
+<a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a><span class="w">    </span><span class="nx">provider</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;openai&quot;</span><span class="p">,</span>
+<a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a><span class="w">    </span><span class="nx">model</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;gpt-4.1-mini&quot;</span>
+<a id="__codelineno-4-16" name="__codelineno-4-16" href="#__codelineno-4-16"></a><span class="w">  </span><span class="p">},</span>
+<a id="__codelineno-4-17" name="__codelineno-4-17" href="#__codelineno-4-17"></a><span class="w">  </span><span class="nx">input</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Explain vector databases in one paragraph.&quot;</span>
+<a id="__codelineno-4-18" name="__codelineno-4-18" href="#__codelineno-4-18"></a><span class="p">});</span>
+<a id="__codelineno-4-19" name="__codelineno-4-19" href="#__codelineno-4-19"></a>
+<a id="__codelineno-4-20" name="__codelineno-4-20" href="#__codelineno-4-20"></a><span class="kd">const</span><span class="w"> </span><span class="nx">span</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">session</span><span class="p">.</span><span class="nx">startSpan</span><span class="p">({</span>
+<a id="__codelineno-4-21" name="__codelineno-4-21" href="#__codelineno-4-21"></a><span class="w">  </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;openai.chat.complete&quot;</span><span class="p">,</span>
+<a id="__codelineno-4-22" name="__codelineno-4-22" href="#__codelineno-4-22"></a><span class="w">  </span><span class="nx">kind</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;llm&quot;</span><span class="p">,</span>
+<a id="__codelineno-4-23" name="__codelineno-4-23" href="#__codelineno-4-23"></a><span class="w">  </span><span class="nx">attributes</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-4-24" name="__codelineno-4-24" href="#__codelineno-4-24"></a><span class="w">    </span><span class="nx">provider</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;openai&quot;</span><span class="p">,</span>
+<a id="__codelineno-4-25" name="__codelineno-4-25" href="#__codelineno-4-25"></a><span class="w">    </span><span class="nx">model</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;gpt-4.1-mini&quot;</span>
+<a id="__codelineno-4-26" name="__codelineno-4-26" href="#__codelineno-4-26"></a><span class="w">  </span><span class="p">},</span>
+<a id="__codelineno-4-27" name="__codelineno-4-27" href="#__codelineno-4-27"></a><span class="w">  </span><span class="nx">input</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Explain vector databases in one paragraph.&quot;</span>
+<a id="__codelineno-4-28" name="__codelineno-4-28" href="#__codelineno-4-28"></a><span class="p">});</span>
+<a id="__codelineno-4-29" name="__codelineno-4-29" href="#__codelineno-4-29"></a>
+<a id="__codelineno-4-30" name="__codelineno-4-30" href="#__codelineno-4-30"></a><span class="c1">// Call your real LLM provider here.</span>
+<a id="__codelineno-4-31" name="__codelineno-4-31" href="#__codelineno-4-31"></a><span class="kd">const</span><span class="w"> </span><span class="nx">answer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Vector databases store embeddings so apps can search by meaning.&quot;</span><span class="p">;</span>
+<a id="__codelineno-4-32" name="__codelineno-4-32" href="#__codelineno-4-32"></a>
+<a id="__codelineno-4-33" name="__codelineno-4-33" href="#__codelineno-4-33"></a><span class="k">await</span><span class="w"> </span><span class="nx">span</span><span class="p">.</span><span class="nx">end</span><span class="p">({</span>
+<a id="__codelineno-4-34" name="__codelineno-4-34" href="#__codelineno-4-34"></a><span class="w">  </span><span class="nx">status</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;ok&quot;</span><span class="p">,</span>
+<a id="__codelineno-4-35" name="__codelineno-4-35" href="#__codelineno-4-35"></a><span class="w">  </span><span class="nx">usage</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-4-36" name="__codelineno-4-36" href="#__codelineno-4-36"></a><span class="w">    </span><span class="nx">inputTokens</span><span class="o">:</span><span class="w"> </span><span class="kt">12</span><span class="p">,</span>
+<a id="__codelineno-4-37" name="__codelineno-4-37" href="#__codelineno-4-37"></a><span class="w">    </span><span class="nx">outputTokens</span><span class="o">:</span><span class="w"> </span><span class="kt">18</span><span class="p">,</span>
+<a id="__codelineno-4-38" name="__codelineno-4-38" href="#__codelineno-4-38"></a><span class="w">    </span><span class="nx">totalTokens</span><span class="o">:</span><span class="w"> </span><span class="kt">30</span>
+<a id="__codelineno-4-39" name="__codelineno-4-39" href="#__codelineno-4-39"></a><span class="w">  </span><span class="p">},</span>
+<a id="__codelineno-4-40" name="__codelineno-4-40" href="#__codelineno-4-40"></a><span class="w">  </span><span class="nx">output</span><span class="o">:</span><span class="w"> </span><span class="kt">answer</span>
+<a id="__codelineno-4-41" name="__codelineno-4-41" href="#__codelineno-4-41"></a><span class="p">});</span>
+<a id="__codelineno-4-42" name="__codelineno-4-42" href="#__codelineno-4-42"></a>
+<a id="__codelineno-4-43" name="__codelineno-4-43" href="#__codelineno-4-43"></a><span class="k">await</span><span class="w"> </span><span class="nx">session</span><span class="p">.</span><span class="nx">end</span><span class="p">({</span>
+<a id="__codelineno-4-44" name="__codelineno-4-44" href="#__codelineno-4-44"></a><span class="w">  </span><span class="nx">status</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;ok&quot;</span><span class="p">,</span>
+<a id="__codelineno-4-45" name="__codelineno-4-45" href="#__codelineno-4-45"></a><span class="w">  </span><span class="nx">output</span><span class="o">:</span><span class="w"> </span><span class="kt">answer</span>
+<a id="__codelineno-4-46" name="__codelineno-4-46" href="#__codelineno-4-46"></a><span class="p">});</span>
+</code></pre></div>
+<h2 id="5-inspect-the-trace">5. Inspect The Trace</h2>
+<p>Return to the TraceLLM dashboard and open <strong>Trace Explorer</strong>.</p>
+<p>You should see:</p>
+<ul>
+<li>a session named <code>Chat request</code></li>
+<li>an <code>llm</code> span named <code>openai.chat.complete</code></li>
+<li>duration and status</li>
+<li>token usage if token capture is enabled</li>
+<li>input/output content only if content capture is enabled</li>
+</ul>
+<h2 id="6-configure-capture-policy">6. Configure Capture Policy</h2>
+<p>Open <strong>Project Config</strong> to choose what TraceLLM stores:</p>
+<ul>
+<li>sampling rate</li>
+<li>prompt and output capture</li>
+<li>input capture</li>
+<li>output capture</li>
+<li>token usage</li>
+<li>metadata</li>
+<li>errors</li>
+<li>email redaction</li>
+<li>API key redaction</li>
+<li>ignored span kinds</li>
+</ul>
+<p>Configuration is project-level, so SDKs can pick up changes without redeploying your app.</p>
+<h2 id="7-optional-export-to-your-observability-stack">7. Optional: Export To Your Observability Stack</h2>
+<p>Open <strong>Exports</strong> if you want to forward project traces to your own OTLP HTTP backend, such as SigNoz, Honeycomb, Grafana Tempo, Datadog, or an OpenTelemetry Collector.</p>
+<p>TraceLLM remains the LLM workflow UI. External exports are for teams that also want the same trace data in their existing observability platform.</p>
 
 
 
