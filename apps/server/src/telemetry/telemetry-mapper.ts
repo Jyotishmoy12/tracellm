@@ -38,7 +38,7 @@ export class TelemetryMapper {
           ...flattenAttributes(spanRow.attributes)
         }
       },
-      contextFromTraceLlmIds(spanRow.traceId, spanRow.parentSpanId ?? `session:${spanRow.sessionId}`)
+      contextFromTraceLlmIds(spanRow.traceId, spanRow.parentSpanId)
     );
 
     if (spanRow.status === "error") {
@@ -72,7 +72,7 @@ export class TelemetryMapper {
         "tracellm.event_id": eventRow.id,
         ...flattenAttributes(eventRow.attributes)
       }
-    }, contextFromTraceLlmIds(traceId, eventRow.spanId ?? `session:${eventRow.sessionId}`));
+    }, contextFromTraceLlmIds(traceId, eventRow.spanId));
     span.end(new Date(eventRow.occurredAt));
   }
 
@@ -91,7 +91,7 @@ export class TelemetryMapper {
         "exception.message": errorRow.message,
         ...flattenAttributes(errorRow.attributes)
       }
-    }, contextFromTraceLlmIds(traceId, errorRow.spanId ?? `session:${errorRow.sessionId}`));
+    }, contextFromTraceLlmIds(traceId, errorRow.spanId));
     span.recordException({
       name: errorRow.type ?? "Error",
       message: errorRow.message,
@@ -102,7 +102,11 @@ export class TelemetryMapper {
   }
 }
 
-function contextFromTraceLlmIds(traceIdSeed: string, parentSpanIdSeed: string) {
+function contextFromTraceLlmIds(traceIdSeed: string, parentSpanIdSeed: string | null | undefined) {
+  if (!parentSpanIdSeed) {
+    return ROOT_CONTEXT;
+  }
+
   return trace.setSpanContext(ROOT_CONTEXT, {
     traceId: toOtelTraceId(traceIdSeed),
     spanId: toOtelSpanId(parentSpanIdSeed),

@@ -117,6 +117,7 @@ export class ProjectExportDispatcher {
 function otlpBody(payload: TracePayload, config: ExportDestinationConfig = readExportConfig()) {
   const traceId = payload.kind === "span" ? payload.span.traceId : payload.traceId;
   const projectId = payload.projectId;
+  const rootSpan = sessionRootSpan(payload, traceId);
   const span =
     payload.kind === "span"
       ? spanToOtlp(payload.span, payload.usage, config)
@@ -136,7 +137,7 @@ function otlpBody(payload: TracePayload, config: ExportDestinationConfig = readE
         scopeSpans: [
           {
             scope: { name: "tracellm-project-exporter" },
-            spans: [span]
+            spans: [rootSpan, span]
           }
         ]
       }
@@ -148,7 +149,7 @@ function spanToOtlp(span: SpanRow, usage: UsageRow | undefined, config: ExportDe
   return {
     traceId: toHex(span.traceId, 32),
     spanId: toHex(span.id, 16),
-    parentSpanId: span.parentSpanId ? toHex(span.parentSpanId, 16) : undefined,
+    parentSpanId: toSessionRootSpanId(span.sessionId),
     name: span.name,
     kind: 1,
     startTimeUnixNano: toUnixNanos(new Date(span.startedAt)),
@@ -175,7 +176,8 @@ function spanToOtlp(span: SpanRow, usage: UsageRow | undefined, config: ExportDe
 function eventToOtlp(event: EventRow, traceId: string, config: ExportDestinationConfig) {
   return {
     traceId: toHex(traceId, 32),
-    spanId: toHex(event.spanId ?? event.id, 16),
+    spanId: toHex(event.id, 16),
+    parentSpanId: toSessionRootSpanId(event.sessionId),
     name: `event:${event.name}`,
     kind: 1,
     startTimeUnixNano: toUnixNanos(new Date(event.occurredAt)),
@@ -193,7 +195,8 @@ function eventToOtlp(event: EventRow, traceId: string, config: ExportDestination
 function errorToOtlp(error: ErrorRow, traceId: string, config: ExportDestinationConfig) {
   return {
     traceId: toHex(traceId, 32),
-    spanId: toHex(error.spanId ?? error.id, 16),
+    spanId: toHex(error.id, 16),
+    parentSpanId: toSessionRootSpanId(error.sessionId),
     name: `error:${error.name}`,
     kind: 1,
     startTimeUnixNano: toUnixNanos(new Date(error.occurredAt)),
@@ -219,6 +222,36 @@ function errorToOtlp(error: ErrorRow, traceId: string, config: ExportDestination
     ],
     status: { code: 2, message: error.message }
   };
+}
+
+function sessionRootSpan(payload: TracePayload, traceId: string) {
+  const sessionId =
+    payload.kind === "span"
+      ? payload.span.sessionId
+      : payload.kind === "event"
+        ? payload.event.sessionId
+        : payload.error.sessionId;
+  const date =
+    payload.kind === "span"
+      ? new Date(payload.span.startedAt)
+      : payload.kind === "event"
+        ? new Date(payload.event.occurredAt)
+        : new Date(payload.error.occurredAt);
+
+  return {
+    traceId: toHex(traceId, 32),
+    spanId: toSessionRootSpanId(sessionId),
+    name: "tracellm.session",
+    kind: 1,
+    startTimeUnixNano: toUnixNanos(date),
+    endTimeUnixNano: toUnixNanos(date),
+    attributes: [stringAttr("tracellm.session_id", sessionId), stringAttr("tracellm.synthetic_root", "true")],
+    status: { code: 1 }
+  };
+}
+
+function toSessionRootSpanId(sessionId: string): string {
+  return toHex(`session:${sessionId}`, 16);
 }
 
 function shouldExport(payload: TracePayload, config: ExportDestinationConfig): boolean {
