@@ -36,7 +36,7 @@ export class ChatService {
         hasApiKey: Boolean(env.TRACELLM_API_KEY),
         captureContent: env.TRACELLM_CAPTURE_CONTENT,
         note: this.tracer
-          ? "TraceLLM records one session and one LLM span for each chat request."
+          ? "TraceLLM records one session plus workflow, tool, retrieval, agent, custom, and LLM spans based on the selected mode."
           : "TraceLLM is installed but disabled. Set TRACELLM_ENABLED=true in apps/chatbot/.env."
       }
     };
@@ -53,34 +53,34 @@ export class ChatService {
 
     const diagnostics: ChatResponse["diagnostics"] = [];
     const startedAt = Date.now();
-    let session: TraceLLMSession | undefined;
+    const session = await this.startTraceSession(request);
     let llmSpan: TraceLLMSpan | undefined;
 
-    await this.runSyntheticStep("chat.workflow", "workflow", request.mode, diagnostics, {
+    await this.runSyntheticStep(session, "chat.workflow", "workflow", request.mode, diagnostics, {
       mode: request.mode,
       messageCount: request.messages.length
     });
 
     if (request.mode === "tool" || request.mode === "agent") {
-      await this.runSyntheticStep("tool.intent-classifier", "tool", request.mode, diagnostics, {
+      await this.runSyntheticStep(session, "tool.intent-classifier", "tool", request.mode, diagnostics, {
         intent: this.classifyIntent(request.messages.at(-1)?.content ?? "")
       });
     }
 
     if (request.mode === "retrieval" || request.mode === "agent") {
-      await this.runSyntheticStep("retrieval.local-documents", "retrieval", request.mode, diagnostics, {
+      await this.runSyntheticStep(session, "retrieval.local-documents", "retrieval", request.mode, diagnostics, {
         documents: ["pricing.md", "sdk.md", "observability.md"]
       });
     }
 
     if (request.mode === "agent") {
-      await this.runSyntheticStep("agent.plan", "agent", request.mode, diagnostics, {
+      await this.runSyntheticStep(session, "agent.plan", "agent", request.mode, diagnostics, {
         plan: ["classify", "retrieve", "answer"]
       });
     }
 
     if (request.mode === "custom") {
-      await this.runSyntheticStep("custom.prompt-normalizer", "custom", request.mode, diagnostics, {
+      await this.runSyntheticStep(session, "custom.prompt-normalizer", "custom", request.mode, diagnostics, {
         normalized: true
       });
     }
@@ -90,8 +90,11 @@ export class ChatService {
       model: providerModel()
     });
     try {
-      session = await this.startTraceSession(request);
-      llmSpan = await this.startTraceSpan(session, request);
+      llmSpan = await this.startTraceSpan(session, `${env.CHATBOT_PROVIDER}.chat.complete`, "llm", {
+        provider: env.CHATBOT_PROVIDER,
+        model: providerModel(),
+        mode: request.mode
+      }, this.latestUserMessage(request));
 
       const completion = await this.provider.complete(request.messages);
       diagnostics.push(this.endStep(llmStep));
@@ -137,6 +140,7 @@ export class ChatService {
   }
 
   private async runSyntheticStep(
+    session: TraceLLMSession | undefined,
     name: string,
     kind: DiagnosticKind,
     mode: string,
@@ -144,8 +148,28 @@ export class ChatService {
     metadata: Record<string, unknown>
   ): Promise<void> {
     const step = this.startStep(name, kind, { ...metadata, mode });
-    await new Promise((resolve) => setTimeout(resolve, 20));
-    diagnostics.push(this.endStep(step));
+    const span = await this.startTraceSpan(session, name, kind, { ...metadata, mode });
+    try {
+      await new Promise((resolve) => setTimeout(resolve, 20));
+      diagnostics.push(this.endStep(step));
+      await this.endTraceSpan(span, {
+        status: "ok",
+        attributes: {
+          ...metadata,
+          mode
+        }
+      });
+    } catch (error) {
+      diagnostics.push(this.endStep(step));
+      await this.endTraceSpan(span, {
+        status: "error",
+        attributes: {
+          ...metadata,
+          mode
+        }
+      });
+      throw error;
+    }
   }
 
   private startStep(name: string, kind: DiagnosticKind, metadata: Record<string, unknown>): DiagnosticStep {
@@ -201,21 +225,23 @@ export class ChatService {
     }
   }
 
-  private async startTraceSpan(session: TraceLLMSession | undefined, request: ChatRequest): Promise<TraceLLMSpan | undefined> {
+  private async startTraceSpan(
+    session: TraceLLMSession | undefined,
+    name: string,
+    kind: DiagnosticKind,
+    attributes: Record<string, unknown>,
+    input?: string
+  ): Promise<TraceLLMSpan | undefined> {
     if (!session) {
       return undefined;
     }
 
     try {
       return await session.startSpan({
-        name: `${env.CHATBOT_PROVIDER}.chat.complete`,
-        kind: "llm",
-        input: this.latestUserMessage(request),
-        attributes: {
-          provider: env.CHATBOT_PROVIDER,
-          model: providerModel(),
-          mode: request.mode
-        }
+        name,
+        kind,
+        ...(input ? { input } : {}),
+        attributes
       });
     } catch (error) {
       console.warn("TraceLLM span start failed", error);
