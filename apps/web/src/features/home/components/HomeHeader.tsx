@@ -7,6 +7,11 @@ const navLinks = [
   { label: "API", href: webEnv.openApiUrl }
 ];
 
+const externalLinks = [
+  { label: "GitHub", href: "https://github.com/Jyotishmoy12/tracellm" },
+  { label: "npm", href: "https://www.npmjs.com/package/@use-tracellm/sdk-node" }
+];
+
 export function HomeHeader() {
   return (
     <header className="px-4 py-4 sm:px-6 lg:px-8">
@@ -34,7 +39,18 @@ export function HomeHeader() {
           ))}
         </nav>
 
-        <div className="grid w-full max-w-sm grid-cols-2 border border-black bg-white lg:w-auto lg:justify-self-end">
+        <div className="grid w-full max-w-lg grid-cols-4 border border-black bg-white lg:w-auto lg:justify-self-end">
+          {externalLinks.map((link) => (
+            <a
+              className="inline-flex min-h-9 items-center justify-center border-r border-black px-3 font-mono text-[0.68rem] font-semibold uppercase tracking-[0.08em] text-black no-underline transition hover:bg-black hover:text-white focus:bg-black focus:text-white focus:outline-none"
+              href={link.href}
+              key={link.href}
+              rel="noreferrer"
+              target="_blank"
+            >
+              {link.label}
+            </a>
+          ))}
           <a
             className="inline-flex min-h-9 items-center justify-center border-r border-black px-3 font-mono text-[0.68rem] font-semibold uppercase tracking-[0.08em] text-black no-underline transition hover:bg-black hover:text-white focus:bg-black focus:text-white focus:outline-none"
             href="/app"

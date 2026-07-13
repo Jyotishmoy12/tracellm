@@ -14,14 +14,16 @@ const footerGroups = [
     links: [
       { label: "Docs", href: docsUrl("/") },
       { label: "Node SDK", href: docsUrl("/sdk/node/") },
-      { label: "OpenAPI", href: webEnv.openApiUrl }
+      { label: "OpenAPI", href: webEnv.openApiUrl },
+      { label: "GitHub", href: "https://github.com/Jyotishmoy12/tracellm", external: true },
+      { label: "npm package", href: "https://www.npmjs.com/package/@use-tracellm/sdk-node", external: true }
     ]
   },
   {
     title: "Observability",
     links: [
       { label: "SigNoz", href: docsUrl("/operations/signoz/") },
-      { label: "Local setup", href: docsUrl("/getting-started/local-quickstart/") },
+      { label: "External exports", href: docsUrl("/operations/external-otlp-exports/") },
       { label: "Configuration", href: docsUrl("/product/customization/") }
     ]
   }
@@ -57,6 +59,8 @@ export function HomeFooter() {
                       className="font-mono text-sm font-semibold text-black no-underline transition hover:text-black/55 focus:text-black/55 focus:outline-none"
                       href={link.href}
                       key={link.href}
+                      rel={"external" in link && link.external ? "noreferrer" : undefined}
+                      target={"external" in link && link.external ? "_blank" : undefined}
                     >
                       {link.label}
                     </a>
