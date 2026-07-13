@@ -1,10 +1,12 @@
 import {
   createApiKeySchema,
   createExportDestinationSchema,
+  exportDestinationConfigSchema,
   tracingConfigSchema,
   updateExportDestinationSchema,
   updateTracingConfigSchema,
   type CreateApiKeyRequest,
+  type ExportDestinationConfig,
   type CreateExportDestinationRequest,
   type UpdateExportDestinationRequest,
   type UpdateTracingConfigRequest
@@ -105,6 +107,7 @@ export class ProjectService {
       enabled: parsed.enabled,
       endpoint: parsed.endpoint,
       encryptedHeaders: encryptJson(parsed.headers ?? {}),
+      exportConfig: exportDestinationConfigSchema.parse(parsed.config ?? {}),
       lastTestedAt: null,
       lastStatus: null,
       lastError: null,
@@ -131,6 +134,9 @@ export class ProjectService {
       ...(parsed.enabled !== undefined ? { enabled: parsed.enabled } : {}),
       ...(parsed.endpoint !== undefined ? { endpoint: parsed.endpoint } : {}),
       ...(parsed.headers !== undefined ? { encryptedHeaders: encryptJson(parsed.headers) } : {}),
+      ...(parsed.config !== undefined
+        ? { exportConfig: exportDestinationConfigSchema.parse({ ...readExportConfig(existing.exportConfig), ...parsed.config }) }
+        : {}),
       updatedAt: new Date().toISOString()
     });
     if (!updated) {
@@ -165,6 +171,7 @@ function toExportDestinationResponse(destination: {
   enabled: boolean;
   endpoint: string;
   encryptedHeaders: string;
+  exportConfig?: Record<string, unknown>;
   lastTestedAt: string | null;
   lastStatus: "ok" | "failed" | null;
   lastError: string | null;
@@ -179,10 +186,15 @@ function toExportDestinationResponse(destination: {
     enabled: destination.enabled,
     endpoint: destination.endpoint,
     headers: Object.fromEntries(Object.keys(headers).map((key) => [key, "********"])),
+    config: readExportConfig(destination.exportConfig),
     lastTestedAt: destination.lastTestedAt,
     lastStatus: destination.lastStatus,
     lastError: destination.lastError,
     createdAt: destination.createdAt,
     updatedAt: destination.updatedAt
   };
+}
+
+function readExportConfig(value: Record<string, unknown> | undefined): ExportDestinationConfig {
+  return exportDestinationConfigSchema.parse(value ?? {});
 }

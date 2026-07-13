@@ -65,6 +65,7 @@ CREATE TABLE IF NOT EXISTS export_destinations (
   enabled integer NOT NULL,
   endpoint text NOT NULL,
   encrypted_headers text NOT NULL,
+  export_config text NOT NULL,
   last_tested_at text,
   last_status text,
   last_error text,
@@ -147,6 +148,20 @@ CREATE TABLE IF NOT EXISTS usage (
 `);
 await sqlite.execute("ALTER TABLE sessions ADD COLUMN project_id text").catch(() => undefined);
 await sqlite.execute("ALTER TABLE projects ADD COLUMN workspace_id text").catch(() => undefined);
+
+const defaultExportConfig = {
+  exportSpans: true,
+  exportEvents: true,
+  exportErrors: true,
+  exportTokenUsage: true,
+  exportMetadata: true,
+  exportContent: false,
+  spanKinds: ["llm", "tool", "retrieval", "agent", "workflow", "custom"]
+};
+
+await sqlite
+  .execute(`ALTER TABLE export_destinations ADD COLUMN export_config text NOT NULL DEFAULT '${JSON.stringify(defaultExportConfig)}'`)
+  .catch(() => undefined);
 
 const defaultTracingConfig = {
   enabled: true,

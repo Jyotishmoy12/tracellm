@@ -70,6 +70,8 @@ describe("TraceLLM API", () => {
     });
     expect(createResponse.status).toBe(201);
     expect(createResponse.body.headers).toEqual({ "signoz-ingestion-key": "********" });
+    expect(createResponse.body.config.exportSpans).toBe(true);
+    expect(createResponse.body.config.exportContent).toBe(false);
 
     const stored = await db
       .select()
@@ -78,16 +80,25 @@ describe("TraceLLM API", () => {
       .get();
     expect(stored?.encryptedHeaders).toBeTruthy();
     expect(stored?.encryptedHeaders).not.toContain("secret-value");
+    expect(stored?.exportConfig).toMatchObject({ exportContent: false });
 
     const listResponse = await agent.get("/v1/projects/current/export-destinations");
     expect(listResponse.status).toBe(200);
     expect(listResponse.body.data[0].headers["signoz-ingestion-key"]).toBe("********");
 
     const updateResponse = await agent.put(`/v1/projects/current/export-destinations/${createResponse.body.id}`).send({
-      enabled: false
+      enabled: false,
+      config: {
+        exportEvents: false,
+        exportTokenUsage: false,
+        spanKinds: ["llm"]
+      }
     });
     expect(updateResponse.status).toBe(200);
     expect(updateResponse.body.enabled).toBe(false);
+    expect(updateResponse.body.config.exportEvents).toBe(false);
+    expect(updateResponse.body.config.exportTokenUsage).toBe(false);
+    expect(updateResponse.body.config.spanKinds).toEqual(["llm"]);
 
     const testResponse = await agent.post(`/v1/projects/current/export-destinations/${createResponse.body.id}/test`);
     expect(testResponse.status).toBe(200);

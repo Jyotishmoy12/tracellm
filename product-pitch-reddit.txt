@@ -1,0 +1,68 @@
+Title: Looking for feedback on an LLM observability tool I am building
+
+Hey everyone,
+
+I have been working on a small project called TraceLLM, and I would love some honest feedback from people building AI apps.
+
+The problem I kept running into is that debugging LLM applications gets messy very quickly. A request is rarely just "send prompt, get response" anymore. There may be retrieval, tool calls, agent steps, retries, token usage, provider errors, and a lot of metadata around the request.
+
+When something goes wrong, normal logs do not always tell the full story.
+
+I wanted a way to open one trace and see what happened during an AI workflow:
+
+- what session/request happened
+- which LLM call ran
+- how long it took
+- how many tokens were used
+- what metadata was attached
+- whether any error happened
+- what prompt/output was captured, only if enabled
+- whether sensitive values were redacted
+- whether the trace was also exported to OpenTelemetry/SigNoz
+
+So I started building TraceLLM.
+
+The current version has:
+
+- a Node SDK
+- project API keys
+- a dashboard for sessions and traces
+- project-level capture settings
+- prompt/output capture off by default
+- email and API-key redaction
+- sampling
+- ignored span kinds
+- OpenTelemetry/SigNoz export
+- a small chatbot test app using a real model provider
+
+The goal is not to make this chatbot-specific. I want it to work for any AI workflow: RAG apps, agents, internal AI tools, background jobs, model gateways, or anything that talks to OpenAI, Claude, Gemini, etc.
+
+The part I am thinking about most is control. I do not think every team wants to capture everything. Some people only want latency and token usage. Some want metadata. Some want full prompts in development but not production. Some want traces forwarded to their own SigNoz or OTLP backend.
+
+So the product is being designed around letting the project owner decide exactly what gets captured and exported.
+
+I am still early, but the basic flow is working now:
+
+1. install the SDK
+2. add a project API key
+3. send a real AI request
+4. see the trace in the TraceLLM UI
+5. optionally export the trace to SigNoz
+
+I would really appreciate feedback on a few things:
+
+1. If you build LLM apps, what do you most want to see in a trace?
+2. Would you use a hosted tool like this if content capture is off by default?
+3. Is exporting to your own SigNoz/Honeycomb/Tempo important?
+4. What SDK should come after Node: Python, Go, or something else?
+5. What would make you not trust a tool like this?
+
+This is the project:
+
+https://tracellm.in
+
+Docs:
+
+https://docs.tracellm.in
+
+Not trying to do a hard launch here. Mostly looking for honest technical/product feedback while the project is still small enough to change.

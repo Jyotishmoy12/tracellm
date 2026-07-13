@@ -51,11 +51,22 @@ export interface ExportDestination {
   enabled: boolean;
   endpoint: string;
   headers: Record<string, string>;
+  config: ExportDestinationConfig;
   lastTestedAt: string | null;
   lastStatus: "ok" | "failed" | null;
   lastError: string | null;
   createdAt: string;
   updatedAt: string;
+}
+
+export interface ExportDestinationConfig {
+  exportSpans: boolean;
+  exportEvents: boolean;
+  exportErrors: boolean;
+  exportTokenUsage: boolean;
+  exportMetadata: boolean;
+  exportContent: boolean;
+  spanKinds: string[];
 }
 
 export interface ExportDestinationsResponse {
@@ -67,4 +78,5 @@ export interface ExportDestinationInput {
   endpoint: string;
   enabled: boolean;
   headers: Record<string, string>;
+  config: ExportDestinationConfig;
 }

@@ -1740,6 +1740,52 @@ code {
   gap: 8px;
 }
 
+.export-policy {
+  display: grid;
+  gap: 10px;
+  border: 1px solid #111111;
+  padding: 12px;
+  background: #fbfaf7;
+}
+
+.export-policy--compact {
+  padding: 10px;
+}
+
+.export-policy__grid,
+.export-policy__kinds {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  border: 1px solid #111111;
+  border-bottom: 0;
+}
+
+.export-policy__grid label,
+.export-policy__kinds label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-height: 38px;
+  border-bottom: 1px solid #111111;
+  padding: 8px 10px;
+  color: #111111;
+  background: #ffffff;
+  font: 800 0.68rem "Geist Mono", ui-monospace, monospace;
+  text-transform: uppercase;
+}
+
+.export-policy__grid label:nth-child(odd),
+.export-policy__kinds label:nth-child(odd) {
+  border-right: 1px solid #111111;
+}
+
+.export-policy input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  accent-color: #111111;
+}
+
 .export-empty {
   display: grid;
   justify-items: start;

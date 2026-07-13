@@ -6,8 +6,8 @@
     "moduleResolution": "NodeNext",
     "baseUrl": ".",
     "paths": {
-      "@tracellm/sdk-node": ["packages/sdk-node/src/index.ts"],
-      "@tracellm/shared": ["packages/shared/src/index.ts"]
+      "@use-tracellm/sdk-node": ["packages/sdk-node/src/index.ts"],
+      "@use-tracellm/shared": ["packages/shared/src/index.ts"]
     },
     "strict": true,
     "esModuleInterop": true,

@@ -65,13 +65,26 @@ export const exportDestinationHeadersSchema = z
   .default({})
   .openapi("ExportDestinationHeaders");
 
+export const exportDestinationConfigSchema = z
+  .object({
+    exportSpans: z.boolean().default(true),
+    exportEvents: z.boolean().default(true),
+    exportErrors: z.boolean().default(true),
+    exportTokenUsage: z.boolean().default(true),
+    exportMetadata: z.boolean().default(true),
+    exportContent: z.boolean().default(false),
+    spanKinds: z.array(spanKindSchema).default(["llm", "tool", "retrieval", "agent", "workflow", "custom"])
+  })
+  .openapi("ExportDestinationConfig");
+
 export const createExportDestinationSchema = z
   .object({
     name: z.string().min(1).max(120),
     type: z.literal("otlp_http").default("otlp_http"),
     enabled: z.boolean().default(true),
     endpoint: z.string().url(),
-    headers: exportDestinationHeadersSchema.optional()
+    headers: exportDestinationHeadersSchema.optional(),
+    config: exportDestinationConfigSchema.optional()
   })
   .openapi("CreateExportDestinationRequest");
 
@@ -173,6 +186,7 @@ export type CreateErrorRequest = z.infer<typeof createErrorSchema>;
 export type TracingConfig = z.infer<typeof tracingConfigSchema>;
 export type UpdateTracingConfigRequest = z.infer<typeof updateTracingConfigSchema>;
 export type CreateApiKeyRequest = z.infer<typeof createApiKeySchema>;
+export type ExportDestinationConfig = z.infer<typeof exportDestinationConfigSchema>;
 export type CreateExportDestinationRequest = z.infer<typeof createExportDestinationSchema>;
 export type UpdateExportDestinationRequest = z.infer<typeof updateExportDestinationSchema>;
 export type RegisterRequest = z.infer<typeof registerSchema>;

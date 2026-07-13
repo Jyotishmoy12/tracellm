@@ -53,6 +53,7 @@ export const exportDestinations = sqliteTable("export_destinations", {
   enabled: integer("enabled", { mode: "boolean" }).notNull(),
   endpoint: text("endpoint").notNull(),
   encryptedHeaders: text("encrypted_headers").notNull(),
+  exportConfig: text("export_config", { mode: "json" }).$type<Record<string, unknown>>().notNull(),
   lastTestedAt: text("last_tested_at"),
   lastStatus: text("last_status", { enum: ["ok", "failed"] }),
   lastError: text("last_error"),

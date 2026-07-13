@@ -1,4 +1,6 @@
+import { exportDestinationConfigSchema, type ExportDestinationConfig } from "@use-tracellm/shared";
 import type { ErrorRow, EventRow, SpanRow, UsageRow } from "../database/schema.js";
+import type { ExportDestinationRow } from "../database/schema.js";
 import type { ExportDestinationRepository } from "../repositories/export-destination.repository.js";
 import { decryptJson } from "../utils/secret-vault.js";
 
@@ -59,7 +61,12 @@ export class ProjectExportDispatcher {
   private async exportSafely(payload: TracePayload): Promise<void> {
     const destinations = await this.destinations.listEnabled(payload.projectId);
     await Promise.all(destinations.map((destination) => {
-      const body = otlpBody(payload);
+      const config = readExportConfig(destination.exportConfig);
+      if (!shouldExport(payload, config)) {
+        return Promise.resolve({ ok: true });
+      }
+
+      const body = otlpBody(payload, config);
       return this.sendAndRecord(destination.projectId, destination.id, destination.endpoint, destination.encryptedHeaders, body);
     }));
   }
@@ -107,15 +114,15 @@ export class ProjectExportDispatcher {
   }
 }
 
-function otlpBody(payload: TracePayload) {
+function otlpBody(payload: TracePayload, config: ExportDestinationConfig = readExportConfig()) {
   const traceId = payload.kind === "span" ? payload.span.traceId : payload.traceId;
   const projectId = payload.projectId;
   const span =
     payload.kind === "span"
-      ? spanToOtlp(payload.span, payload.usage)
+      ? spanToOtlp(payload.span, payload.usage, config)
       : payload.kind === "event"
-        ? eventToOtlp(payload.event, traceId)
-        : errorToOtlp(payload.error, traceId);
+        ? eventToOtlp(payload.event, traceId, config)
+        : errorToOtlp(payload.error, traceId, config);
 
   return {
     resourceSpans: [
@@ -137,7 +144,7 @@ function otlpBody(payload: TracePayload) {
   };
 }
 
-function spanToOtlp(span: SpanRow, usage?: UsageRow) {
+function spanToOtlp(span: SpanRow, usage: UsageRow | undefined, config: ExportDestinationConfig) {
   return {
     traceId: toHex(span.traceId, 32),
     spanId: toHex(span.id, 16),
@@ -150,16 +157,22 @@ function spanToOtlp(span: SpanRow, usage?: UsageRow) {
       stringAttr("tracellm.session_id", span.sessionId),
       stringAttr("tracellm.span_id", span.id),
       stringAttr("tracellm.span_kind", span.kind),
-      intAttr("llm.input_tokens", usage?.inputTokens ?? 0),
-      intAttr("llm.output_tokens", usage?.outputTokens ?? 0),
-      intAttr("llm.total_tokens", usage?.totalTokens ?? 0),
-      ...objectAttrs(span.attributes)
+      ...(config.exportTokenUsage
+        ? [
+            intAttr("llm.input_tokens", usage?.inputTokens ?? 0),
+            intAttr("llm.output_tokens", usage?.outputTokens ?? 0),
+            intAttr("llm.total_tokens", usage?.totalTokens ?? 0)
+          ]
+        : []),
+      ...(config.exportContent && span.input ? [stringAttr("tracellm.input", span.input)] : []),
+      ...(config.exportContent && span.output ? [stringAttr("tracellm.output", span.output)] : []),
+      ...(config.exportMetadata ? objectAttrs(span.attributes) : [])
     ],
     status: { code: span.status === "error" ? 2 : 1, message: span.status }
   };
 }
 
-function eventToOtlp(event: EventRow, traceId: string) {
+function eventToOtlp(event: EventRow, traceId: string, config: ExportDestinationConfig) {
   return {
     traceId: toHex(traceId, 32),
     spanId: toHex(event.spanId ?? event.id, 16),
@@ -171,13 +184,13 @@ function eventToOtlp(event: EventRow, traceId: string) {
       stringAttr("tracellm.session_id", event.sessionId),
       stringAttr("tracellm.span_id", event.spanId ?? ""),
       stringAttr("tracellm.event_id", event.id),
-      ...objectAttrs(event.attributes)
+      ...(config.exportMetadata ? objectAttrs(event.attributes) : [])
     ],
     status: { code: 1 }
   };
 }
 
-function errorToOtlp(error: ErrorRow, traceId: string) {
+function errorToOtlp(error: ErrorRow, traceId: string, config: ExportDestinationConfig) {
   return {
     traceId: toHex(traceId, 32),
     spanId: toHex(error.spanId ?? error.id, 16),
@@ -191,7 +204,7 @@ function errorToOtlp(error: ErrorRow, traceId: string) {
       stringAttr("tracellm.error_id", error.id),
       stringAttr("exception.type", error.type ?? "Error"),
       stringAttr("exception.message", error.message),
-      ...objectAttrs(error.attributes)
+      ...(config.exportMetadata ? objectAttrs(error.attributes) : [])
     ],
     events: [
       {
@@ -206,6 +219,20 @@ function errorToOtlp(error: ErrorRow, traceId: string) {
     ],
     status: { code: 2, message: error.message }
   };
+}
+
+function shouldExport(payload: TracePayload, config: ExportDestinationConfig): boolean {
+  if (payload.kind === "span") {
+    return config.exportSpans && config.spanKinds.includes(payload.span.kind);
+  }
+  if (payload.kind === "event") {
+    return config.exportEvents;
+  }
+  return config.exportErrors;
+}
+
+function readExportConfig(value?: ExportDestinationRow["exportConfig"]): ExportDestinationConfig {
+  return exportDestinationConfigSchema.parse(value ?? {});
 }
 
 function objectAttrs(attributes: Record<string, unknown>): OtlpAttribute[] {

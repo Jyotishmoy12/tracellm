@@ -9,7 +9,19 @@ import {
   useTestExportDestination,
   useUpdateExportDestination
 } from "../hooks/useExportDestinations.js";
-import type { ExportDestination } from "../types.js";
+import type { ExportDestination, ExportDestinationConfig } from "../types.js";
+
+const spanKinds = ["llm", "tool", "retrieval", "agent", "workflow", "custom"];
+
+const defaultExportConfig: ExportDestinationConfig = {
+  exportSpans: true,
+  exportEvents: true,
+  exportErrors: true,
+  exportTokenUsage: true,
+  exportMetadata: true,
+  exportContent: false,
+  spanKinds
+};
 
 export function ExportDestinationsPanel() {
   const destinationsQuery = useExportDestinations();
@@ -23,6 +35,7 @@ export function ExportDestinationsPanel() {
   const [endpoint, setEndpoint] = useState(webEnv.defaultOtlpEndpoint);
   const [enabled, setEnabled] = useState(true);
   const [headersText, setHeadersText] = useState("");
+  const [config, setConfig] = useState<ExportDestinationConfig>(defaultExportConfig);
 
   const parsedHeaders = useMemo(() => parseHeaders(headersText), [headersText]);
   const canSubmit = name.trim() && endpoint.trim() && !parsedHeaders.error;
@@ -41,7 +54,8 @@ export function ExportDestinationsPanel() {
               name: name.trim(),
               endpoint: endpoint.trim(),
               enabled,
-              headers: parsedHeaders.headers
+              headers: parsedHeaders.headers,
+              config
             });
           }}
         >
@@ -76,6 +90,8 @@ export function ExportDestinationsPanel() {
             Enabled
           </label>
 
+          <ExportPolicyEditor config={config} onChange={setConfig} />
+
           <button className="primary-button" type="submit" disabled={!canSubmit || createDestination.isPending}>
             <Plus size={16} />
             Add destination
@@ -109,6 +125,12 @@ export function ExportDestinationsPanel() {
                   input: { enabled: !destination.enabled }
                 })
               }
+              onConfigChange={(config) =>
+                updateDestination.mutate({
+                  id: destination.id,
+                  input: { config }
+                })
+              }
               onDelete={() => deleteDestination.mutate(destination.id)}
               onTest={() => testDestination.mutate(destination.id)}
               isTesting={testDestination.isPending}
@@ -123,12 +145,14 @@ export function ExportDestinationsPanel() {
 function DestinationCard({
   destination,
   onToggle,
+  onConfigChange,
   onDelete,
   onTest,
   isTesting
 }: {
   destination: ExportDestination;
   onToggle: () => void;
+  onConfigChange: (config: ExportDestinationConfig) => void;
   onDelete: () => void;
   onTest: () => void;
   isTesting: boolean;
@@ -163,6 +187,8 @@ function DestinationCard({
 
       {destination.lastError ? <p className="form-error">{destination.lastError}</p> : null}
 
+      <ExportPolicyEditor config={destination.config} onChange={onConfigChange} compact />
+
       <div className="export-card__actions">
         <button className="secondary-button" type="button" onClick={onToggle}>
           {destination.enabled ? "Disable" : "Enable"}
@@ -176,6 +202,80 @@ function DestinationCard({
         </button>
       </div>
     </article>
+  );
+}
+
+function ExportPolicyEditor({
+  config,
+  onChange,
+  compact = false
+}: {
+  config: ExportDestinationConfig;
+  onChange: (config: ExportDestinationConfig) => void;
+  compact?: boolean;
+}) {
+  function patch(next: Partial<ExportDestinationConfig>) {
+    onChange({ ...config, ...next });
+  }
+
+  function toggleSpanKind(kind: string) {
+    const nextKinds = config.spanKinds.includes(kind)
+      ? config.spanKinds.filter((current) => current !== kind)
+      : [...config.spanKinds, kind];
+    patch({ spanKinds: nextKinds });
+  }
+
+  return (
+    <div className={compact ? "export-policy export-policy--compact" : "export-policy"}>
+      <p className="eyebrow">Export policy</p>
+      <div className="export-policy__grid">
+        <PolicyToggle label="Spans" checked={config.exportSpans} onChange={(checked) => patch({ exportSpans: checked })} />
+        <PolicyToggle label="Events" checked={config.exportEvents} onChange={(checked) => patch({ exportEvents: checked })} />
+        <PolicyToggle label="Errors" checked={config.exportErrors} onChange={(checked) => patch({ exportErrors: checked })} />
+        <PolicyToggle
+          label="Token usage"
+          checked={config.exportTokenUsage}
+          onChange={(checked) => patch({ exportTokenUsage: checked })}
+        />
+        <PolicyToggle
+          label="Metadata"
+          checked={config.exportMetadata}
+          onChange={(checked) => patch({ exportMetadata: checked })}
+        />
+        <PolicyToggle
+          label="Prompt/output content"
+          checked={config.exportContent}
+          onChange={(checked) => patch({ exportContent: checked })}
+        />
+      </div>
+
+      <p className="eyebrow">Span kinds</p>
+      <div className="export-policy__kinds">
+        {spanKinds.map((kind) => (
+          <label key={kind}>
+            <span>{kind}</span>
+            <input type="checkbox" checked={config.spanKinds.includes(kind)} onChange={() => toggleSpanKind(kind)} />
+          </label>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function PolicyToggle({
+  label,
+  checked,
+  onChange
+}: {
+  label: string;
+  checked: boolean;
+  onChange: (checked: boolean) => void;
+}) {
+  return (
+    <label>
+      <span>{label}</span>
+      <input type="checkbox" checked={checked} onChange={(event) => onChange(event.currentTarget.checked)} />
+    </label>
   );
 }
 

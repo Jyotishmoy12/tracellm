@@ -1,0 +1,265 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: #f7f6f2;
+  color: #050505;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+button,
+textarea {
+  font: inherit;
+}
+
+.shell {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 360px;
+  min-height: 100vh;
+}
+
+.chat {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  min-width: 0;
+  border-right: 2px solid #111;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  border-bottom: 2px solid #111;
+  padding: 24px;
+  background: #fff;
+}
+
+header span,
+.empty span,
+.diagnostics h2,
+.message span,
+.step span,
+dt {
+  font-family: "Courier New", monospace;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #777;
+}
+
+h1,
+h2,
+p {
+  margin: 0;
+}
+
+h1 {
+  margin-top: 6px;
+  font-size: 32px;
+  line-height: 1;
+}
+
+header button,
+.input-row button,
+.mode {
+  border: 1px solid #111;
+  background: #fff;
+  color: #111;
+  cursor: pointer;
+  font-family: "Courier New", monospace;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+header button {
+  padding: 10px 14px;
+}
+
+.messages {
+  display: grid;
+  align-content: start;
+  gap: 14px;
+  overflow: auto;
+  padding: 24px;
+}
+
+.empty {
+  margin: auto;
+  max-width: 520px;
+  border: 2px solid #111;
+  background: #fff;
+  padding: 28px;
+  box-shadow: 10px 10px 0 #111;
+}
+
+.empty h2 {
+  margin-top: 12px;
+  font-size: 34px;
+}
+
+.empty p {
+  margin-top: 12px;
+  color: #555;
+  line-height: 1.6;
+}
+
+.message {
+  max-width: 760px;
+  border: 1px solid #111;
+  padding: 18px;
+  background: #fff;
+}
+
+.message.assistant {
+  background: #111;
+  color: #fff;
+}
+
+.message p {
+  margin-top: 8px;
+  white-space: pre-wrap;
+  line-height: 1.6;
+}
+
+.composer {
+  border-top: 2px solid #111;
+  background: #fff;
+  padding: 18px;
+}
+
+.mode-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  border: 1px solid #111;
+  margin-bottom: 14px;
+}
+
+.mode {
+  min-height: 40px;
+  border: 0;
+  border-left: 1px solid #111;
+}
+
+.mode:first-child {
+  border-left: 0;
+}
+
+.mode.active {
+  background: #111;
+  color: #fff;
+}
+
+.input-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 140px;
+  gap: 12px;
+}
+
+textarea {
+  min-height: 86px;
+  resize: vertical;
+  border: 1px solid #111;
+  padding: 14px;
+}
+
+.input-row button {
+  background: #111;
+  color: #fff;
+}
+
+button:disabled,
+textarea:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.diagnostics {
+  display: grid;
+  align-content: start;
+  gap: 16px;
+  padding: 18px;
+  background: #fbfaf7;
+}
+
+.diagnostics section,
+.error {
+  border: 1px solid #111;
+  background: #fff;
+  padding: 18px;
+}
+
+.diagnostics h2 {
+  color: #111;
+  margin-bottom: 16px;
+}
+
+dl {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+}
+
+dl div {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 8px;
+}
+
+dd {
+  margin: 0;
+  font-weight: 700;
+  text-align: right;
+}
+
+.steps {
+  display: grid;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.step {
+  display: grid;
+  grid-template-columns: 86px 1fr auto;
+  gap: 10px;
+  align-items: center;
+  border: 1px solid #111;
+  padding: 10px;
+}
+
+.step strong {
+  font-size: 13px;
+}
+
+.step em {
+  color: #666;
+  font-style: normal;
+}
+
+.error {
+  color: #9f1111;
+  font-weight: 700;
+}
+
+@media (max-width: 920px) {
+  .shell {
+    grid-template-columns: 1fr;
+  }
+
+  .chat {
+    border-right: 0;
+  }
+
+  .mode-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .input-row {
+    grid-template-columns: 1fr;
+  }
+}
