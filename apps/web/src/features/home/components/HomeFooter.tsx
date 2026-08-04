@@ -44,7 +44,7 @@ export function HomeFooter() {
           </div>
 
           <div className="grid gap-4 sm:grid-cols-3">
-            {footerGroups.map((group, index) => (
+            {footerGroups.map((group) => (
               <div
                 className="rounded-[22px] border border-[#e4e4df] bg-[#fafafa] p-5"
                 key={group.title}
@@ -55,7 +55,7 @@ export function HomeFooter() {
                     <a
                       className="text-sm font-normal leading-6 text-[#232323] no-underline transition hover:text-[#4f46e5] focus:text-[#4f46e5] focus:outline-none"
                       href={link.href}
-                      key={link.href}
+                      key={`${group.title}-${link.label}-${link.href}`}
                       rel={"external" in link && link.external ? "noreferrer" : undefined}
                       target={"external" in link && link.external ? "_blank" : undefined}
                     >

@@ -44,9 +44,9 @@ export function AuthPage() {
   }
 
   return (
-    <main className="marketing-home grid min-h-screen place-items-center bg-[#f5f5f3] px-4 py-8 text-[#232323]">
-      <section className="grid w-full max-w-6xl gap-5 lg:grid-cols-[0.95fr_1.05fr]">
-        <aside className="relative overflow-hidden rounded-[32px] border border-[#e4e4df] bg-white p-6 shadow-[0_22px_60px_rgba(30,30,30,0.07)] sm:p-8">
+    <main className="marketing-home grid min-h-screen place-items-center bg-[#f5f5f3] px-4 py-6 text-[#232323] sm:py-8">
+      <section className="grid w-full max-w-md gap-5 lg:max-w-6xl lg:grid-cols-[0.95fr_1.05fr]">
+        <aside className="relative hidden overflow-hidden rounded-[32px] border border-[#e4e4df] bg-white p-6 shadow-[0_22px_60px_rgba(30,30,30,0.07)] sm:p-8 lg:block">
           <a
             className="text-lg font-semibold lowercase tracking-[-0.02em] text-[#232323] no-underline"
             href="/"
@@ -93,23 +93,29 @@ export function AuthPage() {
           </div>
         </aside>
 
-        <section className="rounded-[32px] border border-[#e4e4df] bg-white p-4 shadow-[0_22px_60px_rgba(30,30,30,0.07)] sm:p-5">
-          <div className="rounded-[26px] border border-[#e4e4df] bg-[#fafafa] p-5 sm:p-7">
-            <div className="flex items-start gap-4">
-              <span className="flex h-12 w-12 items-center justify-center rounded-2xl border border-[#e4e4df] bg-white text-[#4f46e5] shadow-sm">
+        <section className="rounded-[28px] border border-[#e4e4df] bg-white p-3 shadow-[0_22px_60px_rgba(30,30,30,0.07)] sm:rounded-[32px] sm:p-5">
+          <div className="rounded-[24px] border border-[#e4e4df] bg-[#fafafa] p-4 sm:rounded-[26px] sm:p-7">
+            <a
+              className="mb-5 inline-flex text-base font-semibold lowercase tracking-[-0.02em] text-[#232323] no-underline lg:hidden"
+              href="/"
+            >
+              tracellm
+            </a>
+            <div className="flex items-start gap-3 sm:gap-4">
+              <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl border border-[#e4e4df] bg-white text-[#4f46e5] shadow-sm sm:h-12 sm:w-12">
                 <KeyRound size={20} />
               </span>
               <div>
                 <p className="text-[11px] font-medium uppercase tracking-[0.14em] text-[#a8abb0]">
                   TraceLLM
                 </p>
-                <h2 className="mt-1 text-xl font-semibold leading-tight text-[#232323]">
+                <h2 className="mt-1 text-lg font-semibold leading-tight text-[#232323] sm:text-xl">
                   {mode === "login" ? "Welcome back" : "Create account"}
                 </h2>
               </div>
             </div>
 
-            <div className="mt-7 grid grid-cols-2 rounded-2xl border border-[#e4e4df] bg-white p-1" role="tablist" aria-label="Authentication mode">
+            <div className="mt-6 grid grid-cols-2 rounded-2xl border border-[#e4e4df] bg-white p-1 sm:mt-7" role="tablist" aria-label="Authentication mode">
               <button
                 className={`min-h-10 rounded-[14px] text-xs font-medium uppercase tracking-[0.08em] transition ${
                   mode === "login" ? "bg-[#232323] text-white" : "text-[#777a7f] hover:bg-[#f7f7f5]"
@@ -130,7 +136,7 @@ export function AuthPage() {
               </button>
             </div>
 
-            <form className="mt-7 grid gap-4" onSubmit={submit}>
+            <form className="mt-6 grid gap-4 sm:mt-7" onSubmit={submit}>
               {mode === "register" ? (
                 <>
                   <AuthField label="Name">
