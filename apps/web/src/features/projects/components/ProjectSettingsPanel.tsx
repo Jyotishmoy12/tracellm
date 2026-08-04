@@ -30,6 +30,12 @@ export function ProjectSettingsPanel({ section = "all" }: { section?: ProjectSet
     }
   }, [configQuery.data?.tracingConfig]);
 
+  async function copyCreatedKey(apiKey: string) {
+    await navigator.clipboard.writeText(apiKey);
+    setCreatedKey(null);
+    void apiKeysQuery.refetch();
+  }
+
   if (configQuery.isLoading || !draft) {
     return <section className="settings-panel">Loading project settings...</section>;
   }
@@ -39,13 +45,17 @@ export function ProjectSettingsPanel({ section = "all" }: { section?: ProjectSet
   }
 
   const projectConfig = configQuery.data;
+  const isApiKeysOnly = section === "apiKeys";
+  const isConfigOnly = section === "config";
 
   return (
-    <section className="settings-panel">
+    <section className={`settings-panel ${isApiKeysOnly ? "settings-panel--api-keys" : ""} ${isConfigOnly ? "settings-panel--config" : ""}`}>
       <div className="settings-panel__header">
         <div>
-          <p className="eyebrow">Project Config</p>
-          <h2>{projectConfig.projectName}</h2>
+          <p className="eyebrow">{isApiKeysOnly ? "Secrets" : "Project Config"}</p>
+          <h2>{isApiKeysOnly ? "API Keys" : projectConfig.projectName}</h2>
+          {isApiKeysOnly ? <p className="settings-panel__description">Create project-scoped SDK keys and revoke old keys when they are no longer used.</p> : null}
+          {isConfigOnly ? <p className="settings-panel__description">Decide exactly what the SDK captures, stores, redacts, samples, and ignores for this project.</p> : null}
         </div>
         <div className="settings-panel__key">
           <span>API key</span>
@@ -115,7 +125,6 @@ export function ProjectSettingsPanel({ section = "all" }: { section?: ProjectSet
           <label
             className="range-control config-help"
             data-tooltip="Controls what percentage of SDK sessions should be captured. 0% means no new sessions, 100% means capture every eligible session."
-            title="Controls what percentage of SDK sessions should be captured. 0% means no new sessions, 100% means capture every eligible session."
           >
             <span>
               <SlidersHorizontal size={16} />
@@ -170,6 +179,7 @@ export function ProjectSettingsPanel({ section = "all" }: { section?: ProjectSet
       ) : null}
 
       {section === "all" || section === "apiKeys" ? <div className="api-keys-panel">
+        {section === "apiKeys" ? null : (
         <div className="section-heading">
           <div>
             <p className="eyebrow">Secrets</p>
@@ -177,13 +187,21 @@ export function ProjectSettingsPanel({ section = "all" }: { section?: ProjectSet
           </div>
           <KeyRound size={20} />
         </div>
+        )}
 
         {createdKey ? (
           <div className="created-key">
             <span>New key created. Copy it now; it will not be shown again.</span>
             <code>{createdKey.apiKey}</code>
-            <button className="icon-button" type="button" onClick={() => void navigator.clipboard.writeText(createdKey.apiKey)} title="Copy new API key" aria-label="Copy new API key">
+            <button
+              className="icon-button copy-key-button"
+              type="button"
+              onClick={() => void copyCreatedKey(createdKey.apiKey)}
+              title="Copy new API key"
+              aria-label="Copy new API key"
+            >
               <Copy size={16} />
+              <span>Copy</span>
             </button>
           </div>
         ) : null}
@@ -245,7 +263,7 @@ function Toggle({
   onChange: (checked: boolean) => void;
 }) {
   return (
-    <label className="toggle-row config-help" data-tooltip={description} title={description}>
+    <label className="toggle-row config-help" data-tooltip={description}>
       <span>{label}</span>
       <input type="checkbox" checked={checked} onChange={(event) => onChange(event.currentTarget.checked)} />
     </label>

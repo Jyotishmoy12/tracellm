@@ -8,7 +8,10 @@ import { ProductShowcase } from "../components/ProductShowcase.js";
 
 export function HomePage() {
   return (
-    <main className="min-h-screen bg-[#fbfaf7] text-black" aria-label="TraceLLM home">
+    <main
+      className="marketing-home min-h-screen bg-[#f5f5f3] text-[#232323]"
+      aria-label="TraceLLM home"
+    >
       <HomeHeader />
       <HomeHero />
       <ProductShowcase />

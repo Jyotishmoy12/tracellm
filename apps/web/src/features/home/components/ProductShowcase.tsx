@@ -1,178 +1,85 @@
-import { Fragment } from "react";
 import { ArrowUpRight } from "lucide-react";
+import type { CSSProperties, ReactNode } from "react";
 import { docsUrl } from "../../../config/env.js";
 
-const cards = [
+type ShowcaseCard = {
+  title: string;
+  href: string;
+  body: string;
+  visual: ReactNode;
+};
+
+const cards: ShowcaseCard[] = [
   {
-    title: "DROP IN SDK",
+    title: "Drop in the SDK",
     href: docsUrl("/sdk/node/"),
-    className: "",
-    body: (
-      <>
-        <p>
-          Add TraceLLM around real AI calls without changing where your model
-          requests run.
-        </p>
-        <p>Start with Node today. Agents, RAG, tools, and gateways fit too.</p>
-        <div className="mt-10 rounded-none border border-black bg-white p-4 font-mono text-sm leading-7 shadow-[8px_8px_0_#111]">
-          <div>&gt; pnpm add @use-tracellm/sdk-node</div>
-          <div className="mt-5 text-black/70">trace.span(&#123;</div>
-          <div className="pl-5 text-black/55">provider: "openai",</div>
-          <div className="pl-5 text-black/55">model: "gpt-4.1-mini"</div>
-          <div className="text-black/70">&#125;)</div>
-        </div>
-      </>
-    )
+    body: "Wrap real model, agent, RAG, and tool calls without changing where those requests run.",
+    visual: <SdkVisual />
   },
   {
-    title: "FULL TRACE CONTEXT",
+    title: "Full trace context",
     href: docsUrl("/getting-started/chatbot-step-1-session-tracing/"),
-    className: "",
-    body: (
-      <>
-        <p>Everything you need to debug one AI workflow:</p>
-        <ul className="mt-6 space-y-2 font-mono text-sm leading-6 text-black/75">
-          <li>sessions</li>
-          <li>spans and lifecycle events</li>
-          <li>errors, tokens, metadata</li>
-          <li>prompt/output capture when enabled</li>
-        </ul>
-        <TraceContextDiagram />
-      </>
-    )
+    body: "Sessions, spans, events, errors, token usage, metadata, and optional content stay attached to one turn.",
+    visual: <TraceVisual />
   },
   {
-    title: "SPEAKS YOUR STACK",
-    href: docsUrl("/sdk/node/"),
-    className: "",
-    body: (
-      <>
-        <p>
-          Trace chatbots, agent workers, RAG services, internal tools, model
-          routers, and custom provider wrappers.
-        </p>
-        <div className="mt-9 grid grid-cols-3 gap-3 bg-[linear-gradient(#11111116_1px,transparent_1px),linear-gradient(90deg,#11111116_1px,transparent_1px)] bg-[size:18px_18px] p-5">
-          {["Node", "OpenAI", "Claude", "Gemini", "RAG", "+"].map((item) => (
-            <span
-              className="border border-black bg-white px-3 py-3 text-center font-mono text-sm font-semibold shadow-[4px_4px_0_#111]"
-              key={item}
-            >
-              {item}
-            </span>
-          ))}
-        </div>
-      </>
-    )
-  },
-  {
-    title: "PROJECT CONTROLS",
+    title: "Control capture",
     href: docsUrl("/product/customization/"),
-    className: "",
-    body: (
-      <>
-        <p>Configure what gets captured from the UI or the project API key.</p>
-        <div className="mt-8 space-y-4">
-          {[
-            ["content", "off"],
-            ["metadata", "on"],
-            ["redaction", "on"],
-            ["sampling", "70%"]
-          ].map(([label, value]) => (
-            <div
-              className="flex items-center justify-between border border-black bg-white px-4 py-3 font-mono text-sm"
-              key={label}
-            >
-              <span>{label}</span>
-              <span className="font-semibold">{value}</span>
-            </div>
-          ))}
-        </div>
-      </>
-    )
+    body: "Choose what gets stored: content, metadata, errors, usage, redaction, sampling, and span kinds.",
+    visual: <ControlsVisual />
   },
   {
-    title: "OPEN TELEMETRY",
-    href: docsUrl("/operations/signoz/"),
-    className: "lg:row-span-2",
-    body: (
-      <>
-        <p>
-          Keep product-level traces in TraceLLM and export the same workflow to
-          SigNoz over OTLP.
-        </p>
-        <div className="mt-10 space-y-3">
-          {["SDK", "TraceLLM API", "OTLP Collector", "SigNoz"].map(
-            (step, index) => (
-              <div
-                className="flex items-center justify-between border border-black bg-white px-4 py-4"
-                key={step}
-              >
-                <span className="font-mono text-sm">{step}</span>
-                <span className="font-mono text-sm text-black/45">
-                  0{index + 1}
-                </span>
-              </div>
-            )
-          )}
-        </div>
-        <OtelExportDiagram />
-      </>
-    )
+    title: "Export to your stack",
+    href: docsUrl("/operations/external-otlp-exports/"),
+    body: "Forward selected traces to SigNoz, Honeycomb, Tempo, Datadog, or any OTLP HTTP collector.",
+    visual: <ExportVisual />
   },
   {
-    title: "API KEYS",
+    title: "Provider agnostic",
+    href: docsUrl("/getting-started/provider-testing/"),
+    body: "Use TraceLLM with OpenAI, Claude, Gemini, custom gateways, internal tools, and MCP-shaped workflows.",
+    visual: <StackVisual />
+  },
+  {
+    title: "Project API keys",
     href: "/app",
-    className: "",
-    body: (
-      <>
-        <p>
-          Each project gets a key. The key carries SDK behavior, capture policy,
-          and ownership.
-        </p>
-        <div className="mt-9 border border-black bg-black p-4 font-mono text-sm text-white">
-          trllm_live_••••••••••••••
-        </div>
-      </>
-    )
+    body: "Each key maps requests to one project and carries the project capture policy into your SDK runtime.",
+    visual: <ApiKeyVisual />
   }
 ];
 
 export function ProductShowcase() {
   return (
-    <section
-      className="mx-auto w-full max-w-7xl px-4 pb-28 sm:px-6 lg:px-8"
-      id="platform"
-    >
-      <div className="mb-10 max-w-3xl">
-        <p className="font-mono text-sm font-semibold uppercase tracking-[0.16em] text-black/45">
+    <section className="mx-auto w-full max-w-7xl px-4 pb-28 sm:px-6 lg:px-8" id="platform">
+      <div className="mb-8 max-w-3xl">
+        <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[#a8abb0]">
           Platform
         </p>
-        <h2 className="mt-4 text-4xl font-extrabold leading-[1.02] tracking-[-0.035em] text-black sm:text-5xl">
+        <h2 className="mt-3 text-2xl font-semibold leading-tight text-[#232323] sm:text-3xl">
           The observability layer for AI applications.
         </h2>
       </div>
 
-      <div className="rounded-[28px] border border-black bg-[#fbfaf7] p-4 shadow-[12px_12px_0_#111] sm:p-6">
-        <div className="grid grid-cols-1 gap-4 lg:grid-cols-3">
+      <div className="rounded-[28px] border border-[#e4e4df] bg-white p-3 shadow-[0_18px_44px_rgba(30,30,30,0.06)] sm:p-4">
+        <div className="grid grid-cols-1 gap-3 md:grid-cols-2 xl:grid-cols-3">
           {cards.map((card) => (
             <a
-              className={`group flex min-h-72 flex-col border border-black bg-white text-black no-underline transition hover:-translate-y-1 hover:shadow-[8px_8px_0_#111] focus:shadow-[8px_8px_0_#111] focus:outline-none ${card.className}`}
+              className="group flex min-h-[250px] flex-col overflow-hidden rounded-[22px] border border-[#e4e4df] bg-[#fbfbfa] p-5 text-[#232323] no-underline transition hover:border-[#d9d6ff] hover:bg-white hover:shadow-[0_14px_34px_rgba(30,30,30,0.07)] focus:outline-none focus:ring-2 focus:ring-[#d9d6ff]"
               href={card.href}
               key={card.title}
             >
-              <div className="flex items-center justify-between border-b border-black px-5 py-4">
-                <h3 className="font-mono text-lg font-semibold uppercase tracking-[0.04em]">
-                  {card.title}
-                </h3>
-                <ArrowUpRight
-                  className="transition group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
-                  aria-hidden="true"
-                  size={20}
-                />
+              <div className="flex items-start justify-between gap-4">
+                <div>
+                  <h3 className="text-lg font-semibold leading-snug">{card.title}</h3>
+                  <p className="mt-2 max-w-sm text-sm font-normal leading-6 text-[#777a7f]">
+                    {card.body}
+                  </p>
+                </div>
+                <span className="grid h-8 w-8 shrink-0 place-items-center rounded-xl border border-[#e4e4df] bg-white text-[#4f46e5] transition group-hover:-translate-y-0.5 group-hover:translate-x-0.5">
+                  <ArrowUpRight aria-hidden="true" size={16} />
+                </span>
               </div>
-              <div className="flex flex-1 flex-col p-5 text-base font-medium leading-7 text-black/75">
-                {card.body}
-              </div>
+              <div className="mt-5 flex flex-1 items-end">{card.visual}</div>
             </a>
           ))}
         </div>
@@ -181,40 +88,16 @@ export function ProductShowcase() {
   );
 }
 
-function TraceContextDiagram() {
-  const rows = [
-    ["SESSION", "chatbot.request", "traceId"],
-    ["SPAN", "openai.chat.complete", "4.82s"],
-    ["EVENT", "provider.response", "ok"],
-    ["USAGE", "input 8 / output 19", "27 tok"],
-    ["ERROR", "exception captured", "optional"]
-  ];
-
+function SdkVisual() {
   return (
-    <div className="mt-8 border border-black bg-[#fbfaf7] p-4 font-mono text-xs shadow-[6px_6px_0_#111]">
-      <div className="mb-4 flex items-center justify-between border-b border-black pb-3">
-        <span className="font-semibold uppercase tracking-[0.12em]">
-          Trace object
-        </span>
-        <span className="text-black/45">live</span>
+    <div className="w-full rounded-[18px] border border-[#e4e4df] bg-white p-3 text-xs text-[#777a7f]">
+      <div className="rounded-xl bg-[#232323] px-3 py-2 font-medium text-white">
+        pnpm add @use-tracellm/sdk-node
       </div>
-
-      <div className="relative space-y-3">
-        <div className="absolute bottom-4 left-[10px] top-4 w-px bg-black" />
-        {rows.map(([type, name, value]) => (
-          <div className="relative flex items-stretch gap-3" key={type}>
-            <span className="relative z-10 mt-3 h-5 w-5 border border-black bg-white">
-              <span className="absolute left-1/2 top-1/2 h-2 w-2 -translate-x-1/2 -translate-y-1/2 bg-black" />
-            </span>
-            <div className="grid flex-1 grid-cols-[72px_1fr_auto] items-center border border-black bg-white">
-              <span className="border-r border-black px-2 py-3 font-semibold">
-                {type}
-              </span>
-              <span className="truncate px-3 py-3 text-black/70">{name}</span>
-              <span className="border-l border-black px-2 py-3 text-black/45">
-                {value}
-              </span>
-            </div>
+      <div className="mt-3 grid gap-2">
+        {["startSession()", "startSpan({ kind: 'llm' })", "recordEvent()", "end({ usage })"].map((item) => (
+          <div className="rounded-xl border border-[#eeeeeb] bg-[#fafafa] px-3 py-2 font-normal" key={item}>
+            {item}
           </div>
         ))}
       </div>
@@ -222,42 +105,93 @@ function TraceContextDiagram() {
   );
 }
 
-function OtelExportDiagram() {
+function TraceVisual() {
+  return (
+    <div className="w-full rounded-[18px] border border-[#e4e4df] bg-white p-3">
+      {["session", "retrieval span", "tool span", "llm span"].map((item, index) => (
+        <div className="mb-2 flex items-center gap-2 last:mb-0" key={item}>
+          <span className="grid h-6 w-6 place-items-center rounded-full bg-[#f1f0ff] text-[10px] font-semibold text-[#4f46e5]">
+            {index + 1}
+          </span>
+          <span className="rounded-xl border border-[#eeeeeb] bg-[#fafafa] px-3 py-2 text-xs font-medium text-[#777a7f]">
+            {item}
+          </span>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+function ControlsVisual() {
+  return (
+    <div className="grid w-full gap-2">
+      {[
+        ["Content", "off"],
+        ["Metadata", "on"],
+        ["Redaction", "on"],
+        ["Sampling", "70%"]
+      ].map(([label, value]) => (
+        <div className="flex items-center justify-between rounded-xl border border-[#e4e4df] bg-white px-3 py-2" key={label}>
+          <span className="text-xs font-medium text-[#777a7f]">{label}</span>
+          <span className="rounded-full bg-[#f1f0ff] px-2.5 py-1 text-[10px] font-semibold text-[#4f46e5]">{value}</span>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+function ExportVisual() {
   const nodes = ["TraceLLM", "OTLP", "SigNoz"];
 
   return (
-    <div className="mt-8 border border-black bg-[#fbfaf7] p-4 font-mono text-xs shadow-[6px_6px_0_#111]">
-      <div className="mb-4 flex items-center justify-between border-b border-black pb-3">
-        <span className="font-semibold uppercase tracking-[0.12em]">
-          Export pipeline
+    <div className="grid w-full grid-cols-[1fr_26px_1fr_26px_1fr] items-center gap-2 text-center text-xs font-medium text-[#777a7f]">
+      {nodes.map((item, index) => (
+        <FragmentNode item={item} index={index} key={item} />
+      ))}
+    </div>
+  );
+}
+
+function FragmentNode({ item, index }: { item: string; index: number }) {
+  return (
+    <>
+      <span className="rounded-xl border border-[#e4e4df] bg-white px-3 py-3">
+        {item}
+      </span>
+      {index < 2 ? <FlowPath delay={index * 0.75} /> : null}
+    </>
+  );
+}
+
+function FlowPath({ delay }: { delay: number }) {
+  return (
+    <span className="export-flow-path" aria-hidden="true" style={{ "--flow-delay": `${delay}s` } as CSSProperties}>
+      <span />
+    </span>
+  );
+}
+
+function StackVisual() {
+  return (
+    <div className="grid w-full grid-cols-3 gap-2">
+      {["Node", "OpenAI", "Claude", "Gemini", "RAG", "MCP"].map((item) => (
+        <span className="rounded-xl border border-[#e4e4df] bg-white px-3 py-3 text-center text-xs font-medium text-[#777a7f]" key={item}>
+          {item}
         </span>
-        <span className="text-black/45">traces</span>
-      </div>
+      ))}
+    </div>
+  );
+}
 
-      <div className="grid grid-cols-[1fr_auto_1fr_auto_1fr] items-center gap-2">
-        {nodes.map((node, index) => (
-          <Fragment key={node}>
-            <div
-              className="border border-black bg-white px-3 py-4 text-center font-semibold"
-            >
-              {node}
-            </div>
-            {index < nodes.length - 1 ? (
-              <div className="flex items-center gap-1">
-                <span className="h-px w-5 bg-black" />
-                <span className="h-2 w-2 rotate-45 border-r border-t border-black" />
-              </div>
-            ) : null}
-          </Fragment>
-        ))}
+function ApiKeyVisual() {
+  return (
+    <div className="w-full rounded-[18px] border border-[#e4e4df] bg-white p-3">
+      <div className="rounded-xl bg-[#232323] px-3 py-2 text-xs font-medium text-white">
+        trllm_live_xxxxxxxxxxxx
       </div>
-
-      <div className="mt-4 grid grid-cols-3 border border-black bg-white">
-        {["span", "events", "errors"].map((item) => (
-          <span
-            className="border-l border-black px-3 py-2 text-center first:border-l-0"
-            key={item}
-          >
+      <div className="mt-3 grid grid-cols-2 gap-2">
+        {["capture", "sampling", "redaction", "exports"].map((item) => (
+          <span className="rounded-xl border border-[#eeeeeb] bg-[#fafafa] px-3 py-2 text-center text-[11px] font-medium text-[#777a7f]" key={item}>
             {item}
           </span>
         ))}

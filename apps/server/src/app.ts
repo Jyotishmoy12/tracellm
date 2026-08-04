@@ -6,6 +6,7 @@ import { AuthController } from "./controllers/auth.controller.js";
 import { HealthController } from "./controllers/health.controller.js";
 import { EventController } from "./controllers/event.controller.js";
 import { ProjectController } from "./controllers/project.controller.js";
+import { PublicController } from "./controllers/public.controller.js";
 import { SessionController } from "./controllers/session.controller.js";
 import { SpanController } from "./controllers/span.controller.js";
 import { db } from "./database/client.js";
@@ -24,6 +25,7 @@ import { createRoutes } from "./routes/index.js";
 import { AuthService } from "./services/auth.service.js";
 import { IngestService } from "./services/ingest.service.js";
 import { JwtService } from "./services/jwt.service.js";
+import { ProductHuntService } from "./services/product-hunt.service.js";
 import { ProjectService } from "./services/project.service.js";
 import { SessionService } from "./services/session.service.js";
 import { SpanService } from "./services/span.service.js";
@@ -52,10 +54,12 @@ export function createApp(): Express {
   const spanService = new SpanService(spanRepository, sessionRepository, telemetry, projectExporter);
   const ingestService = new IngestService(eventRepository, sessionRepository, spanRepository, telemetry, projectExporter);
   const timelineService = new TimelineService(sessionRepository, spanRepository, eventRepository);
+  const productHuntService = new ProductHuntService();
 
   const authController = new AuthController(authService);
   const healthController = new HealthController();
   const projectController = new ProjectController(projectService);
+  const publicController = new PublicController(productHuntService);
   const sessionController = new SessionController(sessionService, timelineService);
   const spanController = new SpanController(spanService);
   const eventController = new EventController(ingestService);
@@ -77,6 +81,7 @@ export function createApp(): Express {
       healthController,
       authController,
       projectController,
+      publicController,
       sessionController,
       spanController,
       eventController,

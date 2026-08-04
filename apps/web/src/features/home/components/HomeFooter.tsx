@@ -32,31 +32,28 @@ const footerGroups = [
 export function HomeFooter() {
   return (
     <footer className="mx-auto w-full max-w-7xl px-4 pb-8 sm:px-6 lg:px-8">
-      <div className="border border-black bg-white p-5 shadow-[8px_8px_0_#111]">
+      <div className="rounded-[30px] border border-[#e4e4df] bg-white p-6 shadow-[0_18px_44px_rgba(30,30,30,0.06)]">
         <div className="grid gap-8 lg:grid-cols-[1fr_2fr]">
           <div>
-            <a
-              className="font-mono text-xl font-semibold lowercase tracking-[-0.02em] text-black no-underline"
-              href="/"
-            >
+            <a className="text-lg font-semibold lowercase text-[#232323] no-underline" href="/">
               tracellm
             </a>
-            <p className="mt-4 max-w-sm text-base font-medium leading-7 text-black/60">
-              Product-level observability for AI applications, with optional
-              OpenTelemetry export.
+            <p className="mt-3 max-w-sm text-sm font-normal leading-6 text-[#777a7f]">
+              Product-level observability for AI applications, with optional OpenTelemetry export.
             </p>
           </div>
 
-          <div className="grid gap-5 sm:grid-cols-3">
-            {footerGroups.map((group) => (
-              <div className="border border-black bg-[#fbfaf7] p-4" key={group.title}>
-                <h3 className="font-mono text-sm font-semibold uppercase tracking-[0.12em] text-black/45">
-                  {group.title}
-                </h3>
-                <div className="mt-4 grid gap-3">
+          <div className="grid gap-4 sm:grid-cols-3">
+            {footerGroups.map((group, index) => (
+              <div
+                className="rounded-[22px] border border-[#e4e4df] bg-[#fafafa] p-5"
+                key={group.title}
+              >
+                <h3 className="text-xs font-semibold uppercase tracking-[0.12em] text-[#777a7f]">{group.title}</h3>
+                <div className="mt-4 grid gap-2.5">
                   {group.links.map((link) => (
                     <a
-                      className="font-mono text-sm font-semibold text-black no-underline transition hover:text-black/55 focus:text-black/55 focus:outline-none"
+                      className="text-sm font-normal leading-6 text-[#232323] no-underline transition hover:text-[#4f46e5] focus:text-[#4f46e5] focus:outline-none"
                       href={link.href}
                       key={link.href}
                       rel={"external" in link && link.external ? "noreferrer" : undefined}
@@ -71,7 +68,7 @@ export function HomeFooter() {
           </div>
         </div>
 
-        <div className="mt-6 flex flex-col gap-3 border-t border-black pt-4 font-mono text-xs font-semibold uppercase tracking-[0.1em] text-black/45 sm:flex-row sm:items-center sm:justify-between">
+        <div className="mt-6 flex flex-col gap-3 border-t border-[#e4e4df] pt-4 text-xs font-semibold uppercase tracking-[0.08em] text-[#a8abb0] sm:flex-row sm:items-center sm:justify-between">
           <span>TraceLLM</span>
           <span>Built for production AI workflows</span>
         </div>

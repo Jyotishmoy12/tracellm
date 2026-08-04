@@ -14,10 +14,10 @@ const externalLinks = [
 
 export function HomeHeader() {
   return (
-    <header className="px-4 py-4 sm:px-6 lg:px-8">
-      <div className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-3 lg:grid-cols-[1fr_auto_1fr]">
+    <header className="px-4 py-5 sm:px-6 lg:px-8">
+      <div className="mx-auto flex max-w-7xl flex-col gap-4 rounded-full border border-[#e4e4df] bg-white/88 px-4 py-3 shadow-sm backdrop-blur md:flex-row md:items-center md:justify-between">
         <a
-          className="font-mono text-lg font-semibold lowercase tracking-[-0.02em] text-black no-underline transition hover:text-black/60 focus:text-black/60 focus:outline-none lg:justify-self-start"
+          className="text-lg font-semibold lowercase text-[#232323] no-underline transition hover:text-[#4f46e5] focus:text-[#4f46e5] focus:outline-none"
           href="/"
           aria-label="TraceLLM home"
         >
@@ -25,12 +25,12 @@ export function HomeHeader() {
         </a>
 
         <nav
-          className="grid w-full max-w-sm grid-cols-4 border border-black bg-white lg:w-auto"
+          className="flex flex-wrap items-center gap-1 md:justify-center"
           aria-label="Primary navigation"
         >
           {navLinks.map((link) => (
             <a
-              className="border-l border-black px-3 py-2 text-center font-mono text-[0.68rem] font-semibold uppercase tracking-[0.08em] text-black/70 no-underline transition first:border-l-0 hover:bg-black hover:text-white focus:bg-black focus:text-white focus:outline-none"
+              className="rounded-full px-3 py-2 text-center text-[0.72rem] font-semibold uppercase tracking-[0.06em] text-[#777a7f] no-underline transition hover:bg-[#f1f0ff] hover:text-[#232323] focus:bg-[#f1f0ff] focus:text-[#232323] focus:outline-none"
               key={link.href}
               href={link.href}
             >
@@ -39,10 +39,10 @@ export function HomeHeader() {
           ))}
         </nav>
 
-        <div className="grid w-full max-w-lg grid-cols-4 border border-black bg-white lg:w-auto lg:justify-self-end">
+        <div className="flex flex-wrap items-center gap-1 md:justify-end">
           {externalLinks.map((link) => (
             <a
-              className="inline-flex min-h-9 items-center justify-center border-r border-black px-3 font-mono text-[0.68rem] font-semibold uppercase tracking-[0.08em] text-black no-underline transition hover:bg-black hover:text-white focus:bg-black focus:text-white focus:outline-none"
+              className="inline-flex min-h-9 items-center justify-center rounded-full px-3 text-[0.72rem] font-semibold uppercase tracking-[0.06em] text-[#777a7f] no-underline transition hover:bg-[#f7f7f5] hover:text-[#232323] focus:bg-[#f7f7f5] focus:text-[#232323] focus:outline-none"
               href={link.href}
               key={link.href}
               rel="noreferrer"
@@ -52,13 +52,13 @@ export function HomeHeader() {
             </a>
           ))}
           <a
-            className="inline-flex min-h-9 items-center justify-center border-r border-black px-3 font-mono text-[0.68rem] font-semibold uppercase tracking-[0.08em] text-black no-underline transition hover:bg-black hover:text-white focus:bg-black focus:text-white focus:outline-none"
+            className="inline-flex min-h-9 items-center justify-center rounded-full px-3 text-[0.72rem] font-semibold uppercase tracking-[0.06em] text-[#232323] no-underline transition hover:bg-[#f1f0ff] focus:bg-[#f1f0ff] focus:outline-none"
             href="/app"
           >
             Sign in
           </a>
           <a
-            className="inline-flex min-h-9 items-center justify-center bg-black px-3 font-mono text-[0.68rem] font-semibold uppercase tracking-[0.08em] text-white no-underline transition hover:bg-white hover:text-black focus:bg-white focus:text-black focus:outline-none"
+            className="inline-flex min-h-9 items-center justify-center rounded-full bg-[#232323] px-4 text-[0.72rem] font-semibold uppercase tracking-[0.06em] text-white no-underline transition hover:bg-[#4f46e5] focus:bg-[#4f46e5] focus:outline-none"
             href="/app"
           >
             Create account

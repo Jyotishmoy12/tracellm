@@ -4,6 +4,8 @@ services:
       context: ..
       dockerfile: apps/server/Dockerfile
     container_name: tracellm-server
+    env_file:
+      - ../apps/server/.env
     environment:
       TRACELLM_PORT: 4319
       TRACELLM_DB_PATH: /app/data/tracellm.sqlite

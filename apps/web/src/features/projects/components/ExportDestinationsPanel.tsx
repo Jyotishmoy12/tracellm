@@ -1,4 +1,4 @@
-import { Activity, FlaskConical, Plus, Trash2 } from "lucide-react";
+import { Activity, FlaskConical, Plus, RadioTower, Trash2 } from "lucide-react";
 import { useMemo, useState } from "react";
 import { webEnv } from "../../../config/env.js";
 import { formatDateTime } from "../../../shared/utils/format.js";
@@ -59,12 +59,25 @@ export function ExportDestinationsPanel() {
             });
           }}
         >
-          <p className="eyebrow">External exports</p>
-          <h2>Forward traces to your own OTLP backend</h2>
-          <p>
-            Add a SigNoz, Honeycomb, Tempo, Datadog collector, or any OTLP HTTP
-            endpoint. TraceLLM keeps the product timeline and forwards a copy.
-          </p>
+          <div className="exports-form__intro">
+            <span>
+              <RadioTower size={18} />
+            </span>
+            <div>
+              <p className="eyebrow">External exports</p>
+              <h2>Forward traces to your own OTLP backend</h2>
+              <p>
+                Add a customer-owned OTLP HTTP endpoint. TraceLLM keeps the product
+                timeline and forwards only the signals selected below.
+              </p>
+            </div>
+          </div>
+
+          <div className="export-example-strip" aria-label="Endpoint examples">
+            <span>SigNoz: https://signoz.example.com:4318</span>
+            <span>Honeycomb: https://api.honeycomb.io</span>
+            <span>Tempo: https://tempo.example.com:4318</span>
+          </div>
 
           <label>
             Destination name
@@ -99,19 +112,14 @@ export function ExportDestinationsPanel() {
         </form>
 
         <div className="exports-list">
-          <div className="panel-box export-help">
-            <p className="eyebrow">Endpoint examples</p>
-            <code>https://signoz.example.com:4318</code>
-            <code>https://api.honeycomb.io</code>
-            <code>https://tempo.example.com:4318</code>
-          </div>
-
           {destinationsQuery.isLoading ? <div className="panel-box">Loading export destinations...</div> : null}
           {destinations.length === 0 && !destinationsQuery.isLoading ? (
             <div className="panel-box export-empty">
               <Activity size={24} />
-              <strong>No external exports yet</strong>
-              <p>Create a destination to forward project traces to a customer-owned collector.</p>
+              <div>
+                <strong>No external exports yet</strong>
+                <p>Create a destination to forward project traces to a customer-owned collector.</p>
+              </div>
             </div>
           ) : null}
 

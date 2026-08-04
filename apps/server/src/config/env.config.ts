@@ -29,6 +29,13 @@ const envSchema = z.object({
   TRACELLM_JWT_AUDIENCE: z.string().default("tracellm-web"),
   TRACELLM_JWT_TTL_SECONDS: z.coerce.number().int().positive().default(60 * 60 * 24 * 7),
   TRACELLM_EXPORT_SECRET_KEY: z.string().default("tracellm-local-export-secret-change-me"),
+  TRACELLM_PRODUCT_HUNT_ENABLED: z
+    .string()
+    .default("false")
+    .transform((value) => value === "true"),
+  TRACELLM_PRODUCT_HUNT_TOKEN: z.string().default(""),
+  TRACELLM_PRODUCT_HUNT_POST_SLUG: z.string().default("tracellm"),
+  TRACELLM_PRODUCT_HUNT_URL: z.string().url().default("https://www.producthunt.com/posts/tracellm"),
   NODE_ENV: z.string().default("development")
 });
 

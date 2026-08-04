@@ -10,6 +10,7 @@ import {
   ServerCrash,
   Share2,
   Settings2,
+  TerminalSquare,
   Workflow
 } from "lucide-react";
 import { useEffect, useMemo, useState, type ReactNode } from "react";
@@ -43,12 +44,26 @@ export function SessionsPage({ session }: { session: AuthSession }) {
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
 
   useEffect(() => {
+    const media = window.matchMedia("(max-width: 980px)");
+    const expandForSmallScreens = () => {
+      if (media.matches) {
+        setSidebarCollapsed(false);
+      }
+    };
+
+    expandForSmallScreens();
+    media.addEventListener("change", expandForSmallScreens);
+    return () => media.removeEventListener("change", expandForSmallScreens);
+  }, []);
+
+  useEffect(() => {
     if (!selectedSessionId && sessions.length > 0) {
       setSelectedSessionId(sessions[0]!.id);
     }
   }, [selectedSessionId, sessions]);
 
   const timelineQuery = useSessionTimeline(selectedSessionId);
+  const isRefreshingTraces = sessionsQuery.isFetching || timelineQuery.isFetching;
 
   return (
     <main className={`dashboard-shell ${sidebarCollapsed ? "dashboard-shell--collapsed" : ""}`}>
@@ -130,12 +145,13 @@ export function SessionsPage({ session }: { session: AuthSession }) {
                 <div className="traces-toolbar">
                   <span className="workspace-pill">{session.workspace?.name ?? session.user.email}</span>
                   <button
-                    className="icon-button"
+                    className={`icon-button refresh-button ${isRefreshingTraces ? "is-spinning" : ""}`}
                     type="button"
                     onClick={() => {
                       void sessionsQuery.refetch();
                       void timelineQuery.refetch();
                     }}
+                    disabled={isRefreshingTraces}
                     title="Refresh traces"
                     aria-label="Refresh traces"
                   >
@@ -149,11 +165,7 @@ export function SessionsPage({ session }: { session: AuthSession }) {
                 />
                 <div className="traces-workspace__detail">
                   {sessions.length === 0 ? (
-                    <EmptyState
-                      icon={<DatabaseZap size={28} />}
-                      title="No traces yet"
-                      description="Create or copy an API key, then run your application with a real LLM provider key."
-                    />
+                    <TracesEmptyState onOpenView={setActiveView} />
                   ) : null}
                   {timelineQuery.data ? (
                     <>
@@ -175,6 +187,34 @@ export function SessionsPage({ session }: { session: AuthSession }) {
   );
 }
 
+function TracesEmptyState({ onOpenView }: { onOpenView: (view: DashboardView) => void }) {
+  return (
+    <section className="traces-empty-panel">
+      <div className="traces-empty-panel__icon">
+        <DatabaseZap size={22} />
+      </div>
+      <div>
+        <p className="eyebrow">Trace Explorer</p>
+        <h2>No traces yet</h2>
+        <p>
+          Connect your application with a project API key. New sessions will appear
+          here as soon as the SDK records a real LLM workflow.
+        </p>
+      </div>
+      <div className="traces-empty-panel__actions">
+        <button type="button" onClick={() => onOpenView("apiKeys")}>
+          <KeyRound size={15} />
+          API keys
+        </button>
+        <button type="button" onClick={() => onOpenView("config")}>
+          <Settings2 size={15} />
+          Capture policy
+        </button>
+      </div>
+    </section>
+  );
+}
+
 function DashboardHome({
   sessionsCount,
   workspaceName,
@@ -184,86 +224,123 @@ function DashboardHome({
   workspaceName: string;
   onOpenView: (view: DashboardView) => void;
 }) {
+  const setupSteps = [
+    {
+      title: "Create an API key",
+      description: "Generate a project key for your app.",
+      action: "Open keys",
+      view: "apiKeys" as const
+    },
+    {
+      title: "Install the SDK",
+      description: "Add TraceLLM to the app you want to observe.",
+      action: "View traces",
+      view: "traces" as const
+    },
+    {
+      title: "Tune capture policy",
+      description: "Choose content, tokens, metadata, redaction, and sampling.",
+      action: "Configure",
+      view: "config" as const
+    },
+    {
+      title: "Forward OTLP",
+      description: "Optionally export selected spans to your own collector.",
+      action: "Exports",
+      view: "exports" as const
+    }
+  ];
+
   return (
     <section className="dashboard-home">
-      <div className="dashboard-home__hero">
+      <div className="dashboard-home__header">
         <div>
-          <p className="eyebrow">Welcome</p>
-          <h1>Hello, {workspaceName}</h1>
+          <p className="eyebrow">Workspace</p>
+          <h1>{workspaceName}</h1>
           <p>
-            Start by creating an API key, tune what TraceLLM should capture,
-            then inspect traces from your real AI application.
+            Connect a real AI app, choose what gets captured, then inspect every
+            session as it arrives.
           </p>
         </div>
-        <div className="dashboard-health-card">
-          <Gauge size={18} />
-          <span>Workspace health</span>
-          <strong>{sessionsCount} traces</strong>
+        <button className="dashboard-header-action" type="button" onClick={() => onOpenView("apiKeys")}>
+          <KeyRound size={16} />
+          Connect app
+        </button>
+      </div>
+
+      <div className="dashboard-workbench">
+        <div className="dashboard-setup-panel">
+          <div className="section-heading">
+            <div>
+              <p className="eyebrow">Setup Queue</p>
+              <h2>Start tracing</h2>
+            </div>
+            <span>{sessionsCount} traces</span>
+          </div>
+
+          <div className="dashboard-step-list">
+            {setupSteps.map((step, index) => (
+              <button
+                className="dashboard-step"
+                key={step.title}
+                type="button"
+                onClick={() => onOpenView(step.view)}
+              >
+                <span>{String(index + 1).padStart(2, "0")}</span>
+                <div>
+                  <strong>{step.title}</strong>
+                  <p>{step.description}</p>
+                </div>
+                <em>{step.action}</em>
+              </button>
+            ))}
+          </div>
+        </div>
+
+        <div className="dashboard-code-panel">
+          <div className="section-heading">
+            <div>
+              <p className="eyebrow">SDK</p>
+              <h2>Connect from Node</h2>
+            </div>
+            <TerminalSquare size={18} />
+          </div>
+          <pre>{`import { TraceLLM } from "@use-tracellm/sdk-node";
+
+const trace = new TraceLLM({
+  apiKey: process.env.TRACELLM_API_KEY,
+  endpoint: "https://api.tracellm.in"
+});
+
+await trace.span("openai.chat.complete", async (span) => {
+  span.setAttributes({ provider: "openai", model: "gpt-4.1-mini" });
+  return runModelCall();
+});`}</pre>
         </div>
       </div>
 
-      <div className="dashboard-signal-grid">
-        <SignalCard label="Signals" value="Traces" detail="Sessions, spans, events" />
-        <SignalCard label="Capture" value="Configurable" detail="Content, tokens, errors" />
-        <SignalCard label="Export" value="OTLP" detail="SigNoz compatible" />
-      </div>
-
-      <div className="dashboard-action-grid">
-        <ActionCard
-          index="01"
-          title="Create or copy an API key"
-          description="Use a project-scoped key to connect the SDK to this workspace."
-          onClick={() => onOpenView("apiKeys")}
-        />
-        <ActionCard
-          index="02"
-          title="Configure capture policy"
-          description="Choose content capture, redaction, sampling, metadata, tokens, and errors."
-          onClick={() => onOpenView("config")}
-        />
-        <ActionCard
-          index="03"
-          title="View incoming traces"
-          description={`${sessionsCount} trace${sessionsCount === 1 ? "" : "s"} available in this workspace.`}
-          onClick={() => onOpenView("traces")}
-        />
-        <ActionCard
-          index="04"
-          title="Forward to your collector"
-          description="Send a project trace copy to SigNoz, Tempo, Honeycomb, or any OTLP backend."
-          onClick={() => onOpenView("exports")}
-        />
+      <div className="dashboard-quick-grid">
+        <button className="dashboard-quick-card" type="button" onClick={() => onOpenView("traces")}>
+          <Workflow size={17} />
+          <span>Trace Explorer</span>
+          <strong>{sessionsCount} sessions</strong>
+        </button>
+        <button className="dashboard-quick-card" type="button" onClick={() => onOpenView("config")}>
+          <Settings2 size={17} />
+          <span>Capture Policy</span>
+          <strong>Inputs, outputs, tokens</strong>
+        </button>
+        <button className="dashboard-quick-card" type="button" onClick={() => onOpenView("exports")}>
+          <Share2 size={17} />
+          <span>OTLP Exports</span>
+          <strong>SigNoz, Tempo, Honeycomb</strong>
+        </button>
+        <div className="dashboard-quick-card dashboard-quick-card--static">
+          <Gauge size={17} />
+          <span>Status</span>
+          <strong>{sessionsCount > 0 ? "Receiving traces" : "Waiting for app"}</strong>
+        </div>
       </div>
     </section>
-  );
-}
-
-function SignalCard({ label, value, detail }: { label: string; value: string; detail: string }) {
-  return (
-    <div className="dashboard-signal-card">
-      <span>{label}</span>
-      <strong>{value}</strong>
-      <p>{detail}</p>
-    </div>
-  );
-}
-
-function ActionCard({
-  index,
-  title,
-  description,
-  onClick
-}: {
-  index: string;
-  title: string;
-  description: string;
-  onClick: () => void;
-}) {
-  return (
-    <button className="dashboard-action-card" type="button" onClick={onClick}>
-      <span>{index}</span>
-      <strong>{title}</strong>
-      <p>{description}</p>
-    </button>
   );
 }

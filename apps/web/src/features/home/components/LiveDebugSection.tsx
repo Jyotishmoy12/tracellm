@@ -1,91 +1,64 @@
 const debugSteps = [
-  {
-    label: "01",
-    title: "Open the user session",
-    detail: "Find the exact workflow run by session name, status, or timestamp."
-  },
-  {
-    label: "02",
-    title: "Inspect the model span",
-    detail: "Check provider, model, latency, token usage, and request status."
-  },
-  {
-    label: "03",
-    title: "Read captured events",
-    detail: "See lifecycle events around tools, retrieval, provider calls, and app logic."
-  },
-  {
-    label: "04",
-    title: "Follow the failure",
-    detail: "Errors stay attached to the same trace with message, type, stack, and metadata."
-  }
+  ["01", "Open the user session", "Find the exact workflow run by session name, status, or timestamp."],
+  ["02", "Inspect the model span", "Check provider, model, latency, token usage, and request status."],
+  ["03", "Read captured events", "See lifecycle events around tools, retrieval, provider calls, and app logic."],
+  ["04", "Follow the failure", "Errors stay attached to the same trace with message, type, stack, and metadata."]
 ];
 
 export function LiveDebugSection() {
   return (
     <section className="mx-auto w-full max-w-7xl px-4 pb-28 sm:px-6 lg:px-8">
-      <div className="border border-black bg-[#fbfaf7] p-4 shadow-[12px_12px_0_#111] sm:p-6">
+      <div className="rounded-[30px] border border-[#e4e4df] bg-white p-4 shadow-[0_18px_44px_rgba(30,30,30,0.06)] sm:p-5">
         <div className="grid gap-6 lg:grid-cols-[0.95fr_1.05fr]">
-          <div className="border border-black bg-white p-6 sm:p-8">
-            <p className="font-mono text-sm font-semibold uppercase tracking-[0.16em] text-black/45">
-              Live Debug
-            </p>
-            <h2 className="mt-4 text-4xl font-extrabold leading-[1.02] tracking-[-0.035em] text-black sm:text-5xl">
+          <div className="rounded-[24px] border border-[#e4e4df] bg-[#fafafa] p-6 sm:p-7">
+            <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[#a8abb0]">Live Debug</p>
+            <h2 className="mt-2 text-xl font-semibold leading-tight text-[#232323] sm:text-2xl">
               A bad answer becomes an inspectable trace.
             </h2>
-            <p className="mt-5 text-lg font-medium leading-8 text-black/60">
-              When a user reports a wrong response, TraceLLM gives you the
-              sequence of things that happened before the answer appeared.
+            <p className="mt-3 max-w-xl text-sm font-normal leading-6 text-[#777a7f]">
+              When a user reports a wrong response, TraceLLM gives you the sequence of things that happened before the answer appeared.
             </p>
 
-            <div className="mt-10 border border-black bg-black p-5 font-mono text-sm leading-7 text-white">
-              <div className="text-white/45">reported_issue.json</div>
-              <div className="mt-5">&#123;</div>
-              <div className="pl-5 text-white/70">"status": "bad_answer",</div>
-              <div className="pl-5 text-white/70">"session": "chatbot.request",</div>
-              <div className="pl-5 text-white/70">"trace": "openai.chat.complete"</div>
-              <div>&#125;</div>
+            <div className="mt-8 rounded-[22px] border border-[#e4e4df] bg-white p-4 text-sm leading-6 text-[#777a7f] shadow-sm">
+              <div className="text-xs font-semibold uppercase tracking-[0.12em] text-[#a8abb0]">reported issue</div>
+              <div className="mt-4 grid gap-2">
+                {[
+                  ["status", "bad_answer"],
+                  ["session", "chatbot.request"],
+                  ["trace", "openai.chat.complete"]
+                ].map(([key, value]) => (
+                  <div className="flex items-center justify-between rounded-xl border border-[#eeeeeb] bg-[#fafafa] px-3 py-2" key={key}>
+                    <span className="font-medium">{key}</span>
+                    <span>{value}</span>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
 
-          <div className="border border-black bg-white p-5">
-            <div className="border border-black bg-[#fbfaf7] p-4 font-mono text-xs">
-              <div className="flex items-center justify-between border-b border-black pb-3">
-                <span className="font-semibold uppercase tracking-[0.12em]">
-                  Investigation path
-                </span>
-                <span className="text-black/45">4 steps</span>
+          <div className="rounded-[24px] border border-[#e4e4df] bg-[#fafafa] p-5">
+            <div className="rounded-[22px] border border-[#e4e4df] bg-white p-4 shadow-sm">
+              <div className="flex items-center justify-between pb-3">
+                <span className="text-xs font-semibold uppercase tracking-[0.12em] text-[#777a7f]">Investigation path</span>
+                <span className="rounded-full bg-[#f1f0ff] px-3 py-1 text-[11px] font-semibold text-[#4f46e5]">4 steps</span>
               </div>
-
-              <div className="relative mt-5 space-y-4">
-                <div className="absolute bottom-6 left-[23px] top-6 w-px bg-black" />
-                {debugSteps.map((step) => (
-                  <div
-                    className="relative grid grid-cols-[48px_1fr] gap-4"
-                    key={step.label}
-                  >
-                    <span className="relative z-10 flex h-12 w-12 items-center justify-center border border-black bg-white font-semibold">
-                      {step.label}
+              <div className="mt-4 space-y-3">
+                {debugSteps.map(([label, title, detail]) => (
+                  <div className="grid grid-cols-[40px_1fr] gap-3" key={label}>
+                    <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#f1f0ff] text-sm font-semibold text-[#4f46e5]">
+                      {label}
                     </span>
-                    <div className="border border-black bg-white p-4">
-                      <h3 className="font-mono text-sm font-semibold uppercase tracking-[0.08em] text-black">
-                        {step.title}
-                      </h3>
-                      <p className="mt-2 text-sm font-medium leading-6 text-black/60">
-                        {step.detail}
-                      </p>
+                    <div className="rounded-xl border border-[#eeeeeb] bg-[#fafafa] p-3">
+                      <h3 className="text-sm font-semibold text-[#232323]">{title}</h3>
+                      <p className="mt-1.5 text-sm font-normal leading-6 text-[#777a7f]">{detail}</p>
                     </div>
                   </div>
                 ))}
               </div>
             </div>
-
-            <div className="mt-4 grid grid-cols-3 border border-black bg-white font-mono text-xs">
+            <div className="mt-3 grid grid-cols-3 gap-2 text-[11px] font-medium uppercase tracking-[0.08em] text-[#777a7f]">
               {["prompt", "span", "output"].map((item) => (
-                <span
-                  className="border-l border-black px-3 py-3 text-center font-semibold uppercase tracking-[0.08em] first:border-l-0"
-                  key={item}
-                >
+                <span className="rounded-xl border border-[#e4e4df] bg-white px-3 py-2.5 text-center" key={item}>
                   {item}
                 </span>
               ))}
