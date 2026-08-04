@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { docsUrl } from "../../../config/env.js";
 
 export function FinalCta() {
@@ -16,12 +17,12 @@ export function FinalCta() {
           </div>
 
           <div className="grid gap-3 sm:grid-cols-2 lg:min-w-80 lg:grid-cols-1">
-            <a
+            <Link
               className="inline-flex min-h-10 items-center justify-center rounded-full bg-[#232323] px-5 text-xs font-semibold uppercase tracking-[0.08em] text-white no-underline transition hover:bg-[#4f46e5] focus:bg-[#4f46e5] focus:outline-none"
-              href="/app"
+              to="/app"
             >
               Create account
-            </a>
+            </Link>
             <a
               className="inline-flex min-h-10 items-center justify-center rounded-full border border-[#e4e4df] bg-[#fafafa] px-5 text-xs font-semibold uppercase tracking-[0.08em] text-[#232323] no-underline transition hover:bg-[#f1f0ff] focus:bg-[#f1f0ff] focus:outline-none"
               href={docsUrl("/sdk/node/")}

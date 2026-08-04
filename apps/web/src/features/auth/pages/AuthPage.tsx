@@ -1,5 +1,6 @@
 import { Braces, Check, Eye, EyeOff, GitBranch, KeyRound, LogIn, UserPlus } from "lucide-react";
 import { useState, type FormEvent, type ReactNode } from "react";
+import { Link } from "react-router-dom";
 import { ThemeToggle } from "../../../shared/components/ThemeToggle.js";
 import { useLogin, useRegister } from "../hooks/useAuth.js";
 
@@ -49,12 +50,12 @@ export function AuthPage() {
       <section className="grid w-full max-w-md gap-5 lg:max-w-6xl lg:grid-cols-[0.95fr_1.05fr]">
         <aside className="relative hidden overflow-hidden rounded-[32px] border border-[#e4e4df] bg-white p-6 shadow-[0_22px_60px_rgba(30,30,30,0.07)] sm:p-8 lg:block">
           <div className="flex items-center justify-between gap-3">
-            <a
+            <Link
               className="text-lg font-semibold lowercase tracking-[-0.02em] text-[#232323] no-underline"
-              href="/"
+              to="/"
             >
               tracellm
-            </a>
+            </Link>
             <ThemeToggle />
           </div>
           <h1 className="mt-12 max-w-md text-2xl font-semibold leading-tight text-[#232323] sm:text-3xl">
@@ -100,12 +101,12 @@ export function AuthPage() {
         <section className="rounded-[28px] border border-[#e4e4df] bg-white p-3 shadow-[0_22px_60px_rgba(30,30,30,0.07)] sm:rounded-[32px] sm:p-5">
           <div className="rounded-[24px] border border-[#e4e4df] bg-[#fafafa] p-4 sm:rounded-[26px] sm:p-7">
             <div className="mb-5 flex items-center justify-between gap-3 lg:hidden">
-              <a
+              <Link
                 className="inline-flex text-base font-semibold lowercase tracking-[-0.02em] text-[#232323] no-underline"
-                href="/"
+                to="/"
               >
                 tracellm
-              </a>
+              </Link>
               <ThemeToggle />
             </div>
             <div className="flex items-start gap-3 sm:gap-4">

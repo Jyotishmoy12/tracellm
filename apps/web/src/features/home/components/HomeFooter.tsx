@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { docsUrl, webEnv } from "../../../config/env.js";
 
 const footerGroups = [
@@ -35,9 +36,9 @@ export function HomeFooter() {
       <div className="rounded-[30px] border border-[#e4e4df] bg-white p-6 shadow-[0_18px_44px_rgba(30,30,30,0.06)]">
         <div className="grid gap-8 lg:grid-cols-[1fr_2fr]">
           <div>
-            <a className="text-lg font-semibold lowercase text-[#232323] no-underline" href="/">
+            <Link className="text-lg font-semibold lowercase text-[#232323] no-underline" to="/">
               tracellm
-            </a>
+            </Link>
             <p className="mt-3 max-w-sm text-sm font-normal leading-6 text-[#777a7f]">
               Product-level observability for AI applications, with optional OpenTelemetry export.
             </p>
@@ -51,17 +52,31 @@ export function HomeFooter() {
               >
                 <h3 className="text-xs font-semibold uppercase tracking-[0.12em] text-[#777a7f]">{group.title}</h3>
                 <div className="mt-4 grid gap-2.5">
-                  {group.links.map((link) => (
-                    <a
-                      className="text-sm font-normal leading-6 text-[#232323] no-underline transition hover:text-[#4f46e5] focus:text-[#4f46e5] focus:outline-none"
-                      href={link.href}
-                      key={`${group.title}-${link.label}-${link.href}`}
-                      rel={"external" in link && link.external ? "noreferrer" : undefined}
-                      target={"external" in link && link.external ? "_blank" : undefined}
-                    >
-                      {link.label}
-                    </a>
-                  ))}
+                  {group.links.map((link) => {
+                    const isInternal = link.href.startsWith("/") || link.href.startsWith("#");
+                    const className =
+                      "text-sm font-normal leading-6 text-[#232323] no-underline transition hover:text-[#4f46e5] focus:text-[#4f46e5] focus:outline-none";
+
+                    return isInternal ? (
+                      <Link
+                        className={className}
+                        key={`${group.title}-${link.label}-${link.href}`}
+                        to={link.href}
+                      >
+                        {link.label}
+                      </Link>
+                    ) : (
+                      <a
+                        className={className}
+                        href={link.href}
+                        key={`${group.title}-${link.label}-${link.href}`}
+                        rel="noreferrer"
+                        target="_blank"
+                      >
+                        {link.label}
+                      </a>
+                    );
+                  })}
                 </div>
               </div>
             ))}

@@ -1,5 +1,6 @@
 import { ArrowRight, Braces, CircleDot, GitBranch, KeyRound, RadioTower } from "lucide-react";
 import type { ReactNode } from "react";
+import { Link } from "react-router-dom";
 import { docsUrl, webEnv } from "../../../config/env.js";
 import { useProductHuntStats } from "../hooks/useProductHuntStats.js";
 
@@ -52,12 +53,12 @@ export function HomeHero() {
         </p>
 
         <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-          <a
+          <Link
             className="inline-flex min-h-11 items-center justify-center rounded-full bg-[#232323] px-5 text-xs font-semibold uppercase tracking-[0.08em] text-white no-underline transition hover:bg-[#4f46e5] focus:bg-[#4f46e5] focus:outline-none"
-            href="/app"
+            to="/app"
           >
             Create account
-          </a>
+          </Link>
           <a
             className="inline-flex min-h-11 items-center justify-center rounded-full border border-[#e4e4df] bg-white px-5 text-xs font-semibold uppercase tracking-[0.08em] text-[#232323] no-underline transition hover:bg-[#f1f0ff] focus:bg-[#f1f0ff] focus:outline-none"
             href={docsUrl("/sdk/node/")}

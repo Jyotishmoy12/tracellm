@@ -1,4 +1,5 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { Route, Routes } from "react-router-dom";
 import { AuthPage } from "../features/auth/pages/AuthPage.js";
 import { HomePage } from "../features/home/pages/HomePage.js";
 import { SessionsPage } from "../features/sessions/pages/SessionsPage.js";
@@ -17,18 +18,16 @@ const queryClient = new QueryClient({
 export function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <AppContent />
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/app/*" element={<ProtectedApp />} />
+        <Route path="*" element={<HomePage />} />
+      </Routes>
     </QueryClientProvider>
   );
 }
 
-function AppContent() {
-  const path = window.location.pathname;
-
-  if (path === "/") {
-    return <HomePage />;
-  }
-
+function ProtectedApp() {
   const meQuery = useMe();
 
   if (meQuery.isLoading) {
