@@ -1,4 +1,5 @@
 import { docsUrl, webEnv } from "../../../config/env.js";
+import { ThemeToggle } from "../../../shared/components/ThemeToggle.js";
 
 const navLinks = [
   { label: "Platform", href: "#platform" },
@@ -24,12 +25,15 @@ export function HomeHeader() {
         >
           tracellm
         </a>
-          <a
-            className="inline-flex min-h-9 items-center justify-center rounded-full bg-[#232323] px-4 text-[0.72rem] font-semibold uppercase tracking-[0.06em] text-white no-underline transition hover:bg-[#4f46e5] focus:bg-[#4f46e5] focus:outline-none lg:hidden"
-            href="/app"
-          >
-            Create
-          </a>
+          <div className="flex items-center gap-2 lg:hidden">
+            <ThemeToggle />
+            <a
+              className="inline-flex min-h-9 items-center justify-center rounded-full bg-[#232323] px-4 text-[0.72rem] font-semibold uppercase tracking-[0.06em] text-white no-underline transition hover:bg-[#4f46e5] focus:bg-[#4f46e5] focus:outline-none"
+              href="/app"
+            >
+              Create
+            </a>
+          </div>
         </div>
 
         <nav
@@ -48,6 +52,7 @@ export function HomeHeader() {
         </nav>
 
         <div className="hidden items-center gap-1 lg:flex lg:justify-end">
+          <ThemeToggle />
           {externalLinks.map((link) => (
             <a
               className="inline-flex min-h-9 items-center justify-center rounded-full px-3 text-[0.72rem] font-semibold uppercase tracking-[0.06em] text-[#777a7f] no-underline transition hover:bg-[#f7f7f5] hover:text-[#232323] focus:bg-[#f7f7f5] focus:text-[#232323] focus:outline-none"

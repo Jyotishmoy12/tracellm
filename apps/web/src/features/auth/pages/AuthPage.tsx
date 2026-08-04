@@ -1,5 +1,6 @@
 import { Braces, Check, Eye, EyeOff, GitBranch, KeyRound, LogIn, UserPlus } from "lucide-react";
 import { useState, type FormEvent, type ReactNode } from "react";
+import { ThemeToggle } from "../../../shared/components/ThemeToggle.js";
 import { useLogin, useRegister } from "../hooks/useAuth.js";
 
 type AuthMode = "login" | "register";
@@ -47,12 +48,15 @@ export function AuthPage() {
     <main className="marketing-home grid min-h-screen place-items-center bg-[#f5f5f3] px-4 py-6 text-[#232323] sm:py-8">
       <section className="grid w-full max-w-md gap-5 lg:max-w-6xl lg:grid-cols-[0.95fr_1.05fr]">
         <aside className="relative hidden overflow-hidden rounded-[32px] border border-[#e4e4df] bg-white p-6 shadow-[0_22px_60px_rgba(30,30,30,0.07)] sm:p-8 lg:block">
-          <a
-            className="text-lg font-semibold lowercase tracking-[-0.02em] text-[#232323] no-underline"
-            href="/"
-          >
-            tracellm
-          </a>
+          <div className="flex items-center justify-between gap-3">
+            <a
+              className="text-lg font-semibold lowercase tracking-[-0.02em] text-[#232323] no-underline"
+              href="/"
+            >
+              tracellm
+            </a>
+            <ThemeToggle />
+          </div>
           <h1 className="mt-12 max-w-md text-2xl font-semibold leading-tight text-[#232323] sm:text-3xl">
             {mode === "login" ? "Welcome back." : "Create your workspace."}
           </h1>
@@ -95,12 +99,15 @@ export function AuthPage() {
 
         <section className="rounded-[28px] border border-[#e4e4df] bg-white p-3 shadow-[0_22px_60px_rgba(30,30,30,0.07)] sm:rounded-[32px] sm:p-5">
           <div className="rounded-[24px] border border-[#e4e4df] bg-[#fafafa] p-4 sm:rounded-[26px] sm:p-7">
-            <a
-              className="mb-5 inline-flex text-base font-semibold lowercase tracking-[-0.02em] text-[#232323] no-underline lg:hidden"
-              href="/"
-            >
-              tracellm
-            </a>
+            <div className="mb-5 flex items-center justify-between gap-3 lg:hidden">
+              <a
+                className="inline-flex text-base font-semibold lowercase tracking-[-0.02em] text-[#232323] no-underline"
+                href="/"
+              >
+                tracellm
+              </a>
+              <ThemeToggle />
+            </div>
             <div className="flex items-start gap-3 sm:gap-4">
               <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl border border-[#e4e4df] bg-white text-[#4f46e5] shadow-sm sm:h-12 sm:w-12">
                 <KeyRound size={20} />

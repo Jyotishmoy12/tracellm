@@ -15,6 +15,7 @@ import {
 } from "lucide-react";
 import { useEffect, useMemo, useState, type ReactNode } from "react";
 import { EmptyState } from "../../../shared/components/EmptyState.js";
+import { ThemeToggle } from "../../../shared/components/ThemeToggle.js";
 import { useLogout } from "../../auth/hooks/useAuth.js";
 import type { AuthSession } from "../../auth/types.js";
 import { ExportDestinationsPanel } from "../../projects/components/ExportDestinationsPanel.js";
@@ -111,6 +112,7 @@ export function SessionsPage({ session }: { session: AuthSession }) {
           <LogOut size={18} />
           {!sidebarCollapsed ? <span>Logout</span> : null}
         </button>
+        {!sidebarCollapsed ? <ThemeToggle /> : null}
       </aside>
 
       <section className="workspace">
