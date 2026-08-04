@@ -1,61 +1,177 @@
 <svg width="1440" height="900" viewBox="0 0 1440 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <pattern id="dotGrid" width="18" height="18" patternUnits="userSpaceOnUse">
+      <circle cx="1" cy="1" r="1" fill="#242424" opacity="0.5"/>
+    </pattern>
+    <linearGradient id="panelFade" x1="720" y1="0" x2="720" y2="900" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#101010"/>
+      <stop offset="1" stop-color="#050505"/>
+    </linearGradient>
+    <linearGradient id="softPanel" x1="0" y1="0" x2="0" y2="1">
+      <stop stop-color="#151515"/>
+      <stop offset="1" stop-color="#0E0E0E"/>
+    </linearGradient>
+    <filter id="softShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="18" stdDeviation="22" flood-color="#000000" flood-opacity="0.35"/>
+    </filter>
+  </defs>
+
   <style>
-    text {
-      font-family: "Geist Mono", "SFMono-Regular", "Cascadia Mono", "Courier New", monospace;
-      letter-spacing: 0.02em;
+    .sans {
+      font-family: "Geist", "Inter", Arial, sans-serif;
     }
-    text[font-weight="700"],
-    text[font-weight="800"],
-    text[font-weight="900"] {
-      font-weight: 600;
+    .mono {
+      font-family: "Geist Mono", "SFMono-Regular", "Cascadia Mono", "Courier New", monospace;
+    }
+    .eyebrow {
+      fill: #8f8a84;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.13em;
+    }
+    .muted {
+      fill: #a9a29b;
+    }
+    .strong {
+      fill: #f7f4ef;
+      font-weight: 700;
+    }
+    .orange {
+      fill: #ff7618;
+    }
+    .stroke {
+      stroke: #292929;
     }
   </style>
-  <rect width="1440" height="900" fill="#FAFAFA"/>
-  <rect x="1" y="1" width="1438" height="898" rx="8" fill="white" stroke="#111111" stroke-opacity="0.3" stroke-width="2"/>
-  <rect x="32" y="32" width="330" height="836" rx="4" fill="#F7F7F7" stroke="#111111" stroke-opacity="0.32"/>
-  <text x="64" y="88" fill="#111111" font-family="Inter, Arial, sans-serif" font-size="28" font-weight="800">tracellm</text>
-  <rect x="64" y="124" width="248" height="52" rx="3" fill="white" stroke="#111111" stroke-opacity="0.34"/>
-  <text x="88" y="157" fill="#666666" font-family="Inter, Arial, sans-serif" font-size="14">SEARCH SESSIONS</text>
-  <rect x="64" y="210" width="248" height="118" rx="3" fill="#111111"/>
-  <text x="88" y="254" fill="white" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="800">OPENAI CHATBOT TRACE</text>
-  <text x="88" y="288" fill="#CFCFCF" font-family="Inter, Arial, sans-serif" font-size="15">4.82s · 27 tokens</text>
-  <rect x="88" y="304" width="48" height="22" rx="2" fill="#FFFFFF"/>
-  <text x="102" y="320" fill="#111111" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="800">ok</text>
-  <rect x="64" y="352" width="248" height="118" rx="3" fill="white" stroke="#111111" stroke-opacity="0.34"/>
-  <text x="88" y="396" fill="#111111" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="800">AGENT WORKFLOW</text>
-  <text x="88" y="430" fill="#666666" font-family="Inter, Arial, sans-serif" font-size="15">1.31s · 64 tokens</text>
-  <rect x="64" y="494" width="248" height="118" rx="3" fill="white" stroke="#111111" stroke-opacity="0.34"/>
-  <text x="88" y="538" fill="#111111" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="800">RETRIEVAL ANSWER</text>
-  <text x="88" y="572" fill="#666666" font-family="Inter, Arial, sans-serif" font-size="15">823ms · 18 tokens</text>
-  <rect x="400" y="32" width="1008" height="104" rx="4" fill="white" stroke="#111111" stroke-opacity="0.32"/>
-  <text x="440" y="78" fill="#666666" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="700">LLM OBSERVABILITY</text>
-  <text x="440" y="112" fill="#111111" font-family="Inter, Arial, sans-serif" font-size="32" font-weight="900">TRACE EXPLORER</text>
-  <rect x="1264" y="58" width="48" height="48" rx="4" fill="#111111"/>
-  <rect x="1324" y="58" width="48" height="48" rx="4" fill="white" stroke="#111111" stroke-opacity="0.34"/>
-  <rect x="400" y="168" width="1008" height="198" rx="4" fill="white" stroke="#111111" stroke-opacity="0.32"/>
-  <text x="440" y="220" fill="#666666" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="800">SESSION DETAIL</text>
-  <text x="440" y="258" fill="#111111" font-family="Inter, Arial, sans-serif" font-size="30" font-weight="900">OPENAI CHATBOT TRACE</text>
-  <rect x="440" y="292" width="200" height="48" rx="3" fill="#F3F3F3"/>
-  <text x="464" y="323" fill="#111111" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="800">4.82S LATENCY</text>
-  <rect x="664" y="292" width="158" height="48" rx="3" fill="#F3F3F3"/>
-  <text x="688" y="323" fill="#111111" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="800">1 SPAN</text>
-  <rect x="846" y="292" width="174" height="48" rx="3" fill="#F3F3F3"/>
-  <text x="870" y="323" fill="#111111" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="800">27 TOKENS</text>
-  <rect x="1044" y="292" width="150" height="48" rx="3" fill="#F3F3F3"/>
-  <text x="1068" y="323" fill="#111111" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="800">0 ERRORS</text>
-  <rect x="400" y="398" width="1008" height="470" rx="4" fill="white" stroke="#111111" stroke-opacity="0.32"/>
-  <text x="440" y="456" fill="#111111" font-family="Inter, Arial, sans-serif" font-size="30" font-weight="900">TIMELINE</text>
-  <text x="1280" y="456" fill="#666666" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="800">4 RECORDS</text>
-  <rect x="440" y="494" width="928" height="96" rx="4" fill="#F7F7F7" stroke="#111111" stroke-opacity="0.28"/>
-  <circle cx="476" cy="542" r="14" fill="#111111"/>
-  <text x="516" y="532" fill="#666666" font-family="Inter, Arial, sans-serif" font-size="14">provider.request.started</text>
-  <text x="516" y="560" fill="#111111" font-family="Inter, Arial, sans-serif" font-size="20" font-weight="800">gpt-4.1-mini request started</text>
-  <rect x="440" y="614" width="928" height="96" rx="4" fill="#111111"/>
-  <circle cx="476" cy="662" r="14" fill="white"/>
-  <text x="516" y="652" fill="#CFCFCF" font-family="Inter, Arial, sans-serif" font-size="14">openai.chat.complete</text>
-  <text x="516" y="680" fill="white" font-family="Inter, Arial, sans-serif" font-size="20" font-weight="800">assistant response captured with usage</text>
-  <rect x="440" y="734" width="928" height="96" rx="4" fill="#F7F7F7" stroke="#111111" stroke-opacity="0.28"/>
-  <circle cx="476" cy="782" r="14" fill="#111111"/>
-  <text x="516" y="772" fill="#666666" font-family="Inter, Arial, sans-serif" font-size="14">session.completed</text>
-  <text x="516" y="800" fill="#111111" font-family="Inter, Arial, sans-serif" font-size="20" font-weight="800">trace stored and exported to OpenTelemetry</text>
+
+  <rect width="1440" height="900" fill="#050505"/>
+  <rect width="1440" height="900" fill="url(#dotGrid)"/>
+  <rect x="12" y="15" width="1416" height="650" rx="0" fill="url(#panelFade)" stroke="#313131"/>
+
+  <!-- Sidebar -->
+  <rect x="12" y="15" width="224" height="650" fill="#080808" stroke="#292929"/>
+  <text x="32" y="51" class="sans strong" font-size="16">tracellm</text>
+  <text x="32" y="72" class="mono muted" font-size="11" font-weight="700">AI observability</text>
+  <rect x="191" y="31" width="28" height="30" rx="8" fill="#111111" stroke="#2d2d2d"/>
+  <path d="M207 39 L201 46 L207 53" stroke="#9a9a9a" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <line x1="28" y1="96" x2="224" y2="96" stroke="#242424"/>
+  <text x="32" y="126" class="mono muted" font-size="11" font-weight="700" letter-spacing="0.12em">EXPLORE</text>
+
+  <rect x="20" y="148" width="205" height="34" rx="7" fill="#43220f"/>
+  <path d="M31 165 L40 157 L49 165 V176 H34 V168 H46" stroke="#ff7618" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="61" y="170" class="sans orange" font-size="14" font-weight="700">Home</text>
+
+  <path d="M33 209 H39 V215 H33 Z M46 215 H52 V221 H46 Z M39 221 H45 V227 H39 Z" stroke="#b8b1aa" stroke-width="1.6" fill="none" rx="1"/>
+  <text x="61" y="219" class="sans muted" font-size="14" font-weight="700">Traces</text>
+  <path d="M34 255 H52 M39 249 V261 M47 249 V261" stroke="#b8b1aa" stroke-width="2" stroke-linecap="round"/>
+  <text x="61" y="260" class="sans muted" font-size="14" font-weight="700">Config</text>
+  <path d="M36 300 C36 294 43 293 45 298 C47 302 43 306 39 305 L34 312" stroke="#b8b1aa" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <text x="61" y="304" class="sans muted" font-size="14" font-weight="700">API Keys</text>
+  <path d="M34 343 L45 336 L53 346 M45 336 V356 M34 343 V352 M53 346 V355" stroke="#b8b1aa" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <text x="61" y="348" class="sans muted" font-size="14" font-weight="700">Exports</text>
+
+  <path d="M34 598 H43 M39 593 L48 602 L39 611" stroke="#b8b1aa" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="61" y="604" class="sans muted" font-size="14" font-weight="700">Logout</text>
+  <rect x="20" y="625" width="205" height="30" rx="15" fill="#0b0b0b" stroke="#2d2d2d"/>
+  <text x="88" y="645" class="mono muted" font-size="11" font-weight="700">LIGHT</text>
+
+  <!-- Main workspace -->
+  <rect x="236" y="15" width="1192" height="650" fill="#090909"/>
+  <rect x="236" y="15" width="1192" height="650" fill="url(#dotGrid)" opacity="0.38"/>
+
+  <rect x="252" y="31" width="1166" height="126" rx="12" fill="url(#softPanel)" stroke="#2e2e2e" filter="url(#softShadow)"/>
+  <text x="269" y="66" class="mono eyebrow">WORKSPACE</text>
+  <text x="269" y="98" class="sans strong" font-size="31">acme ai</text>
+  <text x="269" y="125" class="sans muted" font-size="14">Connect a real AI app, choose what gets captured, then inspect every session as it arrives.</text>
+  <rect x="1287" y="51" width="116" height="34" rx="7" fill="#42210e" stroke="#8a4314"/>
+  <path d="M1309 70 C1309 65 1315 64 1317 68 C1319 72 1315 76 1311 75 L1305 81" stroke="#ff7618" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <text x="1330" y="73" class="sans orange" font-size="13" font-weight="700">Connect app</text>
+
+  <!-- Setup queue -->
+  <rect x="252" y="169" width="531" height="389" rx="12" fill="url(#softPanel)" stroke="#2e2e2e"/>
+  <text x="267" y="198" class="mono eyebrow">SETUP QUEUE</text>
+  <text x="266" y="226" class="sans strong" font-size="23">Start tracing</text>
+  <text x="720" y="214" class="mono muted" font-size="12" font-weight="700">0 TRACES</text>
+  <line x1="265" y1="239" x2="769" y2="239" stroke="#2b2b2b"/>
+
+  <g>
+    <rect x="265" y="269" width="504" height="58" rx="8" fill="#0d0d0d" stroke="#2b2b2b"/>
+    <rect x="275" y="286" width="30" height="30" rx="8" fill="#151515" stroke="#333333"/>
+    <text x="282" y="306" class="mono muted" font-size="12" font-weight="700">01</text>
+    <text x="315" y="295" class="sans strong" font-size="14">Create an API key</text>
+    <text x="315" y="315" class="sans muted" font-size="12">Generate a project key for your app.</text>
+    <text x="707" y="301" class="sans orange" font-size="12" font-weight="700">Open keys</text>
+  </g>
+  <g>
+    <rect x="265" y="335" width="504" height="58" rx="8" fill="#0d0d0d" stroke="#2b2b2b"/>
+    <rect x="275" y="352" width="30" height="30" rx="8" fill="#151515" stroke="#333333"/>
+    <text x="282" y="372" class="mono muted" font-size="12" font-weight="700">02</text>
+    <text x="315" y="361" class="sans strong" font-size="14">Install the SDK</text>
+    <text x="315" y="381" class="sans muted" font-size="12">Add TraceLLM to the app you want to observe.</text>
+    <text x="707" y="367" class="sans orange" font-size="12" font-weight="700">View traces</text>
+  </g>
+  <g>
+    <rect x="265" y="401" width="504" height="58" rx="8" fill="#0d0d0d" stroke="#2b2b2b"/>
+    <rect x="275" y="418" width="30" height="30" rx="8" fill="#151515" stroke="#333333"/>
+    <text x="282" y="438" class="mono muted" font-size="12" font-weight="700">03</text>
+    <text x="315" y="427" class="sans strong" font-size="14">Tune capture policy</text>
+    <text x="315" y="447" class="sans muted" font-size="12">Choose content, tokens, metadata, redaction, and sampling.</text>
+    <text x="707" y="433" class="sans orange" font-size="12" font-weight="700">Configure</text>
+  </g>
+  <g>
+    <rect x="265" y="467" width="504" height="58" rx="8" fill="#0d0d0d" stroke="#2b2b2b"/>
+    <rect x="275" y="484" width="30" height="30" rx="8" fill="#151515" stroke="#333333"/>
+    <text x="282" y="504" class="mono muted" font-size="12" font-weight="700">04</text>
+    <text x="315" y="493" class="sans strong" font-size="14">Forward OTLP</text>
+    <text x="315" y="513" class="sans muted" font-size="12">Optionally export selected spans to your own collector.</text>
+    <text x="707" y="499" class="sans orange" font-size="12" font-weight="700">Exports</text>
+  </g>
+
+  <!-- SDK card -->
+  <rect x="795" y="169" width="624" height="389" rx="12" fill="url(#softPanel)" stroke="#2e2e2e"/>
+  <text x="810" y="198" class="mono eyebrow">SDK</text>
+  <text x="810" y="226" class="sans strong" font-size="23">Connect from Node</text>
+  <rect x="1391" y="193" width="14" height="14" rx="2" fill="none" stroke="#b8b1aa" stroke-width="1.5"/>
+  <path d="M1394 197 H1402 M1402 197 L1398 193 M1402 197 L1398 201" stroke="#b8b1aa" stroke-width="1.4" fill="none" stroke-linecap="round"/>
+  <line x1="809" y1="239" x2="1405" y2="239" stroke="#2b2b2b"/>
+  <rect x="808" y="268" width="597" height="266" rx="10" fill="#0A0A0A" stroke="#2b2b2b"/>
+  <rect x="809" y="306" width="595" height="39" fill="#0E0E0E" opacity="0.58"/>
+  <rect x="809" y="385" width="595" height="39" fill="#0E0E0E" opacity="0.58"/>
+  <text x="824" y="296" class="mono strong" font-size="13">import { TraceLLM } from "@use-tracellm/sdk-node";</text>
+  <text x="824" y="335" class="mono strong" font-size="13">const trace = new TraceLLM({</text>
+  <text x="846" y="357" class="mono strong" font-size="13">apiKey: process.env.TRACELLM_API_KEY,</text>
+  <text x="846" y="379" class="mono strong" font-size="13">endpoint: "https://api.tracellm.in"</text>
+  <text x="824" y="401" class="mono strong" font-size="13">});</text>
+  <text x="824" y="448" class="mono strong" font-size="13">await trace.span("openai.chat.complete", async (span) =&gt; {</text>
+  <text x="846" y="470" class="mono strong" font-size="13">span.setAttributes({ provider: "openai", model: "gpt-4.1-mini" });</text>
+  <text x="846" y="492" class="mono strong" font-size="13">return runModelCall();</text>
+  <text x="824" y="514" class="mono strong" font-size="13">});</text>
+
+  <!-- Bottom summary cards -->
+  <g>
+    <rect x="252" y="570" width="282" height="82" rx="10" fill="url(#softPanel)" stroke="#2e2e2e"/>
+    <path d="M265 610 L276 620 L287 607" stroke="#ff7618" stroke-width="2" fill="none" stroke-linecap="round"/>
+    <text x="298" y="598" class="sans muted" font-size="12" font-weight="700">Trace Explorer</text>
+    <text x="298" y="629" class="sans strong" font-size="15">0 sessions</text>
+  </g>
+  <g>
+    <rect x="546" y="570" width="282" height="82" rx="10" fill="url(#softPanel)" stroke="#2e2e2e"/>
+    <path d="M562 606 H574 M568 600 V612 M562 628 H574 M568 622 V634" stroke="#ff7618" stroke-width="2" stroke-linecap="round"/>
+    <text x="592" y="598" class="sans muted" font-size="12" font-weight="700">Capture Policy</text>
+    <text x="592" y="629" class="sans strong" font-size="15">Inputs, outputs, tokens</text>
+  </g>
+  <g>
+    <rect x="840" y="570" width="282" height="82" rx="10" fill="url(#softPanel)" stroke="#2e2e2e"/>
+    <path d="M858 610 L869 602 L879 612 M869 602 V628" stroke="#ff7618" stroke-width="2" fill="none" stroke-linecap="round"/>
+    <text x="886" y="598" class="sans muted" font-size="12" font-weight="700">OTLP Exports</text>
+    <text x="886" y="629" class="sans strong" font-size="15">SigNoz, Tempo, Honeycomb</text>
+  </g>
+  <g>
+    <rect x="1134" y="570" width="284" height="82" rx="10" fill="url(#softPanel)" stroke="#2e2e2e"/>
+    <path d="M1152 620 A12 12 0 0 1 1176 620" stroke="#ff7618" stroke-width="2" fill="none" stroke-linecap="round"/>
+    <text x="1184" y="598" class="sans muted" font-size="12" font-weight="700">Status</text>
+    <text x="1184" y="629" class="sans strong" font-size="15">Waiting for app</text>
+  </g>
+
+  <rect x="1" y="1" width="1438" height="898" fill="none" stroke="#111111" stroke-opacity="0.35" stroke-width="2"/>
 </svg>
